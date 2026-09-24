@@ -83,10 +83,11 @@
     /* ================= PRODUCTS GRID ================= */
     .section-header { padding: 30px 5% 15px; display: flex; justify-content: space-between; align-items: center; }
     .section-header h2 { font-size: 1.4rem; font-weight: 600; border-left: 4px solid var(--primary); padding-left: 10px; }
+    .product-count { color: var(--text-muted); font-size: 0.9rem; }
 
     .product-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px; padding: 0 5% 40px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px; padding: 0 5% 20px;
     }
     .product-card {
       background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border);
@@ -94,22 +95,30 @@
     }
     .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.15); }
     .discount-badge { position: absolute; top: 10px; left: 10px; background: #ff334b; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; z-index: 2; }
-    .product-img-wrap { height: 200px; overflow: hidden; background: #fff; position: relative; }
+    .product-img-wrap { height: 180px; overflow: hidden; background: #fff; position: relative; }
     .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
     .product-card:hover .product-img { transform: scale(1.05); }
     
     .product-info { padding: 15px; display: flex; flex-direction: column; flex: 1; }
     .p-cat { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; }
-    .p-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 8px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .p-title { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 8px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .p-rating { color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; }
     .p-rating span { color: var(--text-muted); margin-left: 5px; }
     
     .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
-    .p-price { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
-    .p-price strike { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; margin-left: 5px; }
+    .p-price { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
+    .p-price strike { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; margin-left: 5px; }
     
     .add-btn { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-hover); border: 1px solid var(--border); color: #fff; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
     .add-btn:hover { background: var(--primary); color: #000; }
+
+    /* LOAD MORE BUTTON */
+    .load-more-container { text-align: center; padding: 10px 5% 40px; }
+    .load-more-btn {
+      padding: 12px 35px; background: transparent; color: var(--primary); border: 2px solid var(--primary);
+      border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: 0.3s;
+    }
+    .load-more-btn:hover { background: var(--primary); color: #000; }
 
     /* ================= ADVANCED CART ================= */
     .cart-sidebar {
@@ -138,27 +147,6 @@
     .sum-total { font-size: 1.2rem; color: #fff; font-weight: 700; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
     .checkout-btn { width: 100%; padding: 14px; background: var(--primary); color: #000; border: none; border-radius: 8px; font-weight: 700; font-size: 1.05rem; cursor: pointer; margin-top: 15px; }
 
-    /* ================= CHECKOUT MODAL ================= */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-      z-index: 3000; display: none; justify-content: center; align-items: center; padding: 20px;
-    }
-    .checkout-box {
-      background: var(--bg-card); width: 100%; max-width: 500px; padding: 30px;
-      border-radius: 16px; border: 1px solid var(--border); position: relative; max-height: 90vh; overflow-y: auto;
-    }
-    .checkout-box::-webkit-scrollbar { width: 5px; }
-    .checkout-box h2 { margin-bottom: 20px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-    
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
-    .form-control { width: 100%; padding: 12px; background: #0b111a; border: 1px solid var(--border); color: #fff; border-radius: 8px; outline: none; }
-    .form-control:focus { border-color: var(--secondary); }
-    
-    .payment-methods { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 5px; }
-    .pay-method { background: #0b111a; border: 1px solid var(--border); padding: 10px; text-align: center; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
-    .pay-method.active { border-color: var(--primary); background: rgba(0, 230, 118, 0.1); color: var(--primary); }
-
     /* ================= FOOTER ================= */
     footer { background: #05080f; padding: 40px 5% 20px; border-top: 1px solid var(--border); margin-top: 40px; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
@@ -184,15 +172,11 @@
       <div class="logo" onclick="filterCategory('all')"><i class="fa-solid fa-bag-shopping"></i> EMON <span>MART</span></div>
       
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search products, brands, categories..." onkeyup="searchProducts()">
+        <input type="text" id="searchInput" placeholder="Search 5,000+ products..." onkeyup="searchProducts()">
         <button><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
 
       <div class="nav-icons">
-        <div class="icon-wrapper" onclick="alert('User Dashboard Development in Progress!')">
-          <i class="fa-regular fa-user"></i>
-          <span>Profile</span>
-        </div>
         <div class="icon-wrapper" onclick="toggleCart()">
           <div class="badge" id="cartCount">0</div>
           <i class="fa-solid fa-cart-shopping"></i>
@@ -213,17 +197,23 @@
 
   <!-- HERO BANNER -->
   <div class="hero-banner">
-    <h1>Next-Gen Tech <span>Sale 2026</span></h1>
-    <p>Discover the latest smartphones, premium laptops, and smart gadgets at unbeatable prices. Fast delivery across Bangladesh.</p>
-    <button class="hero-btn" onclick="document.getElementById('productContainer').scrollIntoView({behavior: 'smooth'})">Shop Now</button>
+    <h1>Endless Tech <span>Sale 2026</span></h1>
+    <p>Explore over 5,000+ premium products. Fast delivery across Bangladesh.</p>
+    <button class="hero-btn" onclick="document.getElementById('productContainer').scrollIntoView({behavior: 'smooth'})">Explore All</button>
   </div>
 
   <!-- PRODUCTS GRID -->
   <div class="section-header" id="productContainer">
-    <h2 id="sectionTitle">Just For You</h2>
+    <h2 id="sectionTitle">All Products</h2>
+    <div class="product-count" id="productCountTxt">Showing 0 items</div>
   </div>
+  
   <div class="product-grid" id="productGrid">
-    <!-- Products will be loaded via JS -->
+    <!-- Products loaded via JS -->
+  </div>
+
+  <div class="load-more-container" id="loadMoreContainer">
+    <button class="load-more-btn" onclick="loadMore()">Load More Products <i class="fa-solid fa-angle-down"></i></button>
   </div>
 
   <!-- CART SIDEBAR -->
@@ -232,52 +222,12 @@
       <h2><i class="fa-solid fa-cart-shopping"></i> Shopping Cart</h2>
       <button style="background:transparent; border:none; color:#fff; font-size:1.5rem; cursor:pointer;" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <div class="cart-items-container" id="cartItems">
-      <!-- Cart Items Go Here -->
-    </div>
+    <div class="cart-items-container" id="cartItems"></div>
     <div class="cart-summary">
       <div class="sum-row"><span>Subtotal:</span> <span id="subTotal">৳ 0</span></div>
       <div class="sum-row"><span>Delivery (Inside BD):</span> <span id="delCharge">৳ 0</span></div>
       <div class="sum-total"><span>Total Payable:</span> <span id="grandTotal" style="color:var(--primary);">৳ 0</span></div>
-      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
-    </div>
-  </div>
-
-  <!-- CHECKOUT MODAL -->
-  <div class="modal-overlay" id="checkoutModal">
-    <div class="checkout-box">
-      <button style="position:absolute; top:20px; right:20px; background:transparent; border:none; color:#fff; font-size:1.5rem; cursor:pointer;" onclick="closeCheckout()"><i class="fa-solid fa-xmark"></i></button>
-      <h2>Checkout & Order</h2>
-      
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" class="form-control" id="cName" placeholder="Emon Islam">
-      </div>
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" class="form-control" id="cPhone" placeholder="01728576508">
-      </div>
-      <div class="form-group">
-        <label>Full Delivery Address</label>
-        <textarea class="form-control" id="cAddress" rows="3" placeholder="House, Road, City..."></textarea>
-      </div>
-      
-      <div class="form-group">
-        <label>Payment Method</label>
-        <div class="payment-methods">
-          <div class="pay-method active" onclick="selectPay(this)">Cash on Delivery</div>
-          <div class="pay-method" onclick="selectPay(this)">bKash</div>
-          <div class="pay-method" onclick="selectPay(this)">Nagad</div>
-        </div>
-      </div>
-
-      <div style="margin: 20px 0; padding: 15px; background: rgba(0, 230, 118, 0.05); border: 1px solid var(--primary); border-radius: 8px;">
-        <div style="display:flex; justify-content:space-between; font-weight:700;">
-          <span>Final Amount:</span> <span id="finalCheckoutAmt">৳ 0</span>
-        </div>
-      </div>
-
-      <button class="checkout-btn" onclick="placeOrder()">Confirm Order</button>
+      <button class="checkout-btn" onclick="alert('Checkout system initiated. Thanks for choosing Emon Mart!')">Proceed to Checkout</button>
     </div>
   </div>
 
@@ -313,42 +263,90 @@
 
   <script>
     // ==========================================
-    // PRODUCT DATABASE (Realistic Data)
+    // MASSIVE PRODUCT DATABASE GENERATOR (5000+ Items)
     // ==========================================
-    const products = [
-      { id: 1, name: "Apple iPhone 15 Pro Max - 256GB Titanium", price: 155000, oldPrice: 165000, cat: "mobile", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500", rating: 4.9, reviews: 124 },
-      { id: 2, name: "Samsung Galaxy S24 Ultra - AI Enabled", price: 145000, oldPrice: 150000, cat: "mobile", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500", rating: 4.8, reviews: 89 },
-      { id: 3, name: "ASUS ROG Strix G16 Gaming Laptop", price: 185000, oldPrice: 195000, cat: "laptop", img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500", rating: 4.7, reviews: 56 },
-      { id: 4, name: "Apple MacBook Pro M3 Chip", price: 210000, oldPrice: "", cat: "laptop", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500", rating: 5.0, reviews: 210 },
-      { id: 5, name: "Sony WH-1000XM5 ANC Headphones", price: 35000, oldPrice: 40000, cat: "audio", img: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500", rating: 4.8, reviews: 342 },
-      { id: 6, name: "Apple AirPods Pro (2nd Gen)", price: 28000, oldPrice: 32000, cat: "audio", img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=500", rating: 4.9, reviews: 512 },
-      { id: 7, name: "DJI Mini 4 Pro Drone (Fly More Combo)", price: 110000, oldPrice: 125000, cat: "gadget", img: "https://images.unsplash.com/photo-1579829366248-204fe8413f31?w=500", rating: 4.6, reviews: 45 },
-      { id: 8, name: "Apple Watch Ultra 2 Smartwatch", price: 95000, oldPrice: "", cat: "gadget", img: "https://images.unsplash.com/photo-1434493789847-2902a52dda56?w=500", rating: 4.8, reviews: 178 }
+    const baseTemplates = [
+      { baseName: "Apple iPhone 15", cat: "mobile", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" },
+      { baseName: "Samsung Galaxy S", cat: "mobile", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300" },
+      { baseName: "Google Pixel", cat: "mobile", img: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?w=300" },
+      { baseName: "ASUS ROG Strix Gaming", cat: "laptop", img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=300" },
+      { baseName: "MacBook Pro M-Series", cat: "laptop", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300" },
+      { baseName: "Dell XPS Studio", cat: "laptop", img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=300" },
+      { baseName: "Sony WH-ANC Headphones", cat: "audio", img: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=300" },
+      { baseName: "AirPods Pro Gen", cat: "audio", img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=300" },
+      { baseName: "JBL Boombox Bluetooth", cat: "audio", img: "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=300" },
+      { baseName: "DJI Mini Drone", cat: "gadget", img: "https://images.unsplash.com/photo-1579829366248-204fe8413f31?w=300" },
+      { baseName: "Apple Watch Ultra", cat: "gadget", img: "https://images.unsplash.com/photo-1434493789847-2902a52dda56?w=300" },
+      { baseName: "VR Headset Quest", cat: "gadget", img: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=300" }
     ];
 
-    let cart = [];
+    const suffixes = ["Pro", "Max", "Ultra", "Lite", "Plus", "Edition", "Series X", "Gen 2", "Mini"];
+    const totalProductsToGenerate = 5000;
+    const allProducts = [];
+
+    // Auto Generate 5000 Products
+    for(let i = 1; i <= totalProductsToGenerate; i++) {
+      let tpl = baseTemplates[Math.floor(Math.random() * baseTemplates.length)];
+      let suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+      let modelNum = Math.floor(Math.random() * 99) + 1;
+      
+      let price = Math.floor(Math.random() * 150000) + 2000; // Random price between 2000 and 152000
+      let hasDiscount = Math.random() > 0.4; // 60% chance to have a discount
+      let oldPrice = hasDiscount ? price + Math.floor(Math.random() * 15000) + 1000 : "";
+      
+      let rating = (Math.random() * (5.0 - 3.5) + 3.5).toFixed(1); // Rating between 3.5 and 5.0
+      let reviews = Math.floor(Math.random() * 800) + 5;
+
+      allProducts.push({
+        id: i,
+        name: `${tpl.baseName} ${suffix} - V${modelNum}`,
+        price: price,
+        oldPrice: oldPrice,
+        cat: tpl.cat,
+        img: tpl.img,
+        rating: rating,
+        reviews: reviews
+      });
+    }
 
     // ==========================================
-    // RENDER PRODUCTS & FILTERS
+    // PAGINATION & RENDERING
     // ==========================================
+    let currentFilteredList = [...allProducts];
+    let itemsPerPage = 30; // Show 30 items per click
+    let currentPage = 1;
+
     const productGrid = document.getElementById('productGrid');
+    const loadMoreBtn = document.getElementById('loadMoreContainer');
+    const productCountTxt = document.getElementById('productCountTxt');
 
-    function renderProducts(items) {
-      productGrid.innerHTML = '';
-      if(items.length === 0) {
+    function renderProducts(reset = false) {
+      if(reset) {
+        productGrid.innerHTML = '';
+        currentPage = 1;
+      }
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const itemsToRender = currentFilteredList.slice(startIndex, endIndex);
+
+      if (currentFilteredList.length === 0) {
         productGrid.innerHTML = `<p style="color:var(--text-muted); grid-column:1/-1; text-align:center;">No products found.</p>`;
+        loadMoreBtn.style.display = 'none';
+        productCountTxt.innerText = `0 items found`;
         return;
       }
 
-      items.forEach(p => {
+      itemsToRender.forEach(p => {
         let discountTag = p.oldPrice ? `<div class="discount-badge">Save ৳${(p.oldPrice - p.price).toLocaleString()}</div>` : '';
         let oldPriceTag = p.oldPrice ? `<strike>৳${p.oldPrice.toLocaleString()}</strike>` : '';
 
+        // loading="lazy" is used here so the browser doesn't crash loading thousands of images
         productGrid.innerHTML += `
           <div class="product-card">
             ${discountTag}
             <div class="product-img-wrap">
-              <img src="${p.img}" alt="${p.name}" class="product-img">
+              <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
             </div>
             <div class="product-info">
               <div class="p-cat">${p.cat}</div>
@@ -358,16 +356,27 @@
               </div>
               <div class="price-row">
                 <div class="p-price">৳${p.price.toLocaleString()} ${oldPriceTag}</div>
-                <button class="add-btn" onclick="addToCart(${p.id})"><i class="fa-solid fa-plus"></i></button>
+                <button class="add-btn" onclick="addToCart(${p.id})"><i class="fa-solid fa-cart-plus"></i></button>
               </div>
             </div>
           </div>
         `;
       });
+
+      productCountTxt.innerText = `Showing ${Math.min(endIndex, currentFilteredList.length)} of ${currentFilteredList.length.toLocaleString()} items`;
+
+      // Hide "Load More" if all items are shown
+      if(endIndex >= currentFilteredList.length) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = 'block';
+      }
     }
 
-    // Initial Load
-    renderProducts(products);
+    function loadMore() {
+      currentPage++;
+      renderProducts(false);
+    }
 
     function filterCategory(cat, btnElem = null) {
       if(btnElem) {
@@ -376,22 +385,28 @@
       }
       document.getElementById('sectionTitle').innerText = cat === 'all' ? 'All Products' : cat.toUpperCase();
       
-      const filtered = cat === 'all' ? products : products.filter(p => p.cat === cat);
-      renderProducts(filtered);
+      currentFilteredList = cat === 'all' ? [...allProducts] : allProducts.filter(p => p.cat === cat);
+      renderProducts(true);
     }
 
     function searchProducts() {
       const query = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query));
+      currentFilteredList = allProducts.filter(p => p.name.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query));
       document.getElementById('sectionTitle').innerText = 'Search Results';
-      renderProducts(filtered);
+      renderProducts(true);
     }
+
+    // Initial Load
+    renderProducts(true);
+
 
     // ==========================================
     // ADVANCED CART SYSTEM
     // ==========================================
+    let cart = [];
+
     function addToCart(id) {
-      const product = products.find(p => p.id === id);
+      const product = allProducts.find(p => p.id === id);
       const existingItem = cart.find(item => item.id === id);
       
       if(existingItem) {
@@ -440,7 +455,7 @@
           <div class="cart-item">
             <img src="${item.img}" class="c-img">
             <div class="c-details">
-              <div class="c-title">${item.name}</div>
+              <div class="c-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${item.name}</div>
               <div style="display:flex; justify-content:space-between; align-items:center;">
                 <div class="c-price">৳${(item.price * item.qty).toLocaleString()}</div>
                 <div class="qty-controls">
@@ -461,7 +476,6 @@
       document.getElementById('subTotal').innerText = `৳ ${subTotal.toLocaleString()}`;
       document.getElementById('delCharge').innerText = `৳ ${delivery}`;
       document.getElementById('grandTotal').innerText = `৳ ${grandTotal.toLocaleString()}`;
-      document.getElementById('finalCheckoutAmt').innerText = `৳ ${grandTotal.toLocaleString()}`;
     }
 
     function toggleCart(forceOpen = false) {
@@ -469,48 +483,6 @@
       if(forceOpen) sidebar.classList.add('open');
       else sidebar.classList.toggle('open');
     }
-
-    // ==========================================
-    // CHECKOUT SYSTEM
-    // ==========================================
-    function openCheckout() {
-      if(cart.length === 0) return alert("Your cart is empty! Please add products first.");
-      toggleCart();
-      document.getElementById('checkoutModal').style.display = 'flex';
-    }
-
-    function closeCheckout() {
-      document.getElementById('checkoutModal').style.display = 'none';
-    }
-
-    function selectPay(elem) {
-      document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('active'));
-      elem.classList.add('active');
-    }
-
-    function placeOrder() {
-      const name = document.getElementById('cName').value;
-      const phone = document.getElementById('cPhone').value;
-      const addr = document.getElementById('cAddress').value;
-
-      if(!name || !phone || !addr) {
-        return alert("Please fill all required fields (Name, Phone, Address).");
-      }
-
-      // Generate random order ID
-      const orderId = "EMN" + Math.floor(Math.random() * 90000 + 10000);
-      
-      alert(`Order Placed Successfully!\nOrder ID: ${orderId}\nThank you for shopping at EMON MART.`);
-      
-      // Reset
-      cart = [];
-      updateCartUI();
-      closeCheckout();
-      document.getElementById('cName').value = '';
-      document.getElementById('cPhone').value = '';
-      document.getElementById('cAddress').value = '';
-    }
-
   </script>
 </body>
 </html>
