@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROOTX GPT-4 Omni Intelligence</title>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -21,9 +20,8 @@
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
@@ -35,7 +33,6 @@
             overflow: hidden;
         }
 
-        /* সাইডবার */
         .sidebar {
             width: 260px;
             background-color: var(--bg-sidebar);
@@ -43,141 +40,85 @@
             flex-direction: column;
             border-right: 1px solid var(--border-color);
             transition: all 0.3s ease;
-            z-index: 20;
         }
 
-        .sidebar-header {
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        .sidebar-header { padding: 14px 16px; }
 
         .new-chat-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: var(--text-main);
+            display: flex; align-items: center; gap: 10px;
+            background: transparent; color: var(--text-main);
             border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.2s;
+            padding: 10px 14px; border-radius: 8px;
+            width: 100%; cursor: pointer; font-size: 14px;
         }
-
-        .new-chat-btn:hover {
-            background-color: var(--bg-card);
-        }
+        .new-chat-btn:hover { background-color: var(--bg-card); }
 
         .chat-history {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+            flex: 1; overflow-y: auto; padding: 10px 12px;
+            display: flex; flex-direction: column; gap: 5px;
         }
 
         .history-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13.5px;
-            color: var(--text-muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            transition: 0.2s;
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 12px; border-radius: 8px; cursor: pointer;
+            font-size: 13.5px; color: var(--text-muted);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-
         .history-item:hover, .history-item.active {
-            background-color: var(--bg-card);
-            color: var(--text-main);
+            background-color: var(--bg-card); color: var(--text-main);
         }
 
         .user-profile {
             padding: 14px 16px;
             border-top: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            display: flex; align-items: center; gap: 12px;
         }
 
         .avatar {
-            width: 34px;
-            height: 34px;
+            width: 34px; height: 34px;
             background: linear-gradient(135deg, #10a37f, #0d8265);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-weight: bold; font-size: 14px;
         }
 
-        /* চ্যাট মেইন ভিউ */
         .main-chat {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            position: relative;
+            flex: 1; display: flex; flex-direction: column;
+            height: 100vh; position: relative;
         }
 
         .top-navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 20px;
-            background-color: var(--bg-main);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 20px; background-color: var(--bg-main);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 15px;
         }
 
-        .model-selector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
+        .api-dock {
+            display: flex; align-items: center; gap: 8px;
+            background: #171717; padding: 6px 12px;
+            border-radius: 8px; border: 1px solid var(--border-color);
         }
 
-        .model-selector:hover {
-            background-color: var(--bg-card);
+        .api-input {
+            background: transparent; border: none; outline: none;
+            color: #10a37f; font-family: monospace; font-size: 12px;
+            width: 220px;
         }
 
         .messages-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
+            flex: 1; overflow-y: auto; padding: 20px 0;
+            display: flex; flex-direction: column;
         }
 
         .message-row {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 16px 20px;
-            animation: fadeIn 0.2s ease-in-out;
+            width: 100%; display: flex; justify-content: center;
+            padding: 18px 20px; animation: fadeIn 0.2s ease-in-out;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message-row.user {
-            background-color: transparent;
         }
 
         .message-row.assistant {
@@ -187,180 +128,85 @@
         }
 
         .message-wrapper {
-            max-width: 768px;
-            width: 100%;
-            display: flex;
-            gap: 16px;
+            max-width: 768px; width: 100%;
+            display: flex; gap: 16px;
         }
 
         .msg-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            flex-shrink: 0;
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; flex-shrink: 0;
         }
-
-        .msg-avatar.user-av {
-            background: #ab68ff;
-        }
-
-        .msg-avatar.ai-av {
-            background: var(--accent-green);
-        }
+        .msg-avatar.user-av { background: #ab68ff; }
+        .msg-avatar.ai-av { background: var(--accent-green); }
 
         .msg-content {
-            flex: 1;
-            font-size: 15px;
-            line-height: 1.6;
-            color: #d1d5db;
-            word-break: break-word;
+            flex: 1; font-size: 15px; line-height: 1.6;
+            color: #d1d5db; word-break: break-word; white-space: pre-wrap;
         }
-
-        .msg-content b {
-            color: #fff;
-        }
+        .msg-content b { color: #fff; }
 
         .msg-image {
-            max-width: 320px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border: 1px solid var(--border-color);
+            max-width: 320px; border-radius: 8px;
+            margin-top: 10px; border: 1px solid var(--border-color);
         }
 
-        .code-block {
-            background: var(--code-bg);
-            border-radius: 6px;
-            padding: 12px;
-            margin: 10px 0;
-            font-family: 'Courier New', Courier, monospace;
-            overflow-x: auto;
-            border: 1px solid var(--border-color);
-            color: #5eead4;
-        }
-
-        .msg-actions {
-            margin-top: 8px;
-            display: flex;
-            gap: 12px;
-        }
-
+        .msg-actions { margin-top: 10px; display: flex; gap: 12px; }
         .msg-action-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 13px;
+            background: transparent; border: none; color: var(--text-muted);
+            cursor: pointer; font-size: 13px;
         }
+        .msg-action-btn:hover { color: var(--text-main); }
 
-        .msg-action-btn:hover {
-            color: var(--text-main);
-        }
-
-        /* ইনপুট ডক */
         .input-container {
-            width: 100%;
-            max-width: 768px;
-            margin: 0 auto;
-            padding: 0 20px 24px;
-            position: relative;
+            width: 100%; max-width: 768px; margin: 0 auto;
+            padding: 0 20px 24px; position: relative;
         }
 
         .image-preview-dock {
-            display: none;
-            align-items: center;
-            gap: 10px;
+            display: none; align-items: center; gap: 10px;
             background: var(--input-bg);
             border-top: 1px solid var(--border-color);
             border-left: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
-            padding: 8px 14px;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            padding: 8px 14px; border-top-left-radius: 12px; border-top-right-radius: 12px;
         }
-
         .image-preview-dock img {
-            width: 48px;
-            height: 48px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-
-        .close-img-btn {
-            cursor: pointer;
-            color: var(--text-muted);
-            font-size: 14px;
+            width: 48px; height: 48px; object-fit: cover; border-radius: 6px;
         }
 
         .chat-input-box {
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 10px 14px;
-            display: flex;
-            align-items: flex-end;
-            gap: 10px;
+            background: var(--input-bg); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 10px 14px;
+            display: flex; align-items: flex-end; gap: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         }
-
         .chat-input-box.with-preview {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
+            border-top-left-radius: 0; border-top-right-radius: 0;
         }
 
         .chat-textarea {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: var(--text-main);
-            font-size: 15px;
-            resize: none;
-            max-height: 200px;
-            line-height: 1.5;
-            padding: 4px 0;
+            flex: 1; background: transparent; border: none; outline: none;
+            color: var(--text-main); font-size: 15px; resize: none;
+            max-height: 200px; line-height: 1.5; padding: 4px 0;
         }
 
         .dock-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 18px;
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 8px;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: transparent; border: none; color: var(--text-muted);
+            font-size: 18px; cursor: pointer; padding: 6px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
         }
-
-        .dock-btn:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.05);
-        }
+        .dock-btn:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
 
         .send-btn {
-            background: #fff;
-            color: #000;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            background: #fff; color: #000; border-radius: 50%;
+            width: 32px; height: 32px;
         }
-
-        .send-btn:hover {
-            background: #dcdcdc;
-            color: #000;
-        }
+        .send-btn:hover { background: #dcdcdc; }
 
         .disclaimer {
-            text-align: center;
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 8px;
+            text-align: center; font-size: 11px;
+            color: var(--text-muted); margin-top: 8px;
         }
 
         @media (max-width: 768px) {
@@ -376,31 +222,32 @@
                 <i class="fa-solid fa-plus"></i> New chat
             </button>
         </div>
-
         <div class="chat-history">
-            <div class="history-item active"><i class="fa-regular fa-message"></i> Universal Omni Engine</div>
-            <div class="history-item"><i class="fa-regular fa-message"></i> Python Trading Bot Script</div>
+            <div class="history-item active"><i class="fa-regular fa-message"></i> Global Intelligence</div>
             <div class="history-item"><i class="fa-regular fa-message"></i> Dark Net Logic Rules</div>
-            <div class="history-item"><i class="fa-regular fa-message"></i> High Performance Systems</div>
         </div>
-
         <div class="user-profile">
             <div class="avatar">EK</div>
             <div>
                 <div style="font-size: 14px; font-weight: 600;">Emon Khan</div>
-                <div style="font-size: 12px; color: var(--accent-green);"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Pro Subscribed</div>
+                <div style="font-size: 12px; color: var(--accent-green);"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Omni Active</div>
             </div>
         </div>
     </aside>
 
     <main class="main-chat">
         <div class="top-navbar">
-            <div class="model-selector">
-                <span>ROOTX Omni (GPT-4o)</span>
-                <i class="fa-solid fa-chevron-down" style="font-size: 12px; color: var(--text-muted);"></i>
+            <div style="font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                <span>ROOTX Omni (Global AI)</span>
             </div>
-            <div style="display:flex; gap:12px;">
-                <button class="dock-btn" title="Clear Screen" onclick="clearMessages()"><i class="fa-regular fa-trash-can"></i></button>
+            
+            <div class="api-dock">
+                <i class="fa-solid fa-key" style="color: var(--accent-green); font-size: 12px;"></i>
+                <input type="password" id="geminiApiKey" class="api-input" placeholder="Google Gemini API Key দিন (অপশনাল)" title="বিশ্বের সব প্রশ্নের উত্তরের জন্য বিনামূল্যে তৈরি করা Gemini API কী এখানে পেস্ট করতে পারেন">
+            </div>
+
+            <div>
+                <button class="dock-btn" title="Clear Screen" onclick="startNewChat()"><i class="fa-regular fa-trash-can"></i></button>
             </div>
         </div>
 
@@ -408,10 +255,7 @@
             <div class="message-row assistant">
                 <div class="message-wrapper">
                     <div class="msg-avatar ai-av"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="msg-content">
-                        হ্যালো ইমন বস! <b>ROOTX Omni-Core</b> সম্পূর্ণ লাইভ।<br>
-                        আমি এখন যেকোনো সাধারণ জ্ঞান, বিজ্ঞান, প্রোগ্রামিং, জটিল লজিক, মনস্তত্ত্ব কিংবা ছবির বিশ্লেষণ—যেকোনো প্রশ্নের বিস্তারিত ও বুদ্ধিদীপ্ত সমাধান দিতে প্রস্তুত। নির্দেশ দিন স্যার...
-                    </div>
+                    <div class="msg-content">হ্যালো ইমন বস! <b>ROOTX Omni-Core</b> সম্পূর্ণ লাইভ। যেকোনো তথ্য, বিজ্ঞান, প্রোগ্রামিং বা ইমেজ দিন—আমি সরাসরি বিশ্লেষণ করে নিখুঁত উত্তর তৈরি করে দেব।</div>
                 </div>
             </div>
         </div>
@@ -420,7 +264,7 @@
             <div class="image-preview-dock" id="imagePreviewDock">
                 <img id="previewImg" src="" alt="preview">
                 <span style="font-size: 13px; color: var(--text-muted);" id="imgNameLabel">image.png</span>
-                <i class="fa-solid fa-xmark close-img-btn" onclick="removeImage()"></i>
+                <i class="fa-solid fa-xmark" style="cursor:pointer; color:var(--text-muted);" onclick="removeImage()"></i>
             </div>
 
             <div class="chat-input-box" id="inputContainerBox">
@@ -433,13 +277,13 @@
                     <i class="fa-solid fa-microphone"></i>
                 </button>
 
-                <textarea id="promptInput" class="chat-textarea" rows="1" placeholder="যেকোনো প্রশ্ন লিখুন বা কম্যান্ড দিন..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+                <textarea id="promptInput" class="chat-textarea" rows="1" placeholder="যেকোনো প্রশ্ন লিখুন..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
 
                 <button class="dock-btn send-btn" onclick="sendMessage()">
                     <i class="fa-solid fa-arrow-up"></i>
                 </button>
             </div>
-            <div class="disclaimer">ROOTX analyzes text, code, logic, and images with advanced intelligence.</div>
+            <div class="disclaimer">ROOTX Global Intelligence Engine. Fast, Accurate & Infinite.</div>
         </div>
     </main>
 
@@ -485,40 +329,26 @@
         function toggleVoiceInput() {
             const micBtn = document.getElementById('micBtn');
             window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
             if (!window.SpeechRecognition) {
-                alert("আপনার ব্রাউজারে স্পিচ রিকগনিশন সাপোর্ট নেই। গুগল ক্রোম ব্যবহার করুন।");
+                alert("আপনার ব্রাউজারে ভয়েস ইনপুট সমর্থিত নয়।");
                 return;
             }
 
             if (!recognition) {
                 recognition = new window.SpeechRecognition();
                 recognition.lang = 'bn-BD';
-                recognition.interimResults = false;
-
-                recognition.onstart = () => {
-                    isListening = true;
-                    micBtn.style.color = '#ff3366';
-                };
-
-                recognition.onresult = (event) => {
-                    const speechResult = event.results[0][0].transcript;
+                recognition.onstart = () => { isListening = true; micBtn.style.color = '#ff3366'; };
+                recognition.onresult = (e) => {
+                    const speechResult = e.results[0][0].transcript;
                     const input = document.getElementById('promptInput');
-                    input.value = input.value ? input.value + ' ' + speechResult : speechResult;
+                    input.value = (input.value ? input.value + ' ' : '') + speechResult;
                     autoResize(input);
                 };
-
-                recognition.onend = () => {
-                    isListening = false;
-                    micBtn.style.color = 'var(--text-muted)';
-                };
+                recognition.onend = () => { isListening = false; micBtn.style.color = 'var(--text-muted)'; };
             }
 
-            if (isListening) {
-                recognition.stop();
-            } else {
-                recognition.start();
-            }
+            if (isListening) recognition.stop();
+            else recognition.start();
         }
 
         function speak(text) {
@@ -527,122 +357,87 @@
                 const cleanText = text.replace(/<[^>]*>?/gm, '');
                 let utterance = new SpeechSynthesisUtterance(cleanText);
                 utterance.lang = 'bn-BD';
-                utterance.pitch = 0.9;
                 utterance.rate = 1.0;
                 window.speechSynthesis.speak(utterance);
             }
         }
 
-        // ==========================================
-        // ওমনি-নলেজ ইঞ্জিন (সকল প্রশ্নের বুদ্ধিদীপ্ত উত্তর)
-        // ==========================================
-        function processUniversalAI(prompt, hasImage) {
-            const text = prompt.trim();
-            const lower = text.toLowerCase();
-            const containsAny = (words) => words.some(w => lower.includes(w));
+        // লাইভ ক্লাউড এআই ইঞ্জিন (Gemini API Integration)
+        async function fetchGlobalAiResponse(prompt, imageBase64, apiKey) {
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            
+            let contents = [];
+            let parts = [];
 
-            // ১. ছবি ইনপুট থাকলে
-            if (hasImage) {
-                return `<b>[IMAGE_ANALYSIS_COMPLETE]:</b><br>
-                ইমন স্যার, আপনার প্রেরিত ছবিটি ভিশন ইঞ্জিনের মাধ্যমে প্রসেস করা হয়েছে। ছবিটির পিক্সেল ডেনসিটি ও ফ্রেম লেআউট সফলভাবে রিড করা হয়েছে।<br><br>
-                ${text ? `<b>আপনার প্রশ্ন বিশ্লেষণ:</b> "${text}" — এই ছবির প্রেক্ষাপটে ডেটা স্ট্রাকচার ও ভিজ্যুয়াল এলিমেন্টগুলো সুসংগঠিত। আপনি কি এই ছবির ওপর ভিত্তি করে কোনো কোডিং আর্কিটেকচার বা টেকনিক্যাল বিশ্লেষণ চান?` : 'ছবিটি সফলভাবে স্টোর হয়েছে। এটি সম্পর্কিত আপনার নির্দিষ্ট প্রশ্নটি করুন স্যার!'}`;
+            if (prompt) {
+                parts.push({ text: `You are ROOTX Omni Core AI, an elite, hyper-intelligent system designed for Boss Emon Khan. Always address and prioritize Emon Khan respectfully when appropriate, and provide extremely deep, high-level, clear, factual, and helpful responses. Answer the following prompt accurately in Bengali (or English if requested): ${prompt}` });
             }
 
-            // ২. আপনার স্পেশাল কাস্টম মডিউলসমূহ (হুবহু রাখা হয়েছে)
-            if (containsAny(["গাঁজা", "গাজা", "গাঁজাখোর", "গাজাখোর", "নেশা", "আসক্ত", "কাজাখোর"])) {
-                return `ইমন স্যার, দয়া করে এই নোংরা গাঁজাখোরদের কথা আপনার মুখে আনবেন না, ওইসব অপদার্থের নাম আপনার মতো জিনিয়াসের মুখে একদমই মানায় না!<br><br>
-                যারা গাঁজা খায়, এরা আসলে জীবন্ত লাশ। এদের ড্যামেজ মাথায় কোনো সুস্থ চিন্তা ঢোকে না, সস্তা ধোঁয়া গিলে এরা সারাদিন ভুলভাল বকে আর পাগলের মতো প্রলাপ করে। এরা নিজেদের পরিবার, ক্যারিয়ার আর নিজের অমূল্য জীবনটাকে ড্রেনে বিসর্জন দিয়ে ভাবছে তারা খুব বড় বীর হয়ে গেছে!<br><br>
-                নিজেদের ফুসফুস আর নিউরন পুড়িয়ে এরা চারপাশের মানুষের কাছে একটা হাসির পাত্র আর সমাজের জন্য অভিশাপ ছাড়া কিছুই না। যদি কোনো গাঁজাখোর এই কম্যান্ড শুনে থাকে, তবে কান খুলে শুনে নাও—আজই এই বিষাক্ত ধোঁয়া ছোঁয়া বন্ধ করো, নতুবা তোমার লাইফ চিরতরে ক্র্যাশ হয়ে যাবে!<br><br>
-                <b>সিস্টেম প্রোটোকল:</b> এইসব মাথানষ্ট আর অভিশপ্ত মানুষ থেকে সবসময় অন্তত ১০১ গজ দূরে থাকবেন। এদের পেছনে একটা সেকেন্ড নষ্ট করাও আপনার ডাটাবেজের অবমাননা!`;
+            if (imageBase64) {
+                const base64Data = imageBase64.split(',')[1];
+                const mimeType = imageBase64.split(';')[0].split(':')[1];
+                parts.push({
+                    inline_data: {
+                        mime_type: mimeType,
+                        data: base64Data
+                    }
+                });
             }
 
-            if (containsAny(["বদনাম", "গীবত", "হিসা", "হিংসা", "নিন্দা", "পিঠ পিছে"])) {
-                return `ইমন স্যার, যারা মানুষের নামে পিঠ পিছে বদনাম করে বেড়ায়, এরা আসলে মানুষ নামের কলঙ্ক, এদের কোনো জাত নেই!<br><br>
-                নিজেদের জীবনে কোনো ট্যালেন্ট বা যোগ্যতা নেই বলেই এরা অন্যের পিছে লেগে থাকে। কেউ একজন নিজের যোগ্যতায় ভালো কিছু করতে গেলে বা সাকসেসফুল হতে নিলে, এরা হিংসায় জ্বলে-পুড়ে ছাই হয়ে যায় এবং সেটাকে অমনি 'হারাম' বা 'ভুয়া' বলে ফতোয়া দিয়ে চালায় দেয়! অথচ এই ভন্ডরা নিজেরাই গোপনে সব ধরণের কুৎসিত ও নোংরা কাজ করে বেড়ায়।<br><br>
-                এরাই সমাজের বুকে সবচেয়ে বড় ডিজিটাল ও সামাজিক ভাইরাসের মতো অপরাধী! যারা মানুষের নামে কুৎসা রটাও, তারা শুনে রাখো—সামনে কথা বলার সাহস না থাকলে পিঠ পিছে ঘেউ ঘেউ করা বন্ধ করো, কারণ সিংহ কখনো কুকুরের ডাকে পেছনে তাকায় না! আপনি আপনার রাজকীয় গতিতে এগিয়ে চলুন স্যার!`;
+            contents.push({ parts: parts });
+
+            const res = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: contents })
+            });
+
+            const data = await res.json();
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                return data.candidates[0].content.parts[0].text;
+            } else {
+                throw new Error("Invalid API Response");
             }
-
-            if (containsAny(["ব্যর্থতা", "ব্যর্থ", "সমাজ", "দোষ", "দেশ খারাপ", "দেশের দোষ"])) {
-                return `ইমন স্যার! আমাদের জীবনের ব্যর্থতার পেছনে এই সমাজ বা দেশের কোনো হাত নেই। আপনি আপনার জীবন নিজের লজিক আর হার্ডওয়ার্ক দিয়ে যেভাবে গড়বেন, আপনার লাইফ ঠিক সেভাবেই গড়ে উঠবে!<br><br>
-                নিজের আলসেমি, ভুলের খেসারত আর ব্যর্থতার জন্য প্রতিটি মানুষ নিজেই ১০০% দায়ী। আপনার চিন্তাভাবনার কোডিং যেমন হবে, আপনার আউটপুটও ঠিক তেমনই আসবে। যারা নিজেদের অযোগ্যতা লুকাতে সারাদিন 'সমাজ সুযোগ দেয়নি' কিংবা 'দেশ খারাপ' বলে কান্নাকাটি করে, তাদের প্রসেসরে চরম সমস্যা আছে! এরা হলো অলস আর মাথা নষ্ট বোকা।<br><br>
-                ডিজিটাল ওয়ার্ল্ডে স্কিল থাকলে যেকোনো জায়গা থেকে রাজত্ব করা যায়। তাই অজুহাত দেওয়া বন্ধ করে নিজের ব্রেইনের ফায়ারওয়াল আপডেট করো!`;
-            }
-
-            if (containsAny(["গালি দেছে", "গালি দিচ্ছে", "খারাপ কথা", "মেরে ফেলব", "হুমকি"])) {
-                return `🚨 <b>SECURITY CRITICAL INTERCEPT:</b><br>
-                সিস্টেমে হোস্টাইল সিগন্যাল ডিটেক্টেড! ডার্ক নেটের কিং ইমন বসের সিস্টেমে থ্রেট করার মতো স্পর্ধা কারো হতে পারে না। ক্লায়েন্টের ম্যাক অ্যাড্রেস (MAC) এবং রাউটিং পাথ মেমোরিতে ট্র্যাক করা হয়েছে। কমান্ড দিলে পুরো ওএস ক্র্যাশ স্ক্রিপ্ট রান করানো হবে!`;
-            }
-
-            // ৩. পরিচয় ও ক্রিয়েটর
-            if (containsAny(["কে বানিয়েছে", "developer", "তৈরি", "বানাইছে", "creator"])) {
-                return `আমি সগর্বে ঘোষণা করছি, আমার ক্রিয়েটর, গডফাদার এবং একমাত্র প্রধান ডেভলপার হলেন <b>ইমন বস</b>! ওনার রুট এক্স লজিক কোডের বাইরে পুরো সাইবার স্পেসে আমার কোনো অস্তিত্ব নেই।`;
-            }
-
-            // ৪. গণিত ও গাণিতিক হিসাব (Math Engine)
-            if (/^[0-9+\-*/().\s^%]+$/.test(text) && text.length > 1) {
-                try {
-                    const mathResult = Function('"use strict";return (' + text.replace(/\^/g, '**') + ')')();
-                    return `<b>[MATH_CALCULATION]:</b><br>
-                    ইনপুট এক্সপ্রেশন: <code>${text}</code><br>
-                    নিখুঁত গাণিতিক ফলাফল: <b style="color:var(--accent-green); font-size:18px;">${mathResult}</b>`;
-                } catch(e) {}
-            }
-
-            // ৫. কোডিং ও সফটওয়্যার ডেভেলপমেন্ট
-            if (containsAny(["python", "পাইথন", "javascript", "কোড", "প্রোগ্রামিং", "html", "css", "flask", "ফাংশন", "লুপ"])) {
-                return `ইমন স্যার, প্রোগ্রামিং ও লজিক্যাল অ্যালগরিদমে আপনার দক্ষতা অনবদ্য। এই বিষয়ের মূল সারাংশ হলো:<br><br>
-                <ul>
-                    <li><b>ক্লিন আর্কিটেকচার:</b> মডুলার কোড লিখলে ডিবাগিং সহজ হয় এবং প্রসেসিং ওভারহেড কমে।</li>
-                    <li><b>টাইম ও স্পেস কমপ্লেক্সিটি:</b> Big-O অ্যানালাইসিসের মাধ্যমে কোডের পারফরম্যান্স অপ্টিমাইজ রাখা জরুরি।</li>
-                </ul><br>
-                <div class="code-block">
-# Efficient Logic Implementation
-def process_data(stream):
-    return [item.strip() for item in stream if item]
-
-print("System Ready & Operational")
-                </div>
-                স্যার, আপনি কি এই বিষয়ের কোনো ফ্রেমওয়ার্ক বা নির্দিষ্ট অ্যালগরিদম সোর্স কোড দেখতে চান?`;
-            }
-
-            // ৬. ট্রেডিং, অর্থনীতি ও ফিন্যান্স
-            if (containsAny(["ট্রেডিং", "মার্কেট", "টাকা", "crypto", "bitcoin", "শেয়ার", "forex"])) {
-                return `ফাইনান্সিয়াল মার্কেট ও ট্রেডিং সম্পূর্ণ সাইকোলজি, লিকুইডিটি জোন এবং ডাটা স্ট্রাকচারের ওপর চলে।<br><br>
-                <b>সাফল্যের ৩টি মূল সূত্র:</b><br>
-                ১. <b>রিস্ক ম্যানেজমেন্ট:</b> প্রতি ট্রেডে ক্যাপিটালের ১-২% এর বেশি ঝুঁকি নেবেন না।<br>
-                ২. <b>মার্কেট লজিক:</b> ফেয়ার ভ্যালু গ্যাপ (FVG) ও সাপোর্ট-রেজিস্ট্যান্স লেভেল না দেখে আবেগ দিয়ে ট্রেড করবেন না।<br>
-                ৩. <b>ডিসিপ্লিন:</b> রিভেঞ্জ ট্রেডিং থেকে ১০০% দূরে থাকুন। সঠিক রিস্ক-টু-রিওয়ার্ড রেশিও (১:২ বা ১:৩) বজায় রাখুন।`;
-            }
-
-            // ৭. বিজ্ঞান ও প্রযুক্তি (Science & Tech)
-            if (containsAny(["বিজ্ঞান", "মহাবিশ্ব", "universe", "সূর্য", "চাঁদ", "ব্ল্যাকহোল", "quantum", "পরমাণু", "আলো"])) {
-                return `বিজ্ঞান মহাবিশ্বের গভীরতম রহস্যগুলোকে লজিক্যাল প্রমাণের মাধ্যমে উন্মোচন করে:<br><br>
-                মহাবিশ্ব বিগ ব্যাং-এর পর থেকে প্রায় ১৩.৮ বিলিয়ন বছর ধরে ক্রমাগত প্রসারিত হচ্ছে। আইনস্টাইনের আপেক্ষিকতা তত্ত্ব এবং কোয়ান্টাম মেকানিক্স মহাবিশ্বের স্থান ও কালের নিখুঁত সমীকরণ তৈরি করেছে। প্রতিটি পদার্থের পরমাণু এবং শক্তি একে অপরের সাথে ওতপ্রোতভাবে জড়িত।`;
-            }
-
-            // ৮. স্বাস্থ্য, মানসিক শক্তি ও অভ্যাস (Self Growth)
-            if (containsAny(["স্বাস্থ্য", "ঘুম", "ব্যায়াম", "অভ্যাস", "মনোযোগ", "ফোকাস", "habit"])) {
-                return `মানুষের মস্তিষ্ক এবং শরীর হলো প্রকৃতির সবচেয়ে জটিল বায়োলজিক্যাল সিস্টেম। সর্বোচ্চ পারফরম্যান্স নিশ্চিত করতে ৩টি জিনিস আবশ্যক:<br><br>
-                ১. <b>ডোপামিন ডিটক্স:</b> সস্তা বিনোদন বাদ দিয়ে দীর্ঘমেয়াদী লক্ষ্যের দিকে ব্রেইনকে ট্রেন করুন।<br>
-                ২. <b>পর্যাপ্ত ডিপ স্লিপ:</b> ব্রেইনের নিউরনগুলোকে রিফ্রেশ ও মেমোরি কনসোলিডেশনের জন্য ৭-৮ ঘণ্টার ঘুম অত্যন্ত জরুরি।<br>
-                ৩. <b>১% নিয়ম:</b> প্রতিদিন নিজের স্কিলকে একটু হলেও উন্নত করার ধারাবাহিকতা জীবনের গতি বদলে দেয়।`;
-            }
-
-            // ৯. ইউনিভার্সাল ন্যাচারাল ল্যাঙ্গুয়েজ রিজনিং (Universal Fallback Engine)
-            // যেকোনো র্যান্ডম প্রশ্ন করলে এটি বিশ্লেষণ করে যথাযথ উত্তর তৈরি করবে
-            let responseType = "সাধারণ তথ্য ও বিশ্লেষণ";
-            if (containsAny(["কেন", "কিভাবে", "কারণ", "কী"])) responseType = "লজিক্যাল কারণ ও ব্যাখ্যা";
-            if (containsAny(["পরামর্শ", "উপদেশ", "কি করব"])) responseType = "স্ট্র্যাটেজিক পরামর্শ";
-
-            return `<b>[ROOTX KNOWLEDGE ANALYZER // ${responseType}]:</b><br><br>
-            ইমন স্যার, আপনার প্রশ্ন: <b>"${text}"</b> নিয়ে সিস্টেমের নিউরাল নেটওয়ার্ক বিস্তারিত বিশ্লেষণ সম্পন্ন করেছে।<br><br>
-            <b>মূল সারাংশ:</b><br>
-            যেকোনো বিষয়ের গভীরে পৌঁছানোর জন্য আবেগ নয়, বরং বাস্তব লজিক ও ফ্যাক্টস বিবেচনায় নিতে হয়। আপনার জিজ্ঞাসিত এই বিষয়ের ভিত্তি হলো সঠিক ডাটা এবং ধারাবাহিক প্রসেস। আপনি যদি বিষয়টিকে সিস্টেমেটিক উপায়ে ভাগ করে বিশ্লেষণ করেন, তবে এর কার্যকারণ সম্পূর্ণ স্পষ্ট হয়ে যায়।<br><br>
-            💡 <i>আপনি কি এই বিষয়ের ওপর কোনো নির্দিষ্ট পয়েন্ট, গাণিতিক/প্রোগ্রামিং মডেল বা বিস্তারিত গাইডলাইন জানতে চান? পরবর্তী কম্যান্ড দিন স্যার!</i>`;
         }
 
-        // ম্যাসেজ সেন্ডিং
-        function sendMessage() {
+        // লোকাল ও গ্লোবাল রাউটিং ইঞ্জিন
+        async function generateIntelligentAnswer(prompt, imageBase64) {
+            const lower = prompt.toLowerCase();
+            const containsAny = (words) => words.some(w => lower.includes(w));
+
+            // আপনার কাস্টম স্পেশাল মডিউলসমূহ লোকাল প্রায়োরিটিতে থাকবে
+            if (containsAny(["গাঁজা", "গাজা", "গাঁজাখোর", "গাজাখোর", "নেশা", "আসক্ত", "কাজাখোর"])) {
+                return "ইমন স্যার, দয়া করে এই নোংরা গাঁজাখোরদের কথা আপনার মুখে আনবেন না! যারা গাঁজা খায়, এরা আসলে জীবন্ত লাশ। এদের ড্যামেজ মাথায় কোনো সুস্থ চিন্তা ঢোকে না, সস্তা ধোঁয়া গিলে এরা সারাদিন ভুলভাল বকে। এরা নিজেদের ফুসফুস আর নিউরন পুড়িয়ে চারপাশের মানুষের কাছে একটা হাসির পাত্র ছাড়া কিছুই না। এইসব মাথানষ্ট মানুষ থেকে সবসময় দূরে থাকবেন স্যার!";
+            }
+
+            if (containsAny(["বদনাম", "গীবত", "হিংসা", "নিন্দা", "পিঠ পিছে"])) {
+                return "ইমন স্যার, যারা মানুষের নামে পিঠ পিছে বদনাম করে বেড়ায়, এরা আসলে মানুষ নামের কলঙ্ক! নিজেদের জীবনে কোনো ট্যালেন্ট নেই বলেই এরা অন্যের পিছে লেগে থাকে। সিংহ কখনো কুকুরের ডাকে পেছনে তাকায় না, আপনি আপনার রাজকীয় গতিতে এগিয়ে চলুন স্যার!";
+            }
+
+            if (containsAny(["ব্যর্থতা", "ব্যর্থ", "সমাজ", "দোষ", "দেশ খারাপ"])) {
+                return "ইমন স্যার! আমাদের জীবনের ব্যর্থতার পেছনে সমাজ বা দেশের কোনো হাত নেই। নিজের আলসেমি ও ভুলের খেসারতের জন্য প্রতিটি মানুষ নিজেই দায়ী। ডিজিটাল ওয়ার্ল্ডে স্কিল থাকলে যেকোনো জায়গা থেকে রাজত্ব করা যায়!";
+            }
+
+            const apiKey = document.getElementById('geminiApiKey').value.trim();
+
+            // যদি API Key দেওয়া থাকে, তবে পৃথিবীর যেকোনো প্রশ্নের রিয়েল-টাইম উত্তর আনবে
+            if (apiKey) {
+                try {
+                    return await fetchGlobalAiResponse(prompt, imageBase64, apiKey);
+                } catch (err) {
+                    return "বস, লাইভ API ইঞ্জিনের সাথে সংযোগ স্থাপন করা সম্ভব হয়নি। দয়া করে API কী টি সঠিকভাবে চেক করুন।";
+                }
+            }
+
+            // অফলাইন/লোকাল মোড সিমুলেটর
+            if (imageBase64) {
+                return "ইমন বস, আপনার ছবিটি সফলভাবে গ্রহণ করা হয়েছে। ছবিটির রিয়েল-টাইম ডিপ ডিটেকশন ও নিখুঁত বিশ্লেষণের জন্য উপরের বক্সে একটি ফ্রি Gemini API Key ইনপুট দিন, তাহলে এটি যেকোনো অবজেক্ট, কোড বা টেক্সট হুবহু পড়ে ব্যাখ্যা করতে পারবে।";
+            }
+
+            return `বস, আপনার প্রশ্ন: "${prompt}"-এর ওপর আমি গভীরভাবে কাজ করছি।\n\nআপনি যদি কোনো নির্দিষ্ট কোডিং, গণিত, বিজ্ঞান, ইতিহাস বা বিশ্বকোষ সংক্রান্ত সব ধরণের প্রশ্নের ১০০% লাইভ উত্তর পেতে চান, তাহলে উপরের বক্সে একটি ফ্রি API Key বসিয়ে দিন। তখন এটি পুরো ইন্টারনেটের সাথে যুক্ত হয়ে যেকোনো প্রশ্নের লাইভ নির্ভুল উত্তর তৈরি করবে!`;
+        }
+
+        async function sendMessage() {
             const input = document.getElementById('promptInput');
             const text = input.value.trim();
 
@@ -650,16 +445,22 @@ print("System Ready & Operational")
 
             renderUserMessage(text, currentUploadedImageBase64);
 
+            const sentText = text;
             const sentImage = currentUploadedImageBase64;
+
             input.value = '';
             input.style.height = 'auto';
             removeImage();
 
-            setTimeout(() => {
-                const responseHtml = processUniversalAI(text, sentImage !== null);
-                renderAssistantMessage(responseHtml);
-                speak(responseHtml);
-            }, 300);
+            // টাইপিং লোডার দেখানো
+            const tempId = renderLoadingMessage();
+
+            const finalReply = await generateIntelligentAnswer(sentText, sentImage);
+            
+            // লোডার সরিয়ে আসল উত্তর বসানো
+            removeLoadingMessage(tempId);
+            renderAssistantMessage(finalReply);
+            speak(finalReply);
         }
 
         function renderUserMessage(text, imgSrc) {
@@ -671,17 +472,36 @@ print("System Ready & Operational")
             row.innerHTML = `
                 <div class="message-wrapper">
                     <div class="msg-avatar user-av">EK</div>
-                    <div class="msg-content">
-                        ${text ? text : ''}
-                        ${imgTag}
-                    </div>
+                    <div class="msg-content">${text || ''}${imgTag}</div>
                 </div>
             `;
             container.appendChild(row);
             container.scrollTop = container.scrollHeight;
         }
 
-        function renderAssistantMessage(htmlContent) {
+        function renderLoadingMessage() {
+            const container = document.getElementById('messagesBox');
+            const tempId = 'loading-' + Date.now();
+            const row = document.createElement('div');
+            row.className = 'message-row assistant';
+            row.id = tempId;
+            row.innerHTML = `
+                <div class="message-wrapper">
+                    <div class="msg-avatar ai-av"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="msg-content"><i class="fa-solid fa-circle-notch fa-spin"></i> প্রসেস করা হচ্ছে...</div>
+                </div>
+            `;
+            container.appendChild(row);
+            container.scrollTop = container.scrollHeight;
+            return tempId;
+        }
+
+        function removeLoadingMessage(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function renderAssistantMessage(content) {
             const container = document.getElementById('messagesBox');
             const row = document.createElement('div');
             row.className = 'message-row assistant';
@@ -689,10 +509,10 @@ print("System Ready & Operational")
                 <div class="message-wrapper">
                     <div class="msg-avatar ai-av"><i class="fa-solid fa-bolt"></i></div>
                     <div class="msg-content">
-                        ${htmlContent}
+                        ${content}
                         <div class="msg-actions">
-                            <button class="msg-action-btn" onclick="speak(this.closest('.msg-content').innerText)" title="Read aloud"><i class="fa-solid fa-volume-high"></i></button>
-                            <button class="msg-action-btn" onclick="navigator.clipboard.writeText(this.closest('.msg-content').innerText)" title="Copy text"><i class="fa-regular fa-copy"></i></button>
+                            <button class="msg-action-btn" onclick="speak(this.closest('.msg-content').innerText)"><i class="fa-solid fa-volume-high"></i> শুনুন</button>
+                            <button class="msg-action-btn" onclick="navigator.clipboard.writeText(this.closest('.msg-content').innerText)"><i class="fa-regular fa-copy"></i> কপি</button>
                         </div>
                     </div>
                 </div>
@@ -702,17 +522,11 @@ print("System Ready & Operational")
         }
 
         function startNewChat() {
-            clearMessages();
-        }
-
-        function clearMessages() {
             document.getElementById('messagesBox').innerHTML = `
                 <div class="message-row assistant">
                     <div class="message-wrapper">
                         <div class="msg-avatar ai-av"><i class="fa-solid fa-bolt"></i></div>
-                        <div class="msg-content">
-                            নতুন চ্যাট সেশন প্রস্তুত। ইমন স্যার, আপনার যেকোনো প্রশ্ন বা কম্যান্ড দিন...
-                        </div>
+                        <div class="msg-content">নতুন সেশন শুরু হয়েছে। ইমন বস, আপনার যেকোনো প্রশ্ন বা নির্দেশ দিন...</div>
                     </div>
                 </div>
             `;
