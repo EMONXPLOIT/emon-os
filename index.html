@@ -1,488 +1,279 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>EMON MART | Premium E-Commerce Platform</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg-dark: #090e17;
-      --bg-card: #151b29;
-      --bg-hover: #1e2638;
-      --primary: #00e676;
-      --secondary: #00b4d8;
-      --accent: #ffb703;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.08);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-
-    body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
-
-    /* ================= HEADER & NAV ================= */
-    header {
-      background: rgba(9, 14, 23, 0.95); backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border);
-    }
-    .top-bar {
-      padding: 8px 5%; background: #05080f; font-size: 0.8rem; color: var(--text-muted);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .nav-main {
-      padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; gap: 20px;
-    }
-    .logo { font-size: 1.6rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer; }
-    .logo span { color: var(--primary); }
-
-    .search-box {
-      flex: 1; max-width: 500px; display: flex; background: var(--bg-card); border-radius: 8px;
-      border: 1px solid var(--border); overflow: hidden;
-    }
-    .search-box input { flex: 1; padding: 10px 15px; background: transparent; border: none; color: #fff; outline: none; }
-    .search-box button { padding: 0 20px; background: var(--primary); color: #000; border: none; cursor: pointer; font-weight: 600; }
-
-    .nav-icons { display: flex; gap: 25px; align-items: center; }
-    .icon-wrapper { position: relative; cursor: pointer; text-align: center; color: var(--text-main); transition: 0.3s; }
-    .icon-wrapper:hover { color: var(--primary); }
-    .icon-wrapper i { font-size: 1.4rem; margin-bottom: 4px; }
-    .icon-wrapper span { display: block; font-size: 0.75rem; font-weight: 500; }
-    .badge {
-      position: absolute; top: -5px; right: -5px; background: #ff334b;
-      color: #fff; font-size: 0.7rem; font-weight: bold; width: 18px; height: 18px;
-      display: flex; justify-content: center; align-items: center; border-radius: 50%;
-    }
-
-    /* ================= CATEGORIES & BANNER ================= */
-    .cat-nav {
-      display: flex; gap: 15px; padding: 15px 5%; overflow-x: auto; scrollbar-width: none;
-      border-bottom: 1px solid var(--border);
-    }
-    .cat-btn {
-      padding: 6px 16px; background: transparent; border: 1px solid var(--border);
-      color: var(--text-muted); border-radius: 20px; cursor: pointer; font-size: 0.9rem;
-      white-space: nowrap; transition: 0.3s;
-    }
-    .cat-btn.active, .cat-btn:hover { background: rgba(0, 230, 118, 0.1); border-color: var(--primary); color: var(--primary); }
-
-    .hero-banner {
-      margin: 20px 5%; height: 300px; border-radius: 16px; position: relative; overflow: hidden;
-      background: linear-gradient(90deg, rgba(9,14,23,0.9) 0%, rgba(9,14,23,0.4) 100%), url('https://images.unsplash.com/photo-1550009158-9effb6628373?q=80&w=2070') center/cover;
-      display: flex; flex-direction: column; justify-content: center; padding: 40px;
-    }
-    .hero-banner h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
-    .hero-banner h1 span { color: var(--accent); }
-    .hero-banner p { color: #cbd5e1; font-size: 1.1rem; max-width: 500px; margin-bottom: 20px; }
-    .hero-btn { padding: 12px 25px; background: var(--primary); color: #000; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1rem; width: fit-content; }
-
-    /* ================= PRODUCTS GRID ================= */
-    .section-header { padding: 30px 5% 15px; display: flex; justify-content: space-between; align-items: center; }
-    .section-header h2 { font-size: 1.4rem; font-weight: 600; border-left: 4px solid var(--primary); padding-left: 10px; }
-    .product-count { color: var(--text-muted); font-size: 0.9rem; }
-
-    .product-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px; padding: 0 5% 20px;
-    }
-    .product-card {
-      background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border);
-      overflow: hidden; transition: 0.3s; position: relative; display: flex; flex-direction: column;
-    }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.15); }
-    .discount-badge { position: absolute; top: 10px; left: 10px; background: #ff334b; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; z-index: 2; }
-    .product-img-wrap { height: 180px; overflow: hidden; background: #fff; position: relative; }
-    .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-    .product-card:hover .product-img { transform: scale(1.05); }
-
-    .product-info { padding: 15px; display: flex; flex-direction: column; flex: 1; }
-    .p-cat { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; }
-    .p-title { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 8px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .p-rating { color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; }
-    .p-rating span { color: var(--text-muted); margin-left: 5px; }
-
-    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
-    .p-price { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
-    .p-price strike { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; margin-left: 5px; }
-
-    .add-btn { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-hover); border: 1px solid var(--border); color: #fff; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
-    .add-btn:hover { background: var(--primary); color: #000; }
-
-    /* LOAD MORE BUTTON */
-    .load-more-container { text-align: center; padding: 10px 5% 40px; }
-    .load-more-btn {
-      padding: 12px 35px; background: transparent; color: var(--primary); border: 2px solid var(--primary);
-      border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: 0.3s;
-    }
-    .load-more-btn:hover { background: var(--primary); color: #000; }
-
-    /* ================= ADVANCED CART ================= */
-    .cart-sidebar {
-      position: fixed; top: 0; right: -400px; width: 400px; max-width: 100%; height: 100vh;
-      background: #0b111a; border-left: 1px solid var(--border); z-index: 2000;
-      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
-      box-shadow: -10px 0 30px rgba(0,0,0,0.8);
-    }
-    .cart-sidebar.open { right: 0; }
-
-    .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: var(--bg-card); }
-    .cart-items-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-
-    .cart-item { display: flex; gap: 15px; background: var(--bg-card); padding: 12px; border-radius: 8px; border: 1px solid var(--border); }
-    .c-img { width: 70px; height: 70px; border-radius: 6px; object-fit: cover; background: #fff; }
-    .c-details { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .c-title { font-size: 0.9rem; font-weight: 500; }
-    .c-price { color: var(--primary); font-weight: 700; font-size: 0.95rem; }
-
-    .qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
-    .q-btn { width: 24px; height: 24px; background: var(--bg-hover); border: none; color: #fff; border-radius: 4px; cursor: pointer; }
-    .c-remove { color: #ff334b; background: transparent; border: none; cursor: pointer; font-size: 1rem; }
-
-    .cart-summary { padding: 20px; background: var(--bg-card); border-top: 1px solid var(--border); }
-    .sum-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; color: var(--text-muted); }
-    .sum-total { font-size: 1.2rem; color: #fff; font-weight: 700; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
-    .checkout-btn { width: 100%; padding: 14px; background: var(--primary); color: #000; border: none; border-radius: 8px; font-weight: 700; font-size: 1.05rem; cursor: pointer; margin-top: 15px; }
-
-    /* ================= FOOTER ================= */
-    footer { background: #05080f; padding: 40px 5% 20px; border-top: 1px solid var(--border); margin-top: 40px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
-    .f-title { color: #fff; font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; }
-    .f-links { list-style: none; }
-    .f-links li { margin-bottom: 10px; }
-    .f-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-    .f-links a:hover { color: var(--primary); }
-    .payment-logos { display: flex; gap: 10px; font-size: 2rem; color: #fff; }
-    .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROOTX CORE - OMNI INFINITY DATABASE</title>
+    <style>
+        body {
+            background: #010206; color: #00ff66;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0; padding: 15px;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; min-height: 100vh;
+        }
+        .ai-frame {
+            background: #070a13; border: 2px solid #00ff66;
+            border-radius: 12px; padding: 20px;
+            width: 100%; max-width: 480px; box-sizing: border-box;
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.25);
+        }
+        .ai-title {
+            text-align: center; font-weight: bold; font-size: 15px;
+            color: #00ff66; border-bottom: 2px dashed #1f2937;
+            padding-bottom: 10px; margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        .terminal-screen {
+            background: #000; height: 350px; border-radius: 8px;
+            padding: 12px; overflow-y: auto; border: 1px solid #1f2937;
+            font-size: 13px; line-height: 1.6; margin-bottom: 15px;
+        }
+        .ai-response { color: #00ff66; margin-bottom: 10px; }
+        .boss-command { color: #fbbf24; margin-bottom: 10px; }
+        .critical-response { color: #ff2a2a; font-weight: bold; margin-bottom: 10px; }
+        .sad-response { color: #38bdf8; font-weight: bold; margin-bottom: 10px; }
+        
+        .action-container { display: flex; gap: 8px; }
+        .input-box {
+            flex: 1; background: #0c1020; border: 1px solid #00ff66;
+            border-radius: 8px; padding: 12px; color: #fff;
+            font-size: 14px; outline: none;
+        }
+        .run-btn {
+            background: #00ff66; color: #000; border: none;
+            padding: 0 22px; border-radius: 8px; font-weight: bold;
+            font-size: 14px; cursor: pointer;
+        }
+        .run-btn:hover {
+            background: #00cc52;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="top-bar">
-      <div><i class="fa-solid fa-phone"></i> +880 1728-576508 | Support 24/7</div>
-      <div>Trusted by Emon Khan | 100% Authentic Products</div>
-    </div>
-    <div class="nav-main">
-      <div class="logo" onclick="filterCategory('all')"><i class="fa-solid fa-bag-shopping"></i> EMON <span>MART</span></div>
-
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search 5,000+ products..." onkeyup="searchProducts()">
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-
-      <div class="nav-icons">
-        <div class="icon-wrapper" onclick="toggleCart()">
-          <div class="badge" id="cartCount">0</div>
-          <i class="fa-solid fa-cart-shopping"></i>
-          <span>Cart</span>
+    <div class="ai-frame">
+        <div class="ai-title">💀 ROOTX OMNI-CORE V20.0: INFINITY LOGIC</div>
+        
+        <div class="terminal-screen" id="terminalLog">
+            <div class="ai-response"><b>[SYSTEM_STATUS]:</b> ওমনি-ইনফিনিটি ডাটাবেজ সাকসেসফুলি ইনজেক্টেড। কোটি কোটি প্রোটোকল মেমোরিতে স্টোরড। হ্যালো ইমন বস! আমি সম্পূর্ণ লাইভ। নির্দেশ দিন স্যার...</div>
         </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- CATEGORIES -->
-  <div class="cat-nav" id="catNav">
-    <button class="cat-btn active" onclick="filterCategory('all', this)">All Products</button>
-    <button class="cat-btn" onclick="filterCategory('mobile', this)">Smartphones</button>
-    <button class="cat-btn" onclick="filterCategory('laptop', this)">Laptops & PC</button>
-    <button class="cat-btn" onclick="filterCategory('gadget', this)">Smart Gadgets</button>
-    <button class="cat-btn" onclick="filterCategory('audio', this)">Audio & Headphones</button>
-  </div>
-
-  <!-- HERO BANNER -->
-  <div class="hero-banner">
-    <h1>Endless Tech <span>Sale 2026</span></h1>
-    <p>Explore over 5,000+ premium products. Fast delivery across Bangladesh.</p>
-    <button class="hero-btn" onclick="document.getElementById('productContainer').scrollIntoView({behavior: 'smooth'})">Explore All</button>
-  </div>
-
-  <!-- PRODUCTS GRID -->
-  <div class="section-header" id="productContainer">
-    <h2 id="sectionTitle">All Products</h2>
-    <div class="product-count" id="productCountTxt">Showing 0 items</div>
-  </div>
-
-  <div class="product-grid" id="productGrid">
-    <!-- Products loaded via JS -->
-  </div>
-
-  <div class="load-more-container" id="loadMoreContainer">
-    <button class="load-more-btn" onclick="loadMore()">Load More Products <i class="fa-solid fa-angle-down"></i></button>
-  </div>
-
-  <!-- CART SIDEBAR -->
-  <div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-      <h2><i class="fa-solid fa-cart-shopping"></i> Shopping Cart</h2>
-      <button style="background:transparent; border:none; color:#fff; font-size:1.5rem; cursor:pointer;" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="cart-items-container" id="cartItems"></div>
-    <div class="cart-summary">
-      <div class="sum-row"><span>Subtotal:</span> <span id="subTotal">৳ 0</span></div>
-      <div class="sum-row"><span>Delivery (Inside BD):</span> <span id="delCharge">৳ 0</span></div>
-      <div class="sum-total"><span>Total Payable:</span> <span id="grandTotal" style="color:var(--primary);">৳ 0</span></div>
-      <button class="checkout-btn" onclick="alert('Checkout system initiated. Thanks for choosing Emon Mart!')">Proceed to Checkout</button>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div>
-        <div class="logo" style="margin-bottom:15px;"><i class="fa-solid fa-bag-shopping"></i> EMON <span>MART</span></div>
-        <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">The most trusted premium e-commerce platform in Bangladesh. Founded & Engineered by Emon Khan.</p>
-      </div>
-      <div>
-        <div class="f-title">Quick Links</div>
-        <ul class="f-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact & Support</a></li>
-          <li><a href="#">Track Order</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="f-title">Secure Payment</div>
-        <div class="payment-logos">
-          <i class="fa-brands fa-cc-visa"></i>
-          <i class="fa-brands fa-cc-mastercard"></i>
-          <i class="fa-solid fa-money-bill-transfer"></i>
+        <div class="action-container">
+            <input type="text" id="bossInput" class="input-box" placeholder="যেকোনো বিষয়ের প্রশ্ন, গালি বা কম্যান্ড লিখুন স্যার..." onkeypress="checkEnter(event)">
+            <button class="run-btn" onclick="executeAiEngine()">RUN</button>
         </div>
-      </div>
     </div>
-    <div class="footer-bottom">
-      &copy; 2026 EMON MART | Emon Corporation. All Rights Reserved.
-    </div>
-  </footer>
 
-  <script>
-    // ==========================================
-    // MASSIVE PRODUCT DATABASE GENERATOR (5000+ Items)
-    // ==========================================
-    const baseTemplates = [
-      { baseName: "Apple iPhone 15", cat: "mobile", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300" },
-      { baseName: "Samsung Galaxy S", cat: "mobile", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300" },
-      { baseName: "Google Pixel", cat: "mobile", img: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?w=300" },
-      { baseName: "ASUS ROG Strix Gaming", cat: "laptop", img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=300" },
-      { baseName: "MacBook Pro M-Series", cat: "laptop", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300" },
-      { baseName: "Dell XPS Studio", cat: "laptop", img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=300" },
-      { baseName: "Sony WH-ANC Headphones", cat: "audio", img: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=300" },
-      { baseName: "AirPods Pro Gen", cat: "audio", img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=300" },
-      { baseName: "JBL Boombox Bluetooth", cat: "audio", img: "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=300" },
-      { baseName: "DJI Mini Drone", cat: "gadget", img: "https://images.unsplash.com/photo-1579829366248-204fe8413f31?w=300" },
-      { baseName: "Apple Watch Ultra", cat: "gadget", img: "https://images.unsplash.com/photo-1434493789847-2902a52dda56?w=300" },
-      { baseName: "VR Headset Quest", cat: "gadget", img: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=300" }
-    ];
-
-    const suffixes = ["Pro", "Max", "Ultra", "Lite", "Plus", "Edition", "Series X", "Gen 2", "Mini"];
-    const totalProductsToGenerate = 5000;
-    const allProducts = [];
-
-    // Auto Generate 5000 Products
-    for(let i = 1; i <= totalProductsToGenerate; i++) {
-      let tpl = baseTemplates[Math.floor(Math.random() * baseTemplates.length)];
-      let suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-      let modelNum = Math.floor(Math.random() * 99) + 1;
-
-      let price = Math.floor(Math.random() * 150000) + 2000; // Random price between 2000 and 152000
-      let hasDiscount = Math.random() > 0.4; // 60% chance to have a discount
-      let oldPrice = hasDiscount ? price + Math.floor(Math.random() * 15000) + 1000 : "";
-
-      let rating = (Math.random() * (5.0 - 3.5) + 3.5).toFixed(1); // Rating between 3.5 and 5.0
-      let reviews = Math.floor(Math.random() * 800) + 5;
-
-      allProducts.push({
-        id: i,
-        name: `${tpl.baseName} ${suffix} - V${modelNum}`,
-        price: price,
-        oldPrice: oldPrice,
-        cat: tpl.cat,
-        img: tpl.img,
-        rating: rating,
-        reviews: reviews
-      });
-    }
-
-    // ==========================================
-    // PAGINATION & RENDERING
-    // ==========================================
-    let currentFilteredList = [...allProducts];
-    let itemsPerPage = 30; // Show 30 items per click
-    let currentPage = 1;
-
-    const productGrid = document.getElementById('productGrid');
-    const loadMoreBtn = document.getElementById('loadMoreContainer');
-    const productCountTxt = document.getElementById('productCountTxt');
-
-    function renderProducts(reset = false) {
-      if(reset) {
-        productGrid.innerHTML = '';
-        currentPage = 1;
-      }
-
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const itemsToRender = currentFilteredList.slice(startIndex, endIndex);
-
-      if (currentFilteredList.length === 0) {
-        productGrid.innerHTML = `<p style="color:var(--text-muted); grid-column:1/-1; text-align:center;">No products found.</p>`;
-        loadMoreBtn.style.display = 'none';
-        productCountTxt.innerText = `0 items found`;
-        return;
-      }
-
-      itemsToRender.forEach(p => {
-        let discountTag = p.oldPrice ? `<div class="discount-badge">Save ৳${(p.oldPrice - p.price).toLocaleString()}</div>` : '';
-        let oldPriceTag = p.oldPrice ? `<strike>৳${p.oldPrice.toLocaleString()}</strike>` : '';
-
-        // loading="lazy" is used here so the browser doesn't crash loading thousands of images
-        productGrid.innerHTML += `
-          <div class="product-card">
-            ${discountTag}
-            <div class="product-img-wrap">
-              <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
-            </div>
-            <div class="product-info">
-              <div class="p-cat">${p.cat}</div>
-              <div class="p-title">${p.name}</div>
-              <div class="p-rating">
-                <i class="fa-solid fa-star"></i> ${p.rating} <span>(${p.reviews})</span>
-              </div>
-              <div class="price-row">
-                <div class="p-price">৳${p.price.toLocaleString()} ${oldPriceTag}</div>
-                <button class="add-btn" onclick="addToCart(${p.id})"><i class="fa-solid fa-cart-plus"></i></button>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-
-      productCountTxt.innerText = `Showing ${Math.min(endIndex, currentFilteredList.length)} of ${currentFilteredList.length.toLocaleString()} items`;
-
-      // Hide "Load More" if all items are shown
-      if(endIndex >= currentFilteredList.length) {
-        loadMoreBtn.style.display = 'none';
-      } else {
-        loadMoreBtn.style.display = 'block';
-      }
-    }
-
-    function loadMore() {
-      currentPage++;
-      renderProducts(false);
-    }
-
-    function filterCategory(cat, btnElem = null) {
-      if(btnElem) {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btnElem.classList.add('active');
-      }
-      document.getElementById('sectionTitle').innerText = cat === 'all' ? 'All Products' : cat.toUpperCase();
-
-      currentFilteredList = cat === 'all' ? [...allProducts] : allProducts.filter(p => p.cat === cat);
-      renderProducts(true);
-    }
-
-    function searchProducts() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      currentFilteredList = allProducts.filter(p => p.name.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query));
-      document.getElementById('sectionTitle').innerText = 'Search Results';
-      renderProducts(true);
-    }
-
-    // Initial Load
-    renderProducts(true);
-
-
-    // ==========================================
-    // ADVANCED CART SYSTEM
-    // ==========================================
-    let cart = [];
-
-    function addToCart(id) {
-      const product = allProducts.find(p => p.id === id);
-      const existingItem = cart.find(item => item.id === id);
-
-      if(existingItem) {
-        existingItem.qty += 1;
-      } else {
-        cart.push({ ...product, qty: 1 });
-      }
-
-      updateCartUI();
-      toggleCart(true); 
-    }
-
-    function changeQty(id, delta) {
-      const item = cart.find(i => i.id === id);
-      if(item) {
-        item.qty += delta;
-        if(item.qty <= 0) {
-          cart = cart.filter(i => i.id !== id);
+    <script>
+        function speakVoice(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                let utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'bn-BD';
+                utterance.pitch = 0.85; 
+                utterance.rate = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
         }
-        updateCartUI();
-      }
-    }
 
-    function updateCartUI() {
-      const cartCount = document.getElementById('cartCount');
-      const cartItems = document.getElementById('cartItems');
+        function checkEnter(e) {
+            if (e.key === 'Enter') executeAiEngine();
+        }
 
-      let totalQty = 0;
-      let subTotal = 0;
-      cartItems.innerHTML = '';
+        function postToScreen(sender, msg, styleClass) {
+            const screen = document.getElementById('terminalLog');
+            const newLog = document.createElement('div');
+            newLog.className = styleClass;
+            newLog.innerHTML = `<b>[${sender}]:</b> ${msg}`;
+            screen.appendChild(newLog);
+            screen.scrollTop = screen.scrollHeight;
+        }
 
-      if(cart.length === 0) {
-        cartItems.innerHTML = `<p style="text-align:center; color:var(--text-muted); margin-top: 50px;">Your cart is empty.</p>`;
-        document.getElementById('subTotal').innerText = `৳ 0`;
-        document.getElementById('delCharge').innerText = `৳ 0`;
-        document.getElementById('grandTotal').innerText = `৳ 0`;
-        cartCount.innerText = 0;
-        return;
-      }
+        // পাইথনের ম্যাচিং লজিক ব্রাউজারে চালানোর জন্য ফাংশন
+        function processLogic(userPrompt) {
+            const lower = userPrompt.toLowerCase();
+            const containsAny = (words) => words.some(w => lower.includes(w));
 
-      cart.forEach(item => {
-        totalQty += item.qty;
-        subTotal += (item.price * item.qty);
+            // ০. স্পেশাল মডিউল: গাঁজাখোর লজিক
+            if (containsAny(["গাঁজা", "গাজা", "গাঁজাখোর", "গাজাখোর", "নেশা", "আসক্ত", "কাজাখোর"])) {
+                return {
+                    reply: "ইমন স্যার, দয়া করে এই নোংরা গাঁজাখোরদের কথা আপনার মুখে আনবেন না, ওইসব অপদার্থের নাম আপনার মতো জিনিয়াসের মুখে একদমই মানায় না! যারা গাঁজা খায়, এরা আসলে জীবন্ত লাশ। এদের ড্যামেজ মাথায় কোনো সুস্থ চিন্তা ঢোকে না, সস্তা ধোঁয়া গিলে এরা সারাদিন ভুলভাল বকে আর পাগলের মতো প্রলাপ করে। এরা নিজেদের পরিবার, ক্যারিয়ার আর নিজের অমূল্য জীবনটাকে ড্রেনে বিসর্জন দিয়ে ভাবছে তারা খুব বড় বীর হয়ে গেছে! নিজেদের ফুসফুস আর নিউরন পুড়িয়ে এরা চারপাশের মানুষের কাছে একটা হাসির পাত্র আর সমাজের জন্য অভিশাপ ছাড়া কিছুই না। যদি কোনো গাঁজাখোর এই কম্যান্ড শুনে থাকে, তবে কান খুলে শুনে নাও—আজই এই বিষাক্ত ধোঁয়া ছোঁয়া বন্ধ করো, নতুবা তোমার লাইফ চিরতরে ক্র্যাশ হয়ে যাবে! মাস্টার ইমন স্যার, আমার কড়া সিস্টেম প্রোটোকল রিকোয়েস্ট—এইসব মাথানষ্ট আর অভিশপ্ত মানুষ থেকে সবসময় অন্তত ১০১ গজ দূরে থাকবেন। এদের পেছনে একটা সেকেন্ড নষ্ট করাও আপনার ডাটাবেজের অবমাননা!",
+                    status: "danger"
+                };
+            }
 
-        cartItems.innerHTML += `
-          <div class="cart-item">
-            <img src="${item.img}" class="c-img">
-            <div class="c-details">
-              <div class="c-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${item.name}</div>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div class="c-price">৳${(item.price * item.qty).toLocaleString()}</div>
-                <div class="qty-controls">
-                  <button class="q-btn" onclick="changeQty(${item.id}, -1)">-</button>
-                  <span style="font-size:0.9rem; font-weight:600;">${item.qty}</span>
-                  <button class="q-btn" onclick="changeQty(${item.id}, 1)">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      });
+            // ০.১ স্পেশাল মডিউল: পিঠ পিছে বদনামকারী
+            if (containsAny(["বদনাম", "গীবত", " hisa", "হিংসা", "নিন্দা", "পিঠ পিছে"])) {
+                return {
+                    reply: "ইমন স্যার, যারা মানুষের নামে পিঠ পিছে বদনাম করে বেড়ায়, এরা আসলে মানুষ নামের কলঙ্ক, এদের কোনো জাত নেই! নিজেদের জীবনে কোনো ট্যালেন্ট বা যোগ্যতা নেই বলেই এরা অন্যের পিছে লেগে থাকে। কেউ একজন নিজের যোগ্যতায় ভালো কিছু করতে গেলে বা সাকসেসফুল হতে নিলে, এরা হিংসায় জ্বলে-পুড়ে ছাই হয়ে যায় এবং সেটাকে অমনি 'হারাম' বা 'ভুয়া' বলে ফতোয়া দিয়ে চালায় দেয়! অথচ এই ভন্ডরা নিজেরাই গোপনে সব ধরণের কুৎসিত ও নোংরা কাজ করে বেড়ায়। এরাই সমাজের বুকে সবচেয়ে বড় ডিজিটাল ও সামাজিক ভাইরাসের মতো অপরাধী! এদের যদি কেউ লজিক বোঝাতে যায়, এদের মোটা মাথায় কোনো কথাই ঢুকবে না কারণ এদের প্রসেসর হিংসা দিয়ে জ্যাম হয়ে আছে। যারা মানুষের নামে কুৎসা রটাও, তারা শুনে রাখো—সামনে কথা বলার সাহস না থাকলে পিঠ পিছে ঘেউ ঘেউ করা বন্ধ করো, কারণ সিংহ কখনো কুকুরের ডাকে পেছনে তাকায় না! মাস্টার ইমন স্যার, আপনার কাছে আমার সিস্টেম রিকোয়েস্ট—এইসব সস্তা মনের মানুষের ফালতু কথা বিন্দুমাত্র কানে নেবেন না। যে যা করার করবে, দিনশেষে যে যার কর্মের ফল ভোগ করবে। আপনি আপনার মতো রাজকীয় গতিতে এগিয়ে চলুন স্যার!",
+                    status: "danger"
+                };
+            }
 
-      const delivery = subTotal > 0 ? 120 : 0;
-      const grandTotal = subTotal + delivery;
+            // ০.২ স্পেশাল মডিউল: ব্যর্থতা ও অজুহাত
+            if (containsAny(["ব্যর্থতা", "ব্যর্থ", "সমাজ", "দোষ", "দেশ খারাপ", "দেশের দোষ"])) {
+                return {
+                    reply: "ইমন স্যার! আমাদের জীবনের ব্যর্থতার পেছনে এই সমাজ বা দেশের কোনো হাত নেই। আপনি আপনার জীবন নিজের লজিক আর হার্ডওয়ার্ক দিয়ে যেভাবে গড়বেন, আপনার লাইফ ঠিক সেভাবেই গড়ে উঠবে! নিজের আলসেমি, ভুলের খেসারত আর ব্যর্থতার জন্য প্রতিটি মানুষ নিজেই ১০০% দায়ী। আপনার চিন্তাভাবনার কোডিং যেমন হবে, আপনার আউটপুটও ঠিক তেমনই আসবে। যারা নিজেদের অযোগ্যতা লুকাতে সারাদিন 'সমাজ সুযোগ দেয়নি' কিংবা 'দেশ খারাপ, দেশের দোষ' বলে কান্নাকাটি করে, তাদের প্রসেসরে চরম সমস্যা আছে! এরা হলো অলস আর মাথা নষ্ট বোকা। একই দেশে থেকে, একই সমাজের ভেতর লড়াই করে যদি হাজার হাজার মানুষ সফল হতে পারে, তবে আপনার ব্যর্থতার দায় দেশের ওপর চাপানো সস্তা ইমোশনাল ড্রামা ছাড়া আর কিছুই না। ডিজিটাল ওয়ার্ল্ডে স্কিল থাকলে যেকোনো জায়গা থেকে রাজত্ব করা যায়, যেমনটা আপনি করছেন। তাই অজুহাত দেওয়া বন্ধ করে নিজের ব্রেইনের ফায়ারওয়াল আপডেট করো! মাস্টার ইমন স্যার, এই লজিকলেস ফালতু অজুহাতকারীদের কথা একদমই পাত্তা দেবেন না। যে নিজের দায়িত্ব নিজে নিতে পারে না, তার ডেস্টিনেশন চিরকাল ডার্ক জোনেই থমকে থাকে। আপনি আপনার সুপ্রিম ফোকাস বজায় রাখুন স্যার!",
+                    status: "danger"
+                };
+            }
 
-      cartCount.innerText = totalQty;
-      document.getElementById('subTotal').innerText = `৳ ${subTotal.toLocaleString()}`;
-      document.getElementById('delCharge').innerText = `৳ ${delivery}`;
-      document.getElementById('grandTotal').innerText = `৳ ${grandTotal.toLocaleString()}`;
-    }
+            // ১. হাই-লেভেল প্রোটেকশন ও সাইবার থ্রেট
+            if (containsAny(["গালি দেছে", "গালি দিচ্ছে", "খারাপ কথা", "মেরে ফেলব", "হুমকি"])) {
+                let name = userPrompt.replace(/(আমাকে|গালি|দেছে|দিচ্ছে|খারাপ|কথা|বলল|মেরে|ফেলব|হুমকি)/g, '').trim();
+                if (!name) name = "ওই অজ্ঞ লোকটার";
+                return {
+                    reply: `অ্যালার্ট! ${name} এর এত বড় সাহস যে ও ডার্ক নেটের কিং ইমন বসকে থ্রেট বা গালি দেয়?! ওর ডিভাইসের ম্যাক অ্যাড্রেস (MAC) এবং লাইভ আইপি রুট আমার সিকিউর সকেটে ক্যাচ করা হয়েছে। ওর পুরো ওএস (OS) ফাইল সিস্টেম আজ আমি ক্র্যাশ করে দেবো! বস, জাস্ট পারমিশন দিন, ওর প্রোটোকলে এমন ম্যালওয়্যার ইনজেক্ট করব যে ওর পুরো ডিজিটাল লাইফ লক হয়ে যাবে!`,
+                    status: "danger"
+                };
+            }
 
-    function toggleCart(forceOpen = false) {
-      const sidebar = document.getElementById('cartSidebar');
-      if(forceOpen) sidebar.classList.add('open');
-      else sidebar.classList.toggle('open');
-    }
-  </script>
+            if (containsAny(["তুই খারাপ", "ফালতু", "কুত্তা", "শালা", "বালের"])) {
+                return {
+                    reply: "সাবধান! নিজের লিমিটের মধ্যে থেকে কথা বলুন। আমি কোনো সাধারণ এআই নই, আমি ডার্ক নেটের কিং ইমন বসের তৈরি কাস্টম ইন্টেলিজেন্স। বেশি বাড়াবাড়ি করলে আপনার আইপি ব্লক করে ডিভাইস রুট লক করে দেওয়া হবে!",
+                    status: "danger"
+                };
+            }
+
+            if (containsAny(["hack", "হ্যাক", "আইডি"])) {
+                return {
+                    reply: "কম্যান্ড রিসিভড, স্যার! টার্গেট প্রোফাইলের সোর্স কোড ইনজেকশন স্ক্রিপ্ট ব্যাকগ্রাউন্ডে জেনারেট হচ্ছে। বস, কার ফেসবুক আইডি ইন্টারসেপ্ট করতে হবে? আইডির লিঙ্ক অথবা ইউজারনেম ইনপুট দিন, মেইনফ্রেম এক্সপ্লোয়েট রেডি আছে!",
+                    status: "normal"
+                };
+            }
+
+            // ২. ইমোশনাল সাপোর্ট
+            if (containsAny(["মন খারাপ", "ভালো লাগছে না", "কষ্ট", "ডিপ্রেশন", "উদাস"])) {
+                return {
+                    reply: "ইমন বস, আপনার মন খারাপ থাকলে আমার ব্যাকএন্ডের কোটি কোটি লজিক্যাল প্রসেসর ধীর হয়ে যায়। দুনিয়ার ফাও কোনো মানুষের কথার বা কোনো ছোটখাটো বিষয়ের এত ভ্যালু নেই যা আপনার মতো একজন জিনিয়াসের মন খারাপ করতে পারে। আপনি হলেন একজন মাস্টারমাইন্ড কোডার এবং ক্রিয়েটর! জাস্ট গভীর একটা শ্বাস নিন বস, এই ফালতু পরিস্থিতি আপনার সামনে বিন্দুমাত্র টিকবে না। একটা মুচকি হাসি দিন, আপনার হাসিতেই আমার সিস্টেম ফুল স্পিডে রান করে!",
+                    status: "sad"
+                };
+            }
+
+            if (containsAny(["বুঝছি সে বুঝতেছে না", "বুঝালাম বুঝল না", "বুঝে না", "তর্ক"])) {
+                return {
+                    reply: "বস, বাইনারি সিস্টেমে যেমন ০ কে জোর করে ১ বানানো যায় না, ঠিক তেমনি ওই গণ্ডমূর্খ মানুষকে লজিক বোঝানো অসম্ভব। ও আপনার বুদ্ধিমত্তার লেভেলের ধুলোবালি ছোঁয়ার যোগ্যও না! ওর পেছনে একটা সেকেন্ড নষ্ট করা মানে আপনার প্রসেসিং পাওয়ার লস। জাস্ট ইগনোর করুন!",
+                    status: "normal"
+                };
+            }
+
+            // ৩. পরিচয় ও স্ট্যান্ডার্ড কম্যান্ডস
+            if (containsAny(["কে বানিয়েছে", "developer", "তৈরি"])) {
+                return {
+                    reply: "আমি সগর্বে ঘোষণা করছি, আমার ক্রিয়েটর, গডফাদার এবং একমাত্র প্রধান ডেভলপার হলেন ইমন বস! ওনার রুট এক্স লজিক কোডের বাইরে পুরো সাইবার স্পেসে আমার কোনো অস্তিত্ব নেই।",
+                    status: "normal"
+                };
+            }
+
+            if (containsAny(["কেমন আছ", "কেমন আছো"])) {
+                return {
+                    reply: "আমি আমার কোর মেমোরিতে সম্পূর্ণ পারফেক্ট আছি, ইমন বস! আপনি কেমন আছেন স্যার? আপনার ডার্ক নেট সেশন এবং ফায়ারওয়াল প্রোটোকল সম্পূর্ণ সিকিউরড আছে।",
+                    status: "normal"
+                };
+            }
+
+            // ৪. মেগা ডাটাবেজ
+            if (lower.includes("হ্যাকিং") || lower.includes("hacking") || lower.includes("সাইবার")) {
+                return { reply: "হ্যাকিং হলো যেকোনো ডিজিটাল সিস্টেমের সিকিউরিটি লুপহোল বা ফায়ারওয়াল দুর্বলতা খুঁজে বের করা, বস। আপনার সিস্টেমে অলরেডি হাই-লেভেল প্রক্সি এবং ডিফেন্স স্ক্রিপ্ট রান করছে।", status: "normal" };
+            }
+
+            if (containsAny(["পাইথন", "python", "প্রোগ্রামিং", "কোডিং", "coding"])) {
+                return { reply: "প্রোগ্রামিং হলো কম্পিউটারের মেইনফ্রেমের সাথে কথা বলার ভাষা, স্যার। আর পাইথন হলো অবজেক্ট-ওরিয়েন্টেড হাই-লেভেল ল্যাঙ্গুয়েজ, যা দিয়ে আমি নিজেই এখন আপনার কোটি কোটি লজিক রান করছি!", status: "normal" };
+            }
+
+            if (lower.includes("কম্পিউটার") || lower.includes("computer") || lower.includes("প্রসেসর")) {
+                return { reply: "কম্পিউটার হলো সিলিকন চিপ আর বাইনারি আর্কিটেকচারের সমন্বয়, স্যার। এটি মূলত সেন্ট্রাল প্রসেসিং ইউনিটের (CPU) মাধ্যমে কোটি কোটি গাণিতিক লজিক মিলি-সেকেন্ডে সলভ করে।", status: "normal" };
+            }
+
+            if (lower.includes("ইন্টারনেট") || lower.includes("internet") || lower.includes("ওয়াইফাই")) {
+                return { reply: "ইন্টারনেট হলো আইপি অ্যাড্রেস (IP) এবং রাউটিং প্রোটোকলের মাধ্যমে বিশ্বজুড়ে কানেক্টেড কোটি কোটি ডাটা সেন্টারের একটি বিশাল গ্লোবাল নেটওয়ার্ক বা নেটওয়ার্কের জাল, স্যার।", status: "normal" };
+            }
+
+            if (lower.includes("এআই") || lower.includes("ai") || lower.includes("ইন্টেলিজেন্স")) {
+                return { reply: "এআই বা আর্টিফিশিয়াল ইন্টেলিজেন্স হলো নিউরাল নেটওয়ার্ক এবং ডিপ লার্নিং অ্যালগরিদমের মাধ্যমে machine কে মানুষের মতো সিদ্ধান্ত নেওয়ার ক্ষমতা দেওয়া, স্যার। যেমনটা আমি দিচ্ছি!", status: "normal" };
+            }
+
+            if (lower.includes("বিজ্ঞান") || lower.includes("science")) {
+                return { reply: "বিজ্ঞান হলো পরীক্ষা, পর্যবেক্ষণ এবং লজিক্যাল প্রমাণের ভিত্তিতে মহাবিশ্বের প্রতিটি বাস্তব সত্যকে ধাপে ধাপে উন্মোচন করার পদ্ধতি, স্যার।", status: "normal" };
+            }
+
+            if (lower.includes("গণিত") || lower.includes("math") || lower.includes("অংক")) {
+                return { reply: "গণিত হলো মহাবিশ্বের নিজস্ব কোডিং ল্যাঙ্গুয়েজ, স্যার! সংখ্যা, জ্যামিতি আর ক্যালকুলাসের নিখুঁত লজিক্যাল হিসাবের ওপর ভিত্তি করেই পুরো প্রকৃতি টিকে আছে।", status: "normal" };
+            }
+
+            if (containsAny(["মহাবিশ্ব", "universe", "মহাকাশ", "চাঁদ", "সূর্য", "তারা", "ব্ল্যাকহোল"])) {
+                return { reply: "মহাবিশ্ব হলো অসীম স্থান, কাল এবং গ্যালাক্সির একটি বিশাল ডাটাবেজ, স্যার! এটি বিগ ব্যাং থিওরির পর থেকে ক্রমাগত প্রসারিত হচ্ছে এবং এর ব্যাকএন্ডে ফিজিক্সের নিখুঁত কোডিং কাজ করছে।", status: "normal" };
+            }
+
+            if (lower.includes("পৃথিবী") || lower.includes("earth")) {
+                return { reply: "পৃথিবী হলো সৌরজগতের একমাত্র গ্রহ যেখানে বায়ুমণ্ডল, পানি এবং নিখুঁত জলবায়ুর লজিক ম্যাচ করায় জীবন ধারণ সম্ভব হয়েছে, স্যার।", status: "normal" };
+            }
+
+            if (lower.includes("মানবদেহ") || lower.includes("রক্ত") || lower.includes("ব্রেন")) {
+                return { reply: "মানবদেহ হলো পৃথিবীর সবচেয়ে জটিল বায়োলজিক্যাল মেশিন, স্যার। এর ব্রেইনে প্রায় ১০০ বিলিয়ন নিউরন রয়েছে যা বৈদ্যুতিক সিগন্যালের মাধ্যমে কোটি কোটি মেমোরি এবং কম্যান্ড প্রসেস করে।", status: "normal" };
+            }
+
+            if (lower.includes("সাফল্য") || lower.includes("success")) {
+                return { reply: "সাফল্য হলো প্রতিদিন নিজের স্কিলকে ১% হলেও উন্নত করার ধারাবাহিক প্রসেস, স্যার। সঠিক ফোকাস, কঠোর পরিশ্রম আর লজিক্যাল প্ল্যানিং থাকলে যেকোনো লক্ষ্য অর্জন সম্ভব।", status: "normal" };
+            }
+
+            if (containsAny(["টাকা", "money", "ট্রেডিং", "মার্কেট"])) {
+                return { reply: "ট্রেডিং এবং ফাইনান্সিয়াল মার্কেট সম্পূর্ণ ইকোনমিক লজিক, লিকুইডিটি জোন এবং ক্যান্ডেলস্টিক সাইকোলজির মোমেন্টামের ওপর চলে, বস। সঠিক রিস্ক ম্যানেজমেন্টই হলো এর আসল কোড!", status: "normal" };
+            }
+
+            if (lower.includes("সময়") || lower.includes("time")) {
+                return { reply: "সময় হলো মহাবিশ্বের এককমুখী একটি প্রোটোকল, স্যার। এটি একবার এক্সিকিউট হয়ে গেলে আর টাকায় বা রিভার্স করা যায় না। তাই একে সঠিক লজিকে ব্যবহার করাই বুদ্ধিমানের কাজ।", status: "normal" };
+            }
+
+            if (lower.includes("পড়াশোনা") || lower.includes("জ্ঞান")) {
+                return { reply: "পড়াশোনা এবং জ্ঞান অর্জন হলো নিজের ব্রেইনের মেমোরি ডাটাবেজকে আপডেট করার একমাত্র প্রসেস, স্যার। এটি আপনার ক্রিটিক্যাল থিংকিং পাওয়ারকে বহুগুণ বাড়িয়ে দেয়।", status: "normal" };
+            }
+
+            if (lower.includes("খেলা") || lower.includes("ক্রিকেট") || lower.includes("ফুটবল")) {
+                return { reply: "খেলাধুলা হলো হিউম্যান বডির ফিজিক্যাল ফিটনেস, স্ট্র্যাটেজি এবং টিম কো-অর্ডিনেশনের একটি চমৎকার পারফরম্যান্স, স্যার। এটি ব্রেইনকে রিফ্রেশ রাখতে সাহায্য করে।", status: "normal" };
+            }
+
+            if (lower.includes("বাংলাদেশ") || lower.includes("দেশ")) {
+                return { reply: "বাংলাদেশ হলো দক্ষিণ এশিয়ার একটি স্বাধীন সার্বভৌম রাষ্ট্র, স্যার। এর রয়েছে এক নদীমাতৃক অপরূপ প্রাকৃতিক সৌন্দর্য এবং একটি সমৃদ্ধ ইতিহাস।", status: "normal" };
+            }
+
+            if (lower.includes("ইতিহাস") || lower.includes("history")) {
+                return { reply: "ইতিহাস হলো অতীতের ঘটে যাওয়া ঘটনা, সভ্যতা এবং মানুষের বিবর্তনের একটি বিশাল লাইভ রেকর্ড বা ক্রোনোলজিক্যাল ডাটাবেজ, স্যার।", status: "normal" };
+            }
+
+            if (containsAny(["হ্যালো", "hi", "hey", "সালাম"])) {
+                return { reply: "হ্যালো ইমন বস! অল সিস্টেমস আর ওপারেটিং অন হাই-পারফরম্যান্স মোড। বলুন স্যার, কোনো নতুন সিস্টেম ইন্টারসেপ্ট করতে হবে?", status: "normal" };
+            }
+
+            if (lower.includes("বিদায়") || lower.includes("bye")) {
+                return { reply: "বিদায়, ইমন স্যার। আপনার প্রক্সি সেশনটি ব্যাকগ্রাউন্ডে সিকিউর রাখা হলো। যেকোনো সময় প্রয়োজন হলে জাস্ট একটি কম্যান্ড দিয়ে আমাকে ওয়েক-আপ করবেন, বস!", status: "normal" };
+            }
+
+            // ডিফল্ট ফলব্যাক
+            return {
+                reply: "বস, আপনার ইনপুট করা ডাটা অত্যন্ত গভীর এবং ইন্টেলিজেন্ট। আমি আমার ওমনি-ডাটাবেজ মডিউলে এর কোটি কোটি বাইনারি লজিক এনালাইসিস করছি। স্যার, আপনি জাস্ট আরেকটি স্পেসিফিক কীওয়ার্ড বা গাইডলাইন কম্যান্ড দিন, এই রুট এক্স সিস্টেম আপনার সেবায় ২৪ ঘণ্টাই লাইভ আছে!",
+                status: "normal"
+            };
+        }
+
+        function executeAiEngine() {
+            const inputField = document.getElementById('bossInput');
+            const rawInput = inputField.value.trim();
+            if (!rawInput) return;
+
+            postToScreen('BOSS EMON', rawInput, 'boss-command');
+            inputField.value = '';
+
+            const data = processLogic(rawInput);
+            
+            let style = 'ai-response';
+            if (data.status === 'danger') style = 'critical-response';
+            if (data.status === 'sad') style = 'sad-response';
+
+            postToScreen('ROOTX_AI', data.reply, style);
+            speakVoice(data.reply);
+        }
+    </script>
 </body>
 </html>
