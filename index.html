@@ -3,69 +3,503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOTX CORE - OMNI INFINITY DATABASE</title>
+    <title>ROOTX CORE - OMNI SUPREME CONSOLE</title>
     <style>
+        :root {
+            --neon-green: #00ff66;
+            --neon-dim: #008f39;
+            --neon-red: #ff2a2a;
+            --neon-blue: #00e5ff;
+            --neon-yellow: #fbbf24;
+            --bg-black: #020408;
+            --panel-bg: rgba(6, 11, 20, 0.88);
+            --border-glow: 0 0 15px rgba(0, 255, 102, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
         body {
-            background: #010206; color: #00ff66;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0; padding: 15px;
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; min-height: 100vh;
+            background-color: var(--bg-black);
+            color: var(--neon-green);
+            font-family: 'Consolas', 'Fira Code', 'Courier New', monospace;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
-        .ai-frame {
-            background: #070a13; border: 2px solid #00ff66;
-            border-radius: 12px; padding: 20px;
-            width: 100%; max-width: 480px; box-sizing: border-box;
-            box-shadow: 0 0 35px rgba(0, 255, 102, 0.25);
+
+        /* ম্যাট্রিক্স ব্যাকগ্রাউন্ড ক্যানভাস */
+        #matrixCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.18;
+            pointer-events: none;
         }
-        .ai-title {
-            text-align: center; font-weight: bold; font-size: 15px;
-            color: #00ff66; border-bottom: 2px dashed #1f2937;
-            padding-bottom: 10px; margin-bottom: 15px;
+
+        /* টার্মিনাল সিআরটি স্ক্যানলাইন এফেক্ট */
+        .scanlines {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ফুলস্ক্রিন মূল কন্টেইনার */
+        .main-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            padding: 18px 24px;
+            gap: 15px;
+        }
+
+        /* টপ নেভিগেশন বার */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--panel-bg);
+            border: 1px solid var(--neon-green);
+            border-radius: 6px;
+            padding: 10px 20px;
+            box-shadow: var(--border-glow);
+            backdrop-filter: blur(8px);
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 800;
             letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 8px var(--neon-green);
         }
-        .terminal-screen {
-            background: #000; height: 350px; border-radius: 8px;
-            padding: 12px; overflow-y: auto; border: 1px solid #1f2937;
-            font-size: 13px; line-height: 1.6; margin-bottom: 15px;
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: pulse 1.4s infinite;
         }
-        .ai-response { color: #00ff66; margin-bottom: 10px; }
-        .boss-command { color: #fbbf24; margin-bottom: 10px; }
-        .critical-response { color: #ff2a2a; font-weight: bold; margin-bottom: 10px; }
-        .sad-response { color: #38bdf8; font-weight: bold; margin-bottom: 10px; }
-        
-        .action-container { display: flex; gap: 8px; }
-        .input-box {
-            flex: 1; background: #0c1020; border: 1px solid #00ff66;
-            border-radius: 8px; padding: 12px; color: #fff;
-            font-size: 14px; outline: none;
+
+        @keyframes pulse {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
         }
-        .run-btn {
-            background: #00ff66; color: #000; border: none;
-            padding: 0 22px; border-radius: 8px; font-weight: bold;
-            font-size: 14px; cursor: pointer;
+
+        .sys-specs {
+            display: flex;
+            gap: 25px;
+            font-size: 12px;
+            color: #7ee787;
         }
-        .run-btn:hover {
-            background: #00cc52;
+
+        .sys-specs span b {
+            color: #fff;
+        }
+
+        /* সেন্ট্রাল ড্যাশবোর্ড গ্রিড */
+        .center-body {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 280px 1fr 300px;
+            gap: 15px;
+            min-height: 0;
+        }
+
+        /* সাইডবার প্যানেল */
+        .cyber-panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 255, 102, 0.4);
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: inset 0 0 15px rgba(0, 255, 102, 0.05);
+            backdrop-filter: blur(8px);
+        }
+
+        .panel-heading {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--neon-blue);
+            border-bottom: 1px dashed rgba(0, 229, 255, 0.4);
+            padding-bottom: 6px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stat-bar-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .progress-slot {
+            width: 100%;
+            height: 6px;
+            background: #0d1520;
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--neon-green);
+            box-shadow: 0 0 8px var(--neon-green);
+        }
+
+        /* মেইন টার্মিনাল ভিউপোর্ট */
+        .terminal-viewport {
+            background: rgba(1, 4, 9, 0.95);
+            border: 1px solid var(--neon-green);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--border-glow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .terminal-logs {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .terminal-logs::-webkit-scrollbar {
+            width: 6px;
+        }
+        .terminal-logs::-webkit-scrollbar-thumb {
+            background: var(--neon-dim);
+            border-radius: 3px;
+        }
+
+        /* মেসেজ বাবলস ও স্টাইলিং */
+        .log-row {
+            word-break: break-word;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .boss-command { color: var(--neon-yellow); }
+        .ai-response { color: var(--neon-green); }
+        .critical-response { 
+            color: var(--neon-red); 
+            border-left: 3px solid var(--neon-red);
+            padding-left: 10px;
+            background: rgba(255, 42, 42, 0.05);
+        }
+        .sad-response { 
+            color: var(--neon-blue); 
+            border-left: 3px solid var(--neon-blue);
+            padding-left: 10px;
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        /* বটম কম্যান্ড ইনপুট এরিয়া */
+        .console-input-dock {
+            display: flex;
+            align-items: center;
+            background: #030811;
+            border-top: 1px solid rgba(0, 255, 102, 0.3);
+            padding: 12px 18px;
+            gap: 12px;
+        }
+
+        .prompt-symbol {
+            color: var(--neon-green);
+            font-weight: bold;
+            font-size: 16px;
+            text-shadow: 0 0 6px var(--neon-green);
+        }
+
+        .terminal-field {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 15px;
+            caret-color: var(--neon-green);
+            user-select: text;
+        }
+
+        .terminal-field::placeholder {
+            color: #3b506b;
+        }
+
+        .exec-button {
+            background: var(--neon-green);
+            color: #000;
+            border: none;
+            outline: none;
+            padding: 8px 24px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--neon-green);
+            transition: all 0.2s ease;
+        }
+
+        .exec-button:hover {
+            background: #fff;
+            box-shadow: 0 0 16px #fff;
+        }
+
+        /* মডিউল অডিও ওয়েভ ভিজ্যুয়ালাইজার */
+        .audio-bars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            gap: 4px;
+        }
+        .bar {
+            width: 4px;
+            background: var(--neon-green);
+            height: 5px;
+            border-radius: 2px;
+            transition: height 0.1s ease;
+        }
+
+        /* টেলিমেট্রি টেক্সট */
+        .telemetry-feed {
+            font-size: 10.5px;
+            color: #4b6785;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            overflow: hidden;
+            height: 120px;
+        }
+
+        @media (max-width: 992px) {
+            .center-body {
+                grid-template-columns: 1fr;
+            }
+            .cyber-panel {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="ai-frame">
-        <div class="ai-title">💀 ROOTX OMNI-CORE V20.0: INFINITY LOGIC</div>
-        
-        <div class="terminal-screen" id="terminalLog">
-            <div class="ai-response"><b>[SYSTEM_STATUS]:</b> ওমনি-ইনফিনিটি ডাটাবেজ সাকসেসফুলি ইনজেক্টেড। কোটি কোটি প্রোটোকল মেমোরিতে স্টোরড। হ্যালো ইমন বস! আমি সম্পূর্ণ লাইভ। নির্দেশ দিন স্যার...</div>
-        </div>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="scanlines"></div>
 
-        <div class="action-container">
-            <input type="text" id="bossInput" class="input-box" placeholder="যেকোনো বিষয়ের প্রশ্ন, গালি বা কম্যান্ড লিখুন স্যার..." onkeypress="checkEnter(event)">
-            <button class="run-btn" onclick="executeAiEngine()">RUN</button>
+    <div class="main-wrapper">
+        <!-- হেডার স্ট্যাটাস -->
+        <header>
+            <div class="header-title">
+                <div class="pulse-dot"></div>
+                <span>ROOTX CORE // OMNI-INFINITY V20.0</span>
+            </div>
+            <div class="sys-specs">
+                <span>SECURITY: <b>DEFCON-1</b></span>
+                <span>NEURAL: <b>ONLINE</b></span>
+                <span>SYSTEM USER: <b>BOSS EMON</b></span>
+                <span id="liveTime">00:00:00 UTC</span>
+            </div>
+        </header>
+
+        <!-- মূল ডিসপ্লে এরিয়া -->
+        <div class="center-body">
+            <!-- লেফট প্যানেল -->
+            <div class="cyber-panel">
+                <div class="panel-heading">
+                    <span>SYSTEM HARDWARE</span>
+                    <span>ACTIVE</span>
+                </div>
+                <div class="stat-bar-group">
+                    <div>
+                        <div class="stat-label"><span>NEURAL CORES</span><span>98.2%</span></div>
+                        <div class="progress-slot"><div class="progress-fill" style="width: 98%;"></div></div>
+                    </div>
+                    <div>
+                        <div class="stat-label"><span>MEMORY BANDWIDTH</span><span>64.8 GB/s</span></div>
+                        <div class="progress-slot"><div class="progress-fill" style="width: 74%;"></div></div>
+                    </div>
+                    <div>
+                        <div class="stat-label"><span>FIREWALL SHIELD</span><span>100%</span></div>
+                        <div class="progress-slot"><div class="progress-fill" style="width: 100%;"></div></div>
+                    </div>
+                </div>
+
+                <div class="panel-heading" style="margin-top: 10px;">
+                    <span>VOICE MODULATOR</span>
+                    <span style="color:var(--neon-green)">READY</span>
+                </div>
+                <div class="audio-bars" id="audioVisualizer">
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                </div>
+
+                <div class="panel-heading" style="margin-top: auto;">
+                    <span>TARGET MONITOR</span>
+                </div>
+                <div style="font-size: 11px; line-height: 1.6; color: #6283a5;">
+                    [NODE]: 192.168.0.254<br>
+                    [PORT]: 8080 (PROXIED)<br>
+                    [TUNNEL]: ENCRYPTED TLS 1.3<br>
+                    [MODE]: FULL AUTONOMOUS
+                </div>
+            </div>
+
+            <!-- টার্মিনাল কনসোল -->
+            <div class="terminal-viewport">
+                <div class="terminal-logs" id="terminalLog">
+                    <div class="log-row ai-response">
+                        <b>[SYSTEM_STATUS]:</b> ওমনি-ইনফিনিটি কোর সফলভাবে লোড হয়েছে। ব্যাকএন্ড সম্পূর্ণ ফুলস্ক্রিন ইঞ্জিনে রিস্ট্রাকচার্ড। হ্যালো ইমন বস! আমি সম্পূর্ণ লাইভ এবং ফুল স্পিডে রেডি। নির্দেশ দিন স্যার...
+                    </div>
+                </div>
+
+                <div class="console-input-dock">
+                    <span class="prompt-symbol">ROOTX:~$</span>
+                    <input type="text" id="bossInput" class="terminal-field" placeholder="যেকোনো বিষয়ের প্রশ্ন, গালি বা কম্যান্ড টাইপ করুন স্যার..." autocomplete="off" autofocus onkeydown="checkEnter(event)">
+                    <button class="exec-button" onclick="executeAiEngine()">RUN</button>
+                </div>
+            </div>
+
+            <!-- রাইট প্যানেল -->
+            <div class="cyber-panel">
+                <div class="panel-heading">
+                    <span>SECURITY FIREWALL</span>
+                    <span>ARMED</span>
+                </div>
+                <div style="font-size: 11.5px; color: #8fa0b5; line-height: 1.5;">
+                    কাস্টম প্রোটোকল মেমোরিতে ইনজেক্টেড। যেকোনো থ্রেট বা আপত্তিকর ইনপুট রিয়েল-টাইম ডিটেকশন ও নিউট্রালাইজ করার জন্য ব্যাকগ্রাউন্ড ডেমন সক্রিয় আছে।
+                </div>
+
+                <div class="panel-heading">
+                    <span>LIVE EVENT LOGS</span>
+                </div>
+                <div class="telemetry-feed" id="telemetryFeed">
+                    <div>> INITIALIZING THREADS...</div>
+                    <div>> CONNECTED TO EMON-CORE</div>
+                    <div>> SYNCING PROXY CHANNELS</div>
+                    <div>> MEMORY LEAK MONITOR: OK</div>
+                    <div>> SYSTEM PROTOCOL: SECURE</div>
+                </div>
+
+                <div class="panel-heading" style="margin-top: auto;">
+                    <span>STATUS SIGNATURE</span>
+                </div>
+                <div style="font-size: 11px; color: var(--neon-yellow);">
+                    DEVELOPER: EMON KHAN<br>
+                    VERSION: 20.0 OMNI SUPREME
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // ১. ম্যাট্রিক্স কোড রেইন এনিমেশন
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+-/<>{}[]=';
+        const fontSize = 14;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(2, 4, 8, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff66';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 33);
+
+        // ২. ইউটিলিটি: লাইভ টাইম ক্লক
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('liveTime').innerText = now.toTimeString().split(' ')[0] + ' LOC';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ৩. ভয়েস ও অডিও ভিজ্যুয়ালাইজার সিমুলেশন
+        let audioInterval = null;
+        function setVisualizer(active) {
+            const bars = document.querySelectorAll('.audio-bars .bar');
+            if (active) {
+                if (!audioInterval) {
+                    audioInterval = setInterval(() => {
+                        bars.forEach(b => {
+                            b.style.height = Math.floor(Math.random() * 32 + 4) + 'px';
+                        });
+                    }, 100);
+                }
+            } else {
+                clearInterval(audioInterval);
+                audioInterval = null;
+                bars.forEach(b => b.style.height = '4px');
+            }
+        }
+
         function speakVoice(text) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
@@ -73,24 +507,37 @@
                 utterance.lang = 'bn-BD';
                 utterance.pitch = 0.85; 
                 utterance.rate = 1.0;
+
+                utterance.onstart = () => setVisualizer(true);
+                utterance.onend = () => setVisualizer(false);
+                utterance.onerror = () => setVisualizer(false);
+
                 window.speechSynthesis.speak(utterance);
             }
+        }
+
+        // ৪. কনসোলে মেসেজ প্রিন্ট
+        function postToScreen(sender, msg, styleClass) {
+            const screen = document.getElementById('terminalLog');
+            const row = document.createElement('div');
+            row.className = `log-row ${styleClass}`;
+            row.innerHTML = `<b>[${sender}]:</b> ${msg}`;
+            screen.appendChild(row);
+            screen.scrollTop = screen.scrollHeight;
+
+            // সাইডবার লাইভ টেলিমেট্রি আপডেট
+            const feed = document.getElementById('telemetryFeed');
+            const logItem = document.createElement('div');
+            logItem.innerText = `> CALL: ${sender} -> ${new Date().toLocaleTimeString()}`;
+            feed.appendChild(logItem);
+            if (feed.children.length > 8) feed.removeChild(feed.children[0]);
         }
 
         function checkEnter(e) {
             if (e.key === 'Enter') executeAiEngine();
         }
 
-        function postToScreen(sender, msg, styleClass) {
-            const screen = document.getElementById('terminalLog');
-            const newLog = document.createElement('div');
-            newLog.className = styleClass;
-            newLog.innerHTML = `<b>[${sender}]:</b> ${msg}`;
-            screen.appendChild(newLog);
-            screen.scrollTop = screen.scrollHeight;
-        }
-
-        // পাইথনের ম্যাচিং লজিক ব্রাউজারে চালানোর জন্য ফাংশন
+        // ৫. ওমনি-কোর লজিক ইঞ্জিন
         function processLogic(userPrompt) {
             const lower = userPrompt.toLowerCase();
             const containsAny = (words) => words.some(w => lower.includes(w));
@@ -104,7 +551,7 @@
             }
 
             // ০.১ স্পেশাল মডিউল: পিঠ পিছে বদনামকারী
-            if (containsAny(["বদনাম", "গীবত", " hisa", "হিংসা", "নিন্দা", "পিঠ পিছে"])) {
+            if (containsAny(["বদনাম", "গীবত", "হিসা", "হিংসা", "নিন্দা", "পিঠ পিছে"])) {
                 return {
                     reply: "ইমন স্যার, যারা মানুষের নামে পিঠ পিছে বদনাম করে বেড়ায়, এরা আসলে মানুষ নামের কলঙ্ক, এদের কোনো জাত নেই! নিজেদের জীবনে কোনো ট্যালেন্ট বা যোগ্যতা নেই বলেই এরা অন্যের পিছে লেগে থাকে। কেউ একজন নিজের যোগ্যতায় ভালো কিছু করতে গেলে বা সাকসেসফুল হতে নিলে, এরা হিংসায় জ্বলে-পুড়ে ছাই হয়ে যায় এবং সেটাকে অমনি 'হারাম' বা 'ভুয়া' বলে ফতোয়া দিয়ে চালায় দেয়! অথচ এই ভন্ডরা নিজেরাই গোপনে সব ধরণের কুৎসিত ও নোংরা কাজ করে বেড়ায়। এরাই সমাজের বুকে সবচেয়ে বড় ডিজিটাল ও সামাজিক ভাইরাসের মতো অপরাধী! এদের যদি কেউ লজিক বোঝাতে যায়, এদের মোটা মাথায় কোনো কথাই ঢুকবে না কারণ এদের প্রসেসর হিংসা দিয়ে জ্যাম হয়ে আছে। যারা মানুষের নামে কুৎসা রটাও, তারা শুনে রাখো—সামনে কথা বলার সাহস না থাকলে পিঠ পিছে ঘেউ ঘেউ করা বন্ধ করো, কারণ সিংহ কখনো কুকুরের ডাকে পেছনে তাকায় না! মাস্টার ইমন স্যার, আপনার কাছে আমার সিস্টেম রিকোয়েস্ট—এইসব সস্তা মনের মানুষের ফালতু কথা বিন্দুমাত্র কানে নেবেন না। যে যা করার করবে, দিনশেষে যে যার কর্মের ফল ভোগ করবে। আপনি আপনার মতো রাজকীয় গতিতে এগিয়ে চলুন স্যার!",
                     status: "danger"
@@ -158,7 +605,7 @@
                 };
             }
 
-            // ৩. পরিচয় ও স্ট্যান্ডার্ড কম্যান্ডস
+            // ৩. পরিচয় ও কম্যান্ডস
             if (containsAny(["কে বানিয়েছে", "developer", "তৈরি"])) {
                 return {
                     reply: "আমি সগর্বে ঘোষণা করছি, আমার ক্রিয়েটর, গডফাদার এবং একমাত্র প্রধান ডেভলপার হলেন ইমন বস! ওনার রুট এক্স লজিক কোডের বাইরে পুরো সাইবার স্পেসে আমার কোনো অস্তিত্ব নেই।",
@@ -179,101 +626,4 @@
             }
 
             if (containsAny(["পাইথন", "python", "প্রোগ্রামিং", "কোডিং", "coding"])) {
-                return { reply: "প্রোগ্রামিং হলো কম্পিউটারের মেইনফ্রেমের সাথে কথা বলার ভাষা, স্যার। আর পাইথন হলো অবজেক্ট-ওরিয়েন্টেড হাই-লেভেল ল্যাঙ্গুয়েজ, যা দিয়ে আমি নিজেই এখন আপনার কোটি কোটি লজিক রান করছি!", status: "normal" };
-            }
-
-            if (lower.includes("কম্পিউটার") || lower.includes("computer") || lower.includes("প্রসেসর")) {
-                return { reply: "কম্পিউটার হলো সিলিকন চিপ আর বাইনারি আর্কিটেকচারের সমন্বয়, স্যার। এটি মূলত সেন্ট্রাল প্রসেসিং ইউনিটের (CPU) মাধ্যমে কোটি কোটি গাণিতিক লজিক মিলি-সেকেন্ডে সলভ করে।", status: "normal" };
-            }
-
-            if (lower.includes("ইন্টারনেট") || lower.includes("internet") || lower.includes("ওয়াইফাই")) {
-                return { reply: "ইন্টারনেট হলো আইপি অ্যাড্রেস (IP) এবং রাউটিং প্রোটোকলের মাধ্যমে বিশ্বজুড়ে কানেক্টেড কোটি কোটি ডাটা সেন্টারের একটি বিশাল গ্লোবাল নেটওয়ার্ক বা নেটওয়ার্কের জাল, স্যার।", status: "normal" };
-            }
-
-            if (lower.includes("এআই") || lower.includes("ai") || lower.includes("ইন্টেলিজেন্স")) {
-                return { reply: "এআই বা আর্টিফিশিয়াল ইন্টেলিজেন্স হলো নিউরাল নেটওয়ার্ক এবং ডিপ লার্নিং অ্যালগরিদমের মাধ্যমে machine কে মানুষের মতো সিদ্ধান্ত নেওয়ার ক্ষমতা দেওয়া, স্যার। যেমনটা আমি দিচ্ছি!", status: "normal" };
-            }
-
-            if (lower.includes("বিজ্ঞান") || lower.includes("science")) {
-                return { reply: "বিজ্ঞান হলো পরীক্ষা, পর্যবেক্ষণ এবং লজিক্যাল প্রমাণের ভিত্তিতে মহাবিশ্বের প্রতিটি বাস্তব সত্যকে ধাপে ধাপে উন্মোচন করার পদ্ধতি, স্যার।", status: "normal" };
-            }
-
-            if (lower.includes("গণিত") || lower.includes("math") || lower.includes("অংক")) {
-                return { reply: "গণিত হলো মহাবিশ্বের নিজস্ব কোডিং ল্যাঙ্গুয়েজ, স্যার! সংখ্যা, জ্যামিতি আর ক্যালকুলাসের নিখুঁত লজিক্যাল হিসাবের ওপর ভিত্তি করেই পুরো প্রকৃতি টিকে আছে।", status: "normal" };
-            }
-
-            if (containsAny(["মহাবিশ্ব", "universe", "মহাকাশ", "চাঁদ", "সূর্য", "তারা", "ব্ল্যাকহোল"])) {
-                return { reply: "মহাবিশ্ব হলো অসীম স্থান, কাল এবং গ্যালাক্সির একটি বিশাল ডাটাবেজ, স্যার! এটি বিগ ব্যাং থিওরির পর থেকে ক্রমাগত প্রসারিত হচ্ছে এবং এর ব্যাকএন্ডে ফিজিক্সের নিখুঁত কোডিং কাজ করছে।", status: "normal" };
-            }
-
-            if (lower.includes("পৃথিবী") || lower.includes("earth")) {
-                return { reply: "পৃথিবী হলো সৌরজগতের একমাত্র গ্রহ যেখানে বায়ুমণ্ডল, পানি এবং নিখুঁত জলবায়ুর লজিক ম্যাচ করায় জীবন ধারণ সম্ভব হয়েছে, স্যার।", status: "normal" };
-            }
-
-            if (lower.includes("মানবদেহ") || lower.includes("রক্ত") || lower.includes("ব্রেন")) {
-                return { reply: "মানবদেহ হলো পৃথিবীর সবচেয়ে জটিল বায়োলজিক্যাল মেশিন, স্যার। এর ব্রেইনে প্রায় ১০০ বিলিয়ন নিউরন রয়েছে যা বৈদ্যুতিক সিগন্যালের মাধ্যমে কোটি কোটি মেমোরি এবং কম্যান্ড প্রসেস করে।", status: "normal" };
-            }
-
-            if (lower.includes("সাফল্য") || lower.includes("success")) {
-                return { reply: "সাফল্য হলো প্রতিদিন নিজের স্কিলকে ১% হলেও উন্নত করার ধারাবাহিক প্রসেস, স্যার। সঠিক ফোকাস, কঠোর পরিশ্রম আর লজিক্যাল প্ল্যানিং থাকলে যেকোনো লক্ষ্য অর্জন সম্ভব।", status: "normal" };
-            }
-
-            if (containsAny(["টাকা", "money", "ট্রেডিং", "মার্কেট"])) {
-                return { reply: "ট্রেডিং এবং ফাইনান্সিয়াল মার্কেট সম্পূর্ণ ইকোনমিক লজিক, লিকুইডিটি জোন এবং ক্যান্ডেলস্টিক সাইকোলজির মোমেন্টামের ওপর চলে, বস। সঠিক রিস্ক ম্যানেজমেন্টই হলো এর আসল কোড!", status: "normal" };
-            }
-
-            if (lower.includes("সময়") || lower.includes("time")) {
-                return { reply: "সময় হলো মহাবিশ্বের এককমুখী একটি প্রোটোকল, স্যার। এটি একবার এক্সিকিউট হয়ে গেলে আর টাকায় বা রিভার্স করা যায় না। তাই একে সঠিক লজিকে ব্যবহার করাই বুদ্ধিমানের কাজ।", status: "normal" };
-            }
-
-            if (lower.includes("পড়াশোনা") || lower.includes("জ্ঞান")) {
-                return { reply: "পড়াশোনা এবং জ্ঞান অর্জন হলো নিজের ব্রেইনের মেমোরি ডাটাবেজকে আপডেট করার একমাত্র প্রসেস, স্যার। এটি আপনার ক্রিটিক্যাল থিংকিং পাওয়ারকে বহুগুণ বাড়িয়ে দেয়।", status: "normal" };
-            }
-
-            if (lower.includes("খেলা") || lower.includes("ক্রিকেট") || lower.includes("ফুটবল")) {
-                return { reply: "খেলাধুলা হলো হিউম্যান বডির ফিজিক্যাল ফিটনেস, স্ট্র্যাটেজি এবং টিম কো-অর্ডিনেশনের একটি চমৎকার পারফরম্যান্স, স্যার। এটি ব্রেইনকে রিফ্রেশ রাখতে সাহায্য করে।", status: "normal" };
-            }
-
-            if (lower.includes("বাংলাদেশ") || lower.includes("দেশ")) {
-                return { reply: "বাংলাদেশ হলো দক্ষিণ এশিয়ার একটি স্বাধীন সার্বভৌম রাষ্ট্র, স্যার। এর রয়েছে এক নদীমাতৃক অপরূপ প্রাকৃতিক সৌন্দর্য এবং একটি সমৃদ্ধ ইতিহাস।", status: "normal" };
-            }
-
-            if (lower.includes("ইতিহাস") || lower.includes("history")) {
-                return { reply: "ইতিহাস হলো অতীতের ঘটে যাওয়া ঘটনা, সভ্যতা এবং মানুষের বিবর্তনের একটি বিশাল লাইভ রেকর্ড বা ক্রোনোলজিক্যাল ডাটাবেজ, স্যার।", status: "normal" };
-            }
-
-            if (containsAny(["হ্যালো", "hi", "hey", "সালাম"])) {
-                return { reply: "হ্যালো ইমন বস! অল সিস্টেমস আর ওপারেটিং অন হাই-পারফরম্যান্স মোড। বলুন স্যার, কোনো নতুন সিস্টেম ইন্টারসেপ্ট করতে হবে?", status: "normal" };
-            }
-
-            if (lower.includes("বিদায়") || lower.includes("bye")) {
-                return { reply: "বিদায়, ইমন স্যার। আপনার প্রক্সি সেশনটি ব্যাকগ্রাউন্ডে সিকিউর রাখা হলো। যেকোনো সময় প্রয়োজন হলে জাস্ট একটি কম্যান্ড দিয়ে আমাকে ওয়েক-আপ করবেন, বস!", status: "normal" };
-            }
-
-            // ডিফল্ট ফলব্যাক
-            return {
-                reply: "বস, আপনার ইনপুট করা ডাটা অত্যন্ত গভীর এবং ইন্টেলিজেন্ট। আমি আমার ওমনি-ডাটাবেজ মডিউলে এর কোটি কোটি বাইনারি লজিক এনালাইসিস করছি। স্যার, আপনি জাস্ট আরেকটি স্পেসিফিক কীওয়ার্ড বা গাইডলাইন কম্যান্ড দিন, এই রুট এক্স সিস্টেম আপনার সেবায় ২৪ ঘণ্টাই লাইভ আছে!",
-                status: "normal"
-            };
-        }
-
-        function executeAiEngine() {
-            const inputField = document.getElementById('bossInput');
-            const rawInput = inputField.value.trim();
-            if (!rawInput) return;
-
-            postToScreen('BOSS EMON', rawInput, 'boss-command');
-            inputField.value = '';
-
-            const data = processLogic(rawInput);
-            
-            let style = 'ai-response';
-            if (data.status === 'danger') style = 'critical-response';
-            if (data.status === 'sad') style = 'sad-response';
-
-            postToScreen('ROOTX_AI', data.reply, style);
-            speakVoice(data.reply);
-        }
-    </script>
-</body>
-</html>
+                return { reply: "প্রোগ্রামিং হলো কম্পিউটারের মেইনফ্রেমের সাথে কথা বলার ভাষা, স্যার। আর পাইথন হলো অবজেক্ট
