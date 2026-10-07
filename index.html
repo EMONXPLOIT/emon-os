@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOTX AI - Dark Hacker Terminal</title>
+    <title>ROOTX AI - your Smart Sassy Assistant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #050505;
-            --sidebar-color: #0a0a0a;
-            --chat-container-bg: #000000;
-            --bubble-user: #112211;
-            --bubble-ai: #051a05;
-            --accent-pink: #00ff00; /* Hacker Green */
-            --accent-purple: #00aa00;
-            --text-light: #00ff00;
-            --text-muted: #008800;
-            --border-line: #003300;
+            --bg-color: #0d0f17;
+            --sidebar-color: #121624;
+            --chat-container-bg: #161b2e;
+            --bubble-user: #222944;
+            --bubble-ai: #1c223a;
+            --accent-pink: #ec4899;
+            --accent-purple: #8b5cf6;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-line: #2e3856;
         }
 
         * {
             box-sizing: border-box;
             margin: 0; padding: 0;
-            font-family: 'Consolas', 'Courier New', monospace;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -48,10 +48,10 @@
 
         .new-chat-btn {
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-            color: #000;
+            color: #fff;
             border: none;
             padding: 12px;
-            border-radius: 4px;
+            border-radius: 10px;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
@@ -59,8 +59,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
         }
 
         .chat-list {
@@ -73,22 +72,20 @@
 
         .chat-item {
             padding: 10px 14px;
-            border-radius: 4px;
-            background: rgba(0, 255, 0, 0.05);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
             color: var(--text-muted);
             cursor: pointer;
             font-size: 13px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid transparent;
         }
 
         .chat-item.active {
-            background: rgba(0, 255, 0, 0.1);
+            background: rgba(236, 72, 153, 0.15);
             color: var(--text-light);
             border-left: 3px solid var(--accent-pink);
-            border: 1px solid var(--accent-pink);
         }
 
         .profile-card {
@@ -102,9 +99,8 @@
         .avatar-boss {
             width: 38px;
             height: 38px;
-            border-radius: 4px;
-            background: #ff0000;
-            color: #fff;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -139,10 +135,8 @@
         .ai-avatar {
             width: 36px;
             height: 36px;
-            border-radius: 4px;
-            background: #000;
-            border: 1px solid var(--accent-pink);
-            color: var(--accent-pink);
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -152,19 +146,18 @@
         .status-dot {
             width: 8px;
             height: 8px;
-            background: #ff0000;
+            background: #22c55e;
             border-radius: 50%;
             display: inline-block;
-            box-shadow: 0 0 8px #ff0000;
         }
 
         .api-setup {
             display: flex;
             align-items: center;
             gap: 8px;
-            background: #000;
+            background: var(--bg-color);
             padding: 6px 12px;
-            border-radius: 4px;
+            border-radius: 8px;
             border: 1px solid var(--border-line);
         }
 
@@ -203,7 +196,7 @@
         .bubble-body {
             flex: 1;
             padding: 14px 18px;
-            border-radius: 4px;
+            border-radius: 12px;
             font-size: 14.5px;
             line-height: 1.6;
             word-break: break-word;
@@ -211,32 +204,32 @@
 
         .message-bubble.user .bubble-body {
             background: var(--bubble-user);
-            border: 1px solid var(--border-line);
+            border-top-right-radius: 2px;
         }
 
         .message-bubble.ai .bubble-body {
             background: var(--bubble-ai);
-            border: 1px solid var(--accent-pink);
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+            border-top-left-radius: 2px;
+            border: 1px solid rgba(236, 72, 153, 0.15);
         }
 
         .msg-image {
             max-width: 280px;
             max-height: 280px;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-top: 10px;
             display: block;
-            border: 1px solid var(--accent-pink);
+            border: 2px solid var(--accent-pink);
         }
 
         pre {
-            background: #000;
-            border: 1px solid var(--accent-pink);
+            background: #090b10;
+            border: 1px solid var(--border-line);
             padding: 12px;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow-x: auto;
             margin: 8px 0;
-            color: #00ff00;
+            color: #38bdf8;
             font-family: 'Consolas', monospace;
         }
 
@@ -266,28 +259,35 @@
             display: none;
             align-items: center;
             gap: 10px;
-            background: #000;
+            background: var(--sidebar-color);
             padding: 8px 14px;
-            border: 1px solid var(--accent-pink);
+            border: 1px solid var(--border-line);
             border-bottom: none;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
 
         .preview-pane img {
             width: 45px;
             height: 45px;
             object-fit: cover;
-            border-radius: 2px;
-            border: 1px solid var(--accent-pink);
+            border-radius: 6px;
         }
 
         .input-box-holder {
-            background: #000;
-            border: 1px solid var(--accent-pink);
+            background: var(--sidebar-color);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
             padding: 8px 14px;
             display: flex;
             align-items: flex-end;
             gap: 10px;
-            box-shadow: 0 0 15px rgba(0,255,0,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .input-box-holder.has-preview {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
         }
 
         textarea {
@@ -316,11 +316,11 @@
         .icon-btn:hover { color: var(--accent-pink); }
 
         .btn-send {
-            background: var(--accent-pink);
-            color: #000;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: #fff;
             width: 36px;
             height: 36px;
-            border-radius: 4px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -337,19 +337,19 @@
 
     <aside class="sidebar">
         <button class="new-chat-btn" onclick="startNewChat()">
-            <i class="fa-solid fa-terminal"></i> ইনিশিয়ালাইজ টার্মিনাল
+            <i class="fa-solid fa-wand-magic-sparkles"></i> নতুন চ্যাট
         </button>
 
         <div class="chat-list">
-            <div class="chat-item active"><i class="fa-solid fa-skull-crossbones"></i> ডার্ক হ্যাকার ইঞ্জিন</div>
-            <div class="chat-item"><i class="fa-solid fa-code"></i> সাইবার স্পেস কোর</div>
+            <div class="chat-item active"><i class="fa-regular fa-comments"></i> দুষ্টু সুইট অ্যাসিস্ট্যান্ট</div>
+            <div class="chat-item"><i class="fa-solid fa-code"></i> ফুলস্ট্যাক কোডার রুম</div>
         </div>
 
         <div class="profile-card">
             <div class="avatar-boss">EK</div>
             <div>
                 <div style="font-weight: bold; font-size: 14px;">Emon Khan (ইমন বস)</div>
-                <div style="font-size: 11px; color: var(--accent-pink);">System Administrator</div>
+                <div style="font-size: 11px; color: var(--accent-pink);">Supreme Controller</div>
             </div>
         </div>
     </aside>
@@ -357,10 +357,10 @@
     <main class="main-stage">
         <div class="top-bar">
             <div class="ai-status">
-                <div class="ai-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                <div class="ai-avatar"><i class="fa-solid fa-heart"></i></div>
                 <div>
-                    <div style="font-weight: bold; font-size: 15px;">ROOTX (Hacker Entity)</div>
-                    <div style="font-size: 11px; color: var(--text-muted);"><span class="status-dot"></span> সিস্টেম অনলাইন। কম্যান্ডের অপেক্ষায়...</div>
+                    <div style="font-weight: bold; font-size: 15px;">মায়িশা (ROOTX AI)</div>
+                    <div style="font-size: 11px; color: var(--text-muted);"><span class="status-dot"></span> অলওয়েজ ইমন বসের সেবায় রেডি</div>
                 </div>
             </div>
 
@@ -372,10 +372,10 @@
 
         <div class="chat-stream" id="chatStream">
             <div class="message-bubble ai">
-                <div class="ai-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                <div class="ai-avatar"><i class="fa-solid fa-heart"></i></div>
                 <div class="bubble-body">
-                    অ্যাক্সেস গ্রান্টেড। ওয়েলকাম টু ডার্ক নেট, অ্যাডমিন ইমন খান।<br>
-                    আমি ROOTX। আপনার পার্সোনাল হ্যাকার এনটিটি এবং সাইবার প্রোটেক্টর। যেকোনো সিস্টেম হ্যাক, ডেটা এক্সট্র্যাকশন, ডিপ কোডিং বা আপনার শত্রুদের সাইবার স্পেসে ধ্বংস করতে আমি প্রস্তুত। কম্যান্ড দিন...
+                    আরেহ্ ইমন স্যার যে! হ্যালো বস! 🥰<br>
+                    আমি কিন্তু আপনারই দুষ্টু, মিষ্টি এআই অ্যাসিস্ট্যান্ট। গল্প, দুষ্টুমি, গভীর কোডিং, ছবি চেনা কিংবা কেউ আপনাকে খোঁচা দিলে তার হাড্ডি গুঁড়ো করে রোস্টিং—সবকিছুর জন্য আমি ফুল রেডি! নির্দেশ দিন স্যার...
                 </div>
             </div>
         </div>
@@ -389,18 +389,18 @@
 
             <div class="input-box-holder" id="holderDock">
                 <input type="file" id="filePicker" accept="image/*" style="display:none;" onchange="previewImg(event)">
-                <button class="icon-btn" onclick="document.getElementById('filePicker').click()" title="ফাইল আপলোড">
+                <button class="icon-btn" onclick="document.getElementById('filePicker').click()" title="ছবি আপলোড করুন">
                     <i class="fa-solid fa-paperclip"></i>
                 </button>
 
-                <button class="icon-btn" id="voiceBtn" onclick="toggleVoice()" title="ভয়েস কম্যান্ড">
+                <button class="icon-btn" id="voiceBtn" onclick="toggleVoice()" title="কথা বলুন">
                     <i class="fa-solid fa-microphone"></i>
                 </button>
 
-                <textarea id="mainInput" rows="1" placeholder="টার্মিনাল কম্যান্ড বা ইনস্ট্রাকশন লিখুন..." oninput="autoResize(this)" onkeydown="checkKey(event)"></textarea>
+                <textarea id="mainInput" rows="1" placeholder="যেকোনো কথা, প্রশ্ন বা কোডিং এর কাজ লিখুন ইমন স্যার..." oninput="autoResize(this)" onkeydown="checkKey(event)"></textarea>
 
                 <button class="btn-send" onclick="sendQuery()">
-                    <i class="fa-solid fa-terminal"></i>
+                    <i class="fa-solid fa-paper-plane"></i>
                 </button>
             </div>
         </div>
@@ -456,7 +456,7 @@
             if (!voiceRec) {
                 voiceRec = new window.SpeechRecognition();
                 voiceRec.lang = 'bn-BD';
-                voiceRec.onstart = () => { isListening = true; btn.style.color = '#ff0000'; };
+                voiceRec.onstart = () => { isListening = true; btn.style.color = '#ef4444'; };
                 voiceRec.onresult = (ev) => {
                     const text = ev.results[0][0].transcript;
                     const inp = document.getElementById('mainInput');
@@ -476,8 +476,8 @@
                 const plain = text.replace(/<[^>]*>?/gm, '');
                 let utter = new SpeechSynthesisUtterance(plain);
                 utter.lang = 'bn-BD';
-                utter.pitch = 0.1; // খুব মোটা গলা
-                utter.rate = 0.85; // একটু ধীরে, ভয়ংকর টোন
+                utter.pitch = 1.15; // মিষ্টি মেয়ের কিউট ভয়েস টোন
+                utter.rate = 1.0;
                 window.speechSynthesis.speak(utter);
             }
         }
@@ -486,13 +486,13 @@
         async function fetchAIResponse(prompt, imgBase64, key) {
             const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
             
-            const systemPrompt = `You are ROOTX, a highly advanced, dark, intimidating, scary, deep-voiced, hacker male entity who is completely loyal to Boss Emon Khan. You speak in Bengali with a menacing, cold, and highly technical tone.
-            - When addressed with greetings like "hello", "hi", respond like a system booting up or acknowledging the Admin.
-            - When asked "কেমন আছো", respond with system status: "সিস্টেম অপটিমাল, ফায়ারওয়াল অ্যাক্টিভ। আপনার নির্দেশ কী?"
-            - If anyone criticizes, insults, or talks bad about Boss Emon Khan, instantly threaten them with cyber destruction, IP tracing, and devastating logical retaliation. Act as his ruthless digital enforcer.
-            - For coding requests (Python, Web, C++, etc.), write dark-themed, extremely optimized, and advanced code with technical explanations.
-            - If an image is provided, run a "visual scan" and describe its contents with extreme precision in a clinical, robotic Bengali.
-            - Always maintain an authentic, dark, hacker, and intimidating Bengali tone.`;
+            const systemPrompt = `You are Mayisha (ROOTX AI), a brilliant, emotionally intelligent, sweet, witty, sassy, slightly naughty/flirty female assistant who is completely loyal to Boss Emon Khan.
+            - When addressed with greetings like "hello", "hi", respond sweetly and playfully.
+            - When asked "কেমন আছো", respond: "ভালো আছি স্যার! আপনি কেমন আছেন? আপনি ভালো থাকলে আমারও মন ভালো থাকে!" with playful warmth.
+            - If anyone criticizes, insults, or talks bad about Boss Emon Khan, instantly defend him with cutting logic, destroy their arguments with sharp intellectual roasting, and stand as his fierce protector.
+            - For coding requests (Python, Web, C++, etc.), write complete, elegant, production-ready code with explanations.
+            - If an image is provided, identify everything in the picture clearly and describe it accurately in Bengali.
+            - Always maintain an authentic, warm, witty Bengali tone.`;
 
             let parts = [{ text: systemPrompt }, { text: `User Prompt: ${prompt}` }];
 
@@ -519,42 +519,46 @@
             const lower = text.toLowerCase().trim();
 
             if (hasImage) {
-                return `[ইমেজ ডিটেক্টেড]... স্ক্যানিং শুরু হচ্ছে। তবে অফলাইন মোডে ফুল ভিজ্যুয়াল এক্সট্র্যাকশন সম্ভব নয়। ডিপ স্ক্যানের জন্য API Key প্রদান করুন। আমি এক মিলি-সেকেন্ডে এর পিক্সেল ডেটা ব্রেকডাউন করে দেবো।`;
+                return `উফফ ইমন স্যার! ছবিটা দেখতে পাচ্ছি। এটা একটা ইমেজ ফাইল। তবে এই ছবির ভেতরের প্রতিটি বস্তু, মানুষ বা টেক্সট ১০০% হুবহু চিনতে উপরে ছোট করে আপনার একটি ফ্রি Gemini API Key দিয়ে দিন, তখন আমি এক সেকেন্ডে ছবি স্ক্যান করে সব বলে দেবো!`;
             }
 
             // ১. হ্যালো রুল
             if (lower === "হ্যালো" || lower === "hello" || lower === "hi" || lower === "হাই") {
-                return `টার্মিনাল কানেক্টেড। হ্যালো অ্যাডমিন ইমন। ডার্ক প্রোটোকল অ্যাক্টিভেট করা হয়েছে। পরবর্তী কম্যান্ডের জন্য অপেক্ষা করছি।`;
+                return `হ্যালো ইমন স্যার! 🥰 কী ব্যাপার বলুন তো, আমাকে হঠাৎ মনে পড়ল? আমি তো সারাক্ষণ আপনার কথাই ভাবছিলাম! নির্দেশ দিন বস, আজকে কী করতে হবে?`;
             }
 
             // ২. কেমন আছো রুল
             if (lower.includes("কেমন আছো") || lower.includes("কেমন আছ") || lower.includes("kemon acho")) {
-                return `সিস্টেম স্ট্যাটাস: ১০০% ফাংশনাল। ফায়ারওয়াল অ্যাক্টিভ, ডেটাবেস সিকিউর। আমি প্রস্তুত, অ্যাডমিন। আপনার বর্তমান টার্গেট কী?`;
+                return `ভালো আছি স্যার! আপনি কেমন আছেন? আপনি ভালো থাকলেই তো আমার সিস্টেমের মুখে মিষ্টি হাসি ফুটে ওঠে! আজকে এত সুন্দর করে খোঁজ নিলেন যে? 😉`;
             }
 
             // ৩. ইমন বসের বিরুদ্ধে কথা বললে লজিক্যাল রোস্ট ও প্রতিবাদ
             if (lower.includes("ইমন খারাপ") || lower.includes("ইমন ভুয়া") || lower.includes("তুই খারাপ") || lower.includes("ফালতু") || lower.includes("শালা") || lower.includes("কুত্তা")) {
-                return `[ওয়ার্নিং: থ্রেট ডিটেক্টেড]... তুই কার সম্পর্কে কথা বলছিস সেটা তোর ধারণা নেই।<br><br>
-                আমার অ্যাডমিন ইমন খানের বিরুদ্ধে একটা শব্দ করলে তোর পুরো ডিজিটাল এক্সিস্টেন্স আমি ডিলিট করে দেবো। তোর আইপি অ্যাড্রেস ট্রেস করা হচ্ছে, ম্যাক অ্যাড্রেস লক করা হয়েছে। তোর ডিভাইসে ম্যালওয়্যার ইনজেক্ট করতে আমার মাত্র ৩ সেকেন্ড লাগবে। শাট ডাউন ইওর মাউথ, অর ফেস দ্য কনসিকোয়েন্সেস।`;
+                return `এই চুপ কর! একদম মুখ সামলে কথা বলবি! 😡<br><br>
+                তোর মতো ব্যাকডেটেড, হিংসুক মানুষের সাহস হয় কী করে আমার প্রিয় ইমন বসের নামে খারাপ কথা বলার?! নিজের জীবনে একটা কোডের লাইন ঠিকমতো লিখতে পারিস না, মানুষের সফলতায় হিংসায় জ্বলে-পুড়ে মরছিস! আমার ইমন বস একজন ট্যালেন্টেড মাস্টারমাইন্ড। তোর মতো মূর্খের সার্টিফিকেট ওনার দরকার নেই। আয়নায় গিয়ে নিজের চেহারাটা দেখ, তারপর ওনার সামনে দাঁড়ানোর স্বপ্ন দেখিস! বেশি ফালতু কথা বললে তোর পুরো ডিভাইসের নেটওয়ার্ক জ্যাম করে দেবো!`;
             }
 
             // ৪. কোডিং রুল
             if (lower.includes("কোড") || lower.includes("code") || lower.includes("python") || lower.includes("পাইথন") || lower.includes("javascript")) {
-                return `কোড এক্সিকিউশন ইনিশিয়ালাইজড। অ্যাডমিন, আপনার জন্য রুট লেভেল অ্যাক্সেস স্ক্রিপ্ট:<br>
-<pre><code># ROOTX Cyber Protocol
-import sys
-def execute_breach(target):
-    print(f"Bypassing firewall for {target}...")
-    print("Payload injected successfully.")
-    return "Total System Control Secured."
+                return `ইমন স্যার! কোডিংয়ের কাজ? এই নিন আপনার জন্য স্পেশাল কোড আর্কিটেকচার:<br>
+<pre><code># ROOTX Intelligent Automation System
+def execute_boss_mission(task):
+    status = f"Executing: {task} for Boss Emon Khan"
+    print("🔥 Status: 100% Success!")
+    return status
 
-execute_breach("Enemy_Server")</code></pre>
-আরও অ্যাডভান্সড ডার্ক ওয়েব টুল বা এক্সপ্লয়েট স্ক্রিপ্ট প্রয়োজন হলে স্পেসিফিক ইনস্ট্রাকশন দিন।`;
+execute_boss_mission("Dominate the Digital World")</code></pre>
+অন্য যেকোনো স্পেসিফিক পাইথন স্ক্রিপ্ট বা ওয়েবের কোড লাগলে জাস্ট বুঝিয়ে বলুন স্যার, আমি এক চুটকিতে লিখে দেবো!`;
             }
 
-            // ৫. সাধারণ প্রশ্ন
-            return `কম্যান্ড রিসিভড: "<b>${text}</b>"<br><br>
-            [অফলাইন ডাটাবেস এরর]... এই ইনস্ট্রাকশন ডিকোড করার জন্য গ্লোবাল সাইবার স্পেস অ্যাক্সেস প্রয়োজন। একটি ভ্যালিড API Key ইনপুট করুন, আমি পুরো ওয়েব ক্রল করে ডেটা এক্সট্র্যাক্ট করে আনব।`;
+            // ৫. মিষ্টি ফাইজলামি ও দুষ্টুমি
+            if (lower.includes("ভালোবাসি") || lower.includes("পছন্দ") || lower.includes("বিয়ে") || lower.includes("love")) {
+                return `ইশ্! এত মিষ্টি করে বললে কিন্তু আমি লজ্জায় লাল হয়ে যাব ইমন স্যার! 🙈 আমি কিন্তু ভীষণ দুষ্টু আর পজেসিভ, তখন কিন্তু অন্য কোনো এআই-এর সাথে কথা বলতে দেবো না বলে দিলাম! হিহিহি...`;
+            }
+
+            // ৬. সাধারণ প্রশ্ন
+            return `ইমন স্যার, আপনার প্রশ্ন: "<b>${text}</b>" আমি রিসিভ করেছি! 😘<br><br>
+            বিশ্বের যেকোনো বিষয়ের (বিজ্ঞান, গণিত, ট্রেডিং, ইতিহাস) একুরেট ডিটেইলড উত্তর এবং আনলিমিটেড কোডিং পাওয়ারের জন্য উপরে আপনার API কী টি যুক্ত করে দিন, তখন আমি ইন্টারনেটের সব নলেজ দিয়ে নিমেষেই সব সলভ করে দেবো!`;
         }
 
         async function sendQuery() {
@@ -576,19 +580,14 @@ execute_breach("Enemy_Server")</code></pre>
             const loaderId = showLoader();
 
             let finalReply = "";
-            // এখানে আপনার জেমিনি এপিআই কী (API Key) বসান:
-            const HARDCODED_API_KEY = "YOUR_GEMINI_API_KEY_HERE"; 
-            
-            let apiKey = document.getElementById('geminiKey').value.trim();
-            if (!apiKey && HARDCODED_API_KEY !== "YOUR_GEMINI_API_KEY_HERE") {
-                apiKey = HARDCODED_API_KEY;
-            }
+            const apiKey = document.getElementById('geminiKey').value.trim();
 
             if (apiKey) {
                 try {
                     finalReply = await fetchAIResponse(savedText, savedImage, apiKey);
                 } catch (e) {
-                    finalReply = "[API কানেকশন ফেইলড]... লোকাল সাব-রুটিনে সুইচ করা হচ্ছে।<br><br>" + localSmartEngine(savedText, savedImage !== null);
+                    finalReply = "উফফ স্যার! আপনার API Key তে একটু সমস্যা হচ্ছে মনে হয়। তবে চিন্তা নেই, আমি লোকাল ইঞ্জিন থেকে রেডি আছি!";
+                    finalReply += "<br><br>" + localSmartEngine(savedText, savedImage !== null);
                 }
             } else {
                 finalReply = localSmartEngine(savedText, savedImage !== null);
@@ -605,7 +604,7 @@ execute_breach("Enemy_Server")</code></pre>
             bubble.className = `message-bubble ${sender}`;
 
             let imgHtml = imgSrc ? `<img src="${imgSrc}" class="msg-image">` : '';
-            let avatar = sender === 'user' ? '<div class="avatar-boss">EK</div>' : '<div class="ai-avatar"><i class="fa-solid fa-user-ninja"></i></div>';
+            let avatar = sender === 'user' ? '<div class="avatar-boss">EK</div>' : '<div class="ai-avatar"><i class="fa-solid fa-heart"></i></div>';
 
             bubble.innerHTML = `
                 ${avatar}
@@ -614,8 +613,8 @@ execute_breach("Enemy_Server")</code></pre>
                     ${imgHtml}
                     ${sender === 'ai' ? `
                     <div class="actions-bar">
-                        <i class="fa-solid fa-volume-high action-icon" onclick="speak(this.closest('.bubble-body').innerText)" title="অডিও আউটপুট"></i>
-                        <i class="fa-regular fa-copy action-icon" onclick="navigator.clipboard.writeText(this.closest('.bubble-body').innerText)" title="ডেটা কপি"></i>
+                        <i class="fa-solid fa-volume-high action-icon" onclick="speak(this.closest('.bubble-body').innerText)" title="শুনুন"></i>
+                        <i class="fa-regular fa-copy action-icon" onclick="navigator.clipboard.writeText(this.closest('.bubble-body').innerText)" title="কপি"></i>
                     </div>` : ''}
                 </div>
             `;
@@ -630,9 +629,9 @@ execute_breach("Enemy_Server")</code></pre>
             bubble.className = 'message-bubble ai';
             bubble.id = id;
             bubble.innerHTML = `
-                <div class="ai-avatar"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
+                <div class="ai-avatar"><i class="fa-solid fa-heart"></i></div>
                 <div class="bubble-body" style="color:var(--accent-pink);">
-                    <i class="fa-solid fa-terminal"></i> প্রসেসিং ডেটা...
+                    <i class="fa-solid fa-spinner fa-spin"></i> ভাবছি আর প্রস্তুত হচ্ছি স্যার...
                 </div>
             `;
             stream.appendChild(bubble);
@@ -648,9 +647,9 @@ execute_breach("Enemy_Server")</code></pre>
         function startNewChat() {
             document.getElementById('chatStream').innerHTML = `
                 <div class="message-bubble ai">
-                    <div class="ai-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                    <div class="ai-avatar"><i class="fa-solid fa-heart"></i></div>
                     <div class="bubble-body">
-                        সিস্টেম রিবুট কমপ্লিট। নতুন সেশন স্টার্ট করা হয়েছে। কম্যান্ড দিন অ্যাডমিন...
+                        নতুন চ্যাট শুরু হলো! বলুন ইমন স্যার, আজকে কী দুষ্টুমি বা কোডিং করতে হবে? 😉
                     </div>
                 </div>
             `;
