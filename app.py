@@ -4,9 +4,8 @@ import json
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = "emon_smart_manager_super_secret_key"
+app.secret_key = "emon_secure_manager_key_2026"
 
-# ডেটাবেস তৈরি (ইউজারের জিমেইল, পাসওয়ার্ড এবং তার সব হিসাব রাখার জায়গা)
 def init_db():
     conn = sqlite3.connect('emon_cloud.db')
     c = conn.cursor()
@@ -28,7 +27,6 @@ init_db()
 def home():
     return render_template('index.html')
 
-# ১. সাইন-আপ ও লগইন API
 @app.route('/api/auth', methods=['POST'])
 def auth():
     data = request.json
@@ -54,7 +52,7 @@ def auth():
             return jsonify({'status': 'success', 'name': name, 'email': email, 'data': {}})
         except sqlite3.IntegrityError:
             conn.close()
-            return jsonify({'status': 'error', 'msg': 'এই Gmail দিয়ে আগেই অ্যাকাউন্ট খোলা হয়েছে! লগইন করুন।'})
+            return jsonify({'status': 'error', 'msg': 'এই জিমেইল দিয়ে ইতিমধ্যে অ্যাকাউন্ট খোলা হয়েছে!'})
 
     elif action == 'login':
         c.execute("SELECT name, password, app_data FROM users WHERE email = ?", (email,))
@@ -66,9 +64,8 @@ def auth():
             saved_data = json.loads(user[2]) if user[2] else {}
             return jsonify({'status': 'success', 'name': user[0], 'email': email, 'data': saved_data})
         else:
-            return jsonify({'status': 'error', 'msg': 'ভুল Gmail অথবা পাসওয়ার্ড!'})
+            return jsonify({'status': 'error', 'msg': 'ভুল জিমেইল অথবা পাসওয়ার্ড!'})
 
-# ২. আগে থেকে লগইন করা আছে কিনা চেক করা
 @app.route('/api/session', methods=['GET'])
 def check_session():
     if 'user_email' in session:
@@ -81,7 +78,6 @@ def check_session():
             return jsonify({'logged_in': True, 'name': user[0], 'email': session['user_email'], 'data': json.loads(user[1] or '{}')})
     return jsonify({'logged_in': False})
 
-# ৩. ইউজারের সব হিসাব-নিকাশ ডেটাবেসে অটো-সেভ করা
 @app.route('/api/sync', methods=['POST'])
 def sync_data():
     if 'user_email' not in session:
@@ -95,7 +91,6 @@ def sync_data():
     conn.close()
     return jsonify({'status': 'saved'})
 
-# ৪. লগআউট
 @app.route('/api/logout', methods=['POST'])
 def logout():
     session.clear()
