@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>EMON SMART MANAGER | Ultimate Cyber Enterprise Suite</title>
+  <title>EMON SMART MANAGER | Ultimate Enterprise & Calculator Suite</title>
 
   <!-- Tailwind CSS, Premium Fonts & Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,12 +12,9 @@
 
   <style>
     :root {
-      --bg-deep: #02040a;
-      --card-bg: rgba(9, 15, 30, 0.88);
-      --card-border: rgba(0, 242, 254, 0.35);
-      --neon-cyan: #00f2fe;
-      --neon-emerald: #10b981;
-      --neon-amber: #f59e0b;
+      --bg-deep: #040711;
+      --card-bg: rgba(15, 23, 42, 0.78);
+      --card-border: rgba(56, 189, 248, 0.18);
     }
 
     * { 
@@ -29,57 +26,53 @@
     body { 
       background-color: var(--bg-deep);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(0, 242, 254, 0.16) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.14) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.12) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.10) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
       background-attachment: fixed;
-      color: #f8fafc; 
+      color: #f1f5f9; 
     }
 
-    /* Cyberpunk Glassmorphism & Neon Glow */
+    /* Ultra-Premium Glassmorphism Card */
     .card-glass { 
       background: var(--card-bg); 
       border: 1px solid var(--card-border); 
-      backdrop-filter: blur(24px); 
-      -webkit-backdrop-filter: blur(24px);
-      box-shadow: 0 15px 40px -10px rgba(0, 242, 254, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card-glass:hover {
-      border-color: rgba(0, 242, 254, 0.6);
-      box-shadow: 0 20px 50px -10px rgba(0, 242, 254, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(16px); 
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+      transition: all 0.25s ease;
     }
 
     .input-pro {
-      background: rgba(4, 7, 15, 0.95);
-      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(9, 13, 24, 0.9);
+      border: 1px solid rgba(51, 65, 85, 0.8);
       transition: all 0.2s ease;
     }
     .input-pro:focus {
-      border-color: var(--neon-cyan);
-      box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.25);
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
       outline: none;
     }
 
     .active-nav { 
-      color: var(--neon-cyan) !important; 
-      border-top: 2px solid var(--neon-cyan);
-      background: linear-gradient(to bottom, rgba(0, 242, 254, 0.18), transparent);
+      color: #38bdf8 !important; 
+      border-top: 2px solid #38bdf8;
+      background: linear-gradient(to bottom, rgba(56, 189, 248, 0.12), transparent);
     }
 
     .row-completed { 
-      background: rgba(16, 185, 129, 0.2) !important; 
-      border-left: 4px solid var(--neon-emerald); 
+      background: rgba(16, 185, 129, 0.15) !important; 
+      border-left: 4px solid #10b981; 
     }
 
     /* Floating Support Widget Animations */
-    @keyframes pulse-glow {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.8); }
-      70% { transform: scale(1); box-shadow: 0 0 0 18px rgba(0, 242, 254, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
     .pulse-fab {
-      animation: pulse-glow 2s infinite;
+      animation: pulse-ring 2s infinite;
     }
 
     .support-popup {
@@ -110,21 +103,21 @@
 <body class="min-h-screen pb-28">
 
   <!-- TOP BRANDING HEADER -->
-  <header class="max-w-4xl mx-auto px-4 py-3.5 flex justify-between items-center bg-[#02040a]/95 border-b border-cyan-500/30 sticky top-0 z-40 backdrop-blur-xl">
+  <header class="max-w-4xl mx-auto px-4 py-3.5 flex justify-between items-center bg-[#060a14]/90 border-b border-cyan-500/20 sticky top-0 z-40 backdrop-blur-xl">
     <div class="flex items-center gap-2.5">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-600 to-indigo-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-cyan-500/40 font-orbitron">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg shadow-cyan-500/20 font-orbitron">
         E
       </div>
       <div>
         <h1 class="text-sm sm:text-base font-black tracking-wider text-white font-orbitron">
-          EMON<span class="text-cyan-400"> | </span><span class="bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-300 bg-clip-text text-transparent">SMART MANAGER</span>
+          EMON<span class="text-cyan-400"> | </span><span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">SMART MANAGER</span>
         </h1>
-        <p class="text-[11px] text-slate-400 font-medium">Dev & Owner: <span class="text-cyan-300 font-semibold">Emon Khan</span></p>
+        <p class="text-[11px] text-slate-400 font-medium">Architect & Owner: <span class="text-cyan-300 font-semibold">Emon Khan</span></p>
       </div>
     </div>
     <div class="flex items-center gap-2 no-print">
-      <span class="text-[11px] text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-3.5 py-1 rounded-full font-bold flex items-center gap-1.5 shadow-inner">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span class="text-[11px] text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-3 py-1 rounded-full font-bold flex items-center gap-1.5 shadow-inner">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
         <i class="fa-solid fa-file-pdf"></i> All PDF Active
       </span>
     </div>
@@ -132,12 +125,58 @@
 
   <main class="max-w-4xl mx-auto p-3.5 space-y-4">
 
+    <!-- EXECUTIVE DEVELOPER BRANDING & PROMOTION HUB -->
+    <div class="card-glass p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900/95 via-[#0b1329]/90 to-cyan-950/40 border border-cyan-500/30 relative overflow-hidden no-print">
+      <div class="absolute -right-10 -top-10 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex flex-col sm:flex-row items-center gap-3.5 text-center sm:text-left">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-teal-400 p-0.5 shadow-xl shadow-cyan-500/20 shrink-0">
+            <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-cyan-400 text-2xl">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              <span class="text-[10px] bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 px-2.5 py-0.5 rounded-full font-bold tracking-wider uppercase font-orbitron">OFFICIAL DEVELOPER</span>
+              <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1 bg-emerald-950/50 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+                <i class="fa-solid fa-circle-check text-[10px]"></i> ভেরিফাইড প্রোফাইল
+              </span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-extrabold text-white tracking-wide mt-1">ইমন ইসলাম (Emon Khan)</h2>
+            <p class="text-xs text-slate-300 mt-0.5 leading-relaxed max-w-xl">
+              যেকোনো হেল্পের জন্য, পরামর্শ দিতে অথবা আপনার ব্যবসার জন্য নতুন কোনো প্রফেশনাল ওয়েবসাইট ও সফটওয়্যার তৈরি করতে সরাসরি ডেভেলপারের সাথে যোগাযোগ করুন।
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Bar (Phone Number Completely Hidden) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4 pt-3.5 border-t border-slate-800/80">
+        <a href="https://www.facebook.com/imana.isalama.347870" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 transition transform hover:-translate-y-0.5">
+          <i class="fa-brands fa-facebook text-sm"></i>
+          <span>ফেসবুক প্রোফাইল</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-80"></i>
+        </a>
+
+        <a href="https://wa.me/8801728576508?text=হ্যালো%20ইমন%20ভাই,%20আপনার%20ওয়েবসাইট%20থেকে%20যোগাযোগ%20করছি।" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition transform hover:-translate-y-0.5">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span>হোয়াটসঅ্যাপে মেসেজ দিন</span>
+        </a>
+
+        <a href="tel:+8801728576508" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 transition transform hover:-translate-y-0.5">
+          <i class="fa-solid fa-phone-volume text-xs"></i>
+          <span>সরাসরি কল করুন</span>
+        </a>
+      </div>
+    </div>
+
     <!-- TAB 1: 10-IN-1 SMART OFFICE & UNLIMITED CALC SUITE -->
     <div id="tab-tools" class="space-y-4 print-section">
-      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-slate-900 to-indigo-950/40 border-cyan-500/40 flex justify-between items-center">
+      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/40 to-slate-900 border-cyan-500/30 flex justify-between items-center">
         <div>
           <h2 class="text-sm font-bold text-cyan-300 flex items-center gap-2">
-            <i class="fa-solid fa-calculator text-amber-400 animate-bounce"></i> শোরুম, অফিস ও কাস্টম দিনভিত্তিক বেতন ক্যালকুলেটর
+            <i class="fa-solid fa-calculator text-amber-400"></i> শোরুম, অফিস ও কাস্টম দিনভিত্তিক বেতন ক্যালকুলেটর
           </h2>
           <p class="text-[11px] text-slate-400 mt-0.5">মাসিক বেতন থেকে ১০ দিন, ১৪ দিন বা যেকোনো দিনের ওভারটাইমসহ নিখুঁত হিসাব।</p>
         </div>
@@ -164,29 +203,29 @@
           </div>
 
           <div class="grid grid-cols-3 gap-2.5 mt-3 text-center text-xs font-mono">
-            <div class="bg-slate-950/90 p-2.5 rounded-xl border border-emerald-500/40 shadow-inner">
+            <div class="bg-slate-950/90 p-2.5 rounded-xl border border-emerald-500/20">
               <span class="text-[10px] text-slate-400 block mb-0.5">১ দিনের বেতন রেট</span>
               <span class="font-bold text-emerald-400 text-sm" id="basePerDay">৳০.০০</span>
             </div>
-            <div class="bg-slate-950/90 p-2.5 rounded-xl border border-cyan-500/40 shadow-inner">
+            <div class="bg-slate-950/90 p-2.5 rounded-xl border border-cyan-500/20">
               <span class="text-[10px] text-slate-400 block mb-0.5">১ ঘণ্টার রেট</span>
               <span class="font-bold text-cyan-400 text-sm" id="basePerHour">৳০.০০</span>
             </div>
-            <div class="bg-slate-950/90 p-2.5 rounded-xl border border-purple-500/40 shadow-inner">
+            <div class="bg-slate-950/90 p-2.5 rounded-xl border border-purple-500/20">
               <span class="text-[10px] text-slate-400 block mb-0.5">১ মিনিটের রেট</span>
               <span class="font-bold text-purple-400 text-sm" id="basePerMinute">৳০.০০</span>
             </div>
           </div>
         </div>
 
-        <hr class="border-slate-800">
+        <hr class="border-slate-800/80">
 
         <div class="space-y-3">
           <div class="flex justify-between items-center flex-wrap gap-2">
             <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
               <i class="fa-solid fa-calendar-check"></i> ২. নির্দিষ্ট কাজের দিন ও ওভারটাইম হিসাব (১০ দিন, ১৪ দিন ইত্যাদি)
             </h3>
-            <span class="text-[10px] text-cyan-300 bg-cyan-950/90 px-3 py-1 rounded-full border border-cyan-700 font-bold">কাস্টম হাজিরার হিসাব</span>
+            <span class="text-[10px] text-cyan-300 bg-cyan-950/80 px-2.5 py-1 rounded-full border border-cyan-700/50 font-bold">কাস্টম হাজিরার হিসাব</span>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
@@ -204,12 +243,12 @@
             </div>
           </div>
 
-          <button onclick="calcCustomDutySalary()" class="w-full bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-slate-950 font-extrabold py-3.5 rounded-xl text-xs shadow-xl shadow-amber-500/30 hover:opacity-95 transition transform active:scale-[0.99]">
+          <button onclick="calcCustomDutySalary()" class="w-full bg-gradient-to-r from-amber-500 via-amber-500 to-orange-500 text-slate-950 font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-amber-500/20 hover:opacity-95 transition transform active:scale-[0.99]">
             নির্দিষ্ট দিনের মোট টাকা বের করুন ⚡
           </button>
         </div>
 
-        <div id="custResultCard" class="p-4 bg-slate-950/95 rounded-xl border border-amber-500/50 text-xs hidden space-y-2.5 font-mono shadow-xl">
+        <div id="custResultCard" class="p-4 bg-slate-950/95 rounded-xl border border-amber-500/30 text-xs hidden space-y-2.5 font-mono">
           <div class="flex justify-between border-b border-slate-800 pb-2">
             <span class="text-slate-400">কাজের হিসাবের দিন:</span>
             <span class="text-cyan-300 font-bold"><span id="resWorkedDaysCount">০</span> দিন (<span id="resWorkedShiftHours">০</span> ঘণ্টা শিফট)</span>
@@ -236,19 +275,6 @@
         </div>
       </div>
 
-      <!-- NEW FEATURE: ADVANCED TAX & VAT CALCULATOR -->
-      <div class="card-glass p-4 sm:p-5 rounded-2xl space-y-3">
-        <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-2">
-          <i class="fa-solid fa-percent"></i> ৫. ভ্যাট ও অতিরিক্ত ট্যাক্স ক্যালকুলেটর (Bonus Feature)
-        </h3>
-        <div class="grid grid-cols-2 gap-3 text-xs">
-          <input type="number" id="taxBaseAmount" step="any" placeholder="মূল পরিমাণ (৳)" class="input-pro rounded-xl p-3 text-white font-mono">
-          <input type="number" id="taxPercentage" step="any" placeholder="ভ্যাট/ট্যাক্স হার (%)" class="input-pro rounded-xl p-3 text-white font-mono">
-        </div>
-        <button onclick="calcTaxAmount()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-cyan-500/25">ট্যাক্সসহ মোট হিসাব করুন 🧮</button>
-        <p id="taxResult" class="text-xs font-mono font-bold text-center text-cyan-300"></p>
-      </div>
-
       <!-- Profit Margin Calculator -->
       <div class="card-glass p-4 sm:p-5 rounded-2xl space-y-3">
         <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
@@ -258,7 +284,7 @@
           <input type="number" id="costPrice" step="any" placeholder="পাইকারি কেনা দাম (৳)" class="input-pro rounded-xl p-3 text-white font-mono">
           <input type="number" id="sellPrice" step="any" placeholder="খুচরা বিক্রয় মূল্য (৳)" class="input-pro rounded-xl p-3 text-white font-mono">
         </div>
-        <button onclick="calcProfitMargin()" class="w-full bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-500/25">নিট লাভ বের করুন 📈</button>
+        <button onclick="calcProfitMargin()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-500/20">নিট লাভ বের করুন 📈</button>
         <p id="profitResult" class="text-xs font-mono font-bold text-center text-cyan-300"></p>
       </div>
 
@@ -271,14 +297,14 @@
           <input type="number" id="origPrice" step="any" placeholder="মূল দাম (৳)" class="input-pro rounded-xl p-3 text-white font-mono">
           <input type="number" id="discPercent" step="any" placeholder="ছাড়ের হার (%)" class="input-pro rounded-xl p-3 text-white font-mono">
         </div>
-        <button onclick="calcDiscount()" class="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-purple-500/25">ছাড়ের পর মূল্য দেখুন 🏷️</button>
+        <button onclick="calcDiscount()" class="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-purple-500/20">ছাড়ের পর মূল্য দেখুন 🏷️</button>
         <p id="discountResult" class="text-xs font-mono font-bold text-center text-emerald-400"></p>
       </div>
     </div>
 
     <!-- TAB 2: SMART WHITEBOARD NOTEPAD -->
     <div id="tab-notepad" class="space-y-4 hidden print-section">
-      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-purple-950/50 to-slate-900 border-purple-500/40 flex justify-between items-center">
+      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-purple-950/40 to-slate-900 border-purple-500/40 flex justify-between items-center">
         <div>
           <h2 class="text-sm font-bold text-purple-300 flex items-center gap-2">
             <i class="fa-solid fa-file-pen text-amber-400"></i> সাদা কাগজ ও স্মার্ট নোটবুক
@@ -313,7 +339,7 @@
       </div>
 
       <!-- TRADING MINDSET & PSYCHOLOGY RULES CARD -->
-      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-amber-950/40 via-slate-900 to-rose-950/30 border-amber-500/40 space-y-2.5">
+      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-rose-950/20 border-amber-500/40 space-y-2.5">
         <div class="flex items-center gap-2">
           <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm font-bold">
             <i class="fa-solid fa-brain"></i>
@@ -321,25 +347,25 @@
           <h3 class="text-sm font-bold text-amber-300 uppercase tracking-wide">ট্রেডিং সাইকোলজি ও ডিসিপ্লিন গাইডলাইন</h3>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-300">
-          <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+          <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
             <span class="font-bold text-rose-400 flex items-center gap-1 mb-1">
               <i class="fa-solid fa-fire text-amber-400"></i> ১. মাথা গরম করা যাবে না
             </span>
             <p class="text-[11px] text-slate-400">কোনো ট্রেড লস হলে কখনো রিভেঞ্জ ট্রেড নিবেন না। মন মেজাজ খারাপ থাকলে ল্যাপটপ বা ফোন বন্ধ করে বিশ্রাম নিন।</p>
           </div>
-          <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+          <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
             <span class="font-bold text-emerald-400 flex items-center gap-1 mb-1">
               <i class="fa-solid fa-bullseye text-cyan-400"></i> ২. ৫% টার্গেট হলেই মার্কেট বন্ধ
             </span>
             <p class="text-[11px] text-slate-400">দিনের ৫% প্রফিট টার্গেট পূরণ হলে লোভ সামলান। আজকের দিনের কাজ শেষ, অতিরিক্ত ট্রেড ডেকে আনবে লস।</p>
           </div>
-          <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+          <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
             <span class="font-bold text-cyan-300 flex items-center gap-1 mb-1">
               <i class="fa-solid fa-shield-halved text-emerald-400"></i> ৩. কড়া স্টপ লস (২%) মেনে চলুন
             </span>
             <p class="text-[11px] text-slate-400">স্টপ লস হলো ক্যাপিটাল বাঁচানোর বর্ম। ২% লস হলে বিনা তর্কে ট্রেড ক্লোজ করুন এবং পরের দিনের অপেক্ষা করুন।</p>
           </div>
-          <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+          <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
             <span class="font-bold text-purple-400 flex items-center gap-1 mb-1">
               <i class="fa-solid fa-chart-line text-amber-400"></i> ৪. কম্পাউন্ডিংয়ের শক্তি বুঝুন
             </span>
@@ -362,15 +388,15 @@
         </div>
 
         <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono pt-1">
-          <div class="bg-slate-950/90 p-2.5 rounded-xl border border-slate-800">
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
             <span class="text-[10px] text-slate-400 block">১ম দিনের আয় (5%)</span>
             <span class="font-bold text-emerald-400" id="tradeDayRate">+$২.৫০</span>
           </div>
-          <div class="bg-slate-950/90 p-2.5 rounded-xl border border-slate-800">
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
             <span class="text-[10px] text-slate-400 block">প্রতি ঘণ্টায় লাভ</span>
             <span class="font-bold text-cyan-400" id="tradeHourRate">+$০.১০৪২</span>
           </div>
-          <div class="bg-slate-950/90 p-2.5 rounded-xl border border-amber-500/40 bg-amber-500/5">
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-amber-500/30 bg-amber-500/5">
             <span class="text-[10px] text-amber-300 block font-bold">প্রতি সেকেন্ডে আয় ⚡</span>
             <span class="font-bold text-amber-400" id="tradeSecRate">+$০.০০০০২৯</span>
           </div>
@@ -381,7 +407,7 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
-              <tr class="bg-slate-950/95 text-slate-400 uppercase border-b border-slate-800 text-[10px]">
+              <tr class="bg-slate-950/90 text-slate-400 uppercase border-b border-slate-800 text-[10px]">
                 <th class="p-2.5 text-center no-print">স্ট্যাটাস</th>
                 <th class="p-2.5">DAY</th>
                 <th class="p-2.5">FUNDS ($)</th>
@@ -407,15 +433,15 @@
       </div>
 
       <div class="grid grid-cols-3 gap-2.5">
-        <div class="card-glass p-3.5 rounded-2xl text-center border-emerald-500/40">
+        <div class="card-glass p-3.5 rounded-2xl text-center border-emerald-500/30">
           <p class="text-[10px] text-slate-400 font-bold uppercase mb-1">পকেটে এলো (+)</p>
           <h3 id="currentPocketFund" class="text-sm sm:text-base font-black text-emerald-400 font-mono">৳০.০০</h3>
         </div>
-        <div class="card-glass p-3.5 rounded-2xl text-center border-rose-500/40">
+        <div class="card-glass p-3.5 rounded-2xl text-center border-rose-500/30">
           <p class="text-[10px] text-slate-400 font-bold uppercase mb-1">মোট খরচ (-)</p>
           <h3 id="totalSpent" class="text-sm sm:text-base font-black text-rose-400 font-mono">৳০.০০</h3>
         </div>
-        <div class="card-glass p-3.5 rounded-2xl text-center border-cyan-500/40">
+        <div class="card-glass p-3.5 rounded-2xl text-center border-cyan-500/30">
           <p class="text-[10px] text-slate-400 font-bold uppercase mb-1">অবশিষ্ট ব্যালেন্স</p>
           <h3 id="remainingPocketBal" class="text-sm sm:text-base font-black text-cyan-300 font-mono">৳০.০০</h3>
         </div>
@@ -430,7 +456,7 @@
           <input type="text" id="expenseTitle" placeholder="বিবরণ" class="input-pro rounded-xl p-3 text-white sm:col-span-2">
           <input type="number" id="expenseAmount" step="any" placeholder="পরিমাণ" class="input-pro rounded-xl p-3 text-white">
         </div>
-        <button onclick="addExpenseRecord()" class="w-full bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-cyan-500/25">
+        <button onclick="addExpenseRecord()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-cyan-500/20">
           যুক্ত করুন ✍️
         </button>
       </div>
@@ -442,7 +468,7 @@
 
     <!-- TAB 5: DOKAN KHATA -->
     <div id="tab-shop" class="space-y-4 hidden print-section">
-      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/50 to-slate-900 border-cyan-500/40 flex justify-between items-center">
+      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/40 to-slate-900 border-cyan-500/40 flex justify-between items-center">
         <div>
           <h2 class="text-sm font-bold text-cyan-400">🏪 দোকান ও কাস্টমার বাকির খাতা</h2>
           <p class="text-[11px] text-slate-400 mt-1">কাস্টমার অনুযায়ী বাকি ও জমার লেনদেন।</p>
@@ -462,7 +488,7 @@
           </select>
           <input type="number" id="custAmount" step="any" placeholder="টাকার পরিমাণ" class="input-pro rounded-xl p-3 text-white font-mono">
         </div>
-        <button onclick="addShopEntry()" class="w-full bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 font-extrabold py-3 rounded-xl text-xs">
+        <button onclick="addShopEntry()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 rounded-xl text-xs">
           খাতায় লিখুন ✍️
         </button>
       </div>
@@ -471,7 +497,7 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
-              <tr class="bg-slate-950/95 text-slate-400 uppercase border-b border-slate-800 text-[10px]">
+              <tr class="bg-slate-950/90 text-slate-400 uppercase border-b border-slate-800 text-[10px]">
                 <th class="p-2.5">তারিখ</th>
                 <th class="p-2.5">কাস্টমারের নাম</th>
                 <th class="p-2.5">বিবরণ</th>
@@ -493,15 +519,15 @@
     <div class="text-cyan-400 font-bold tracking-wide">Developed with Passion by Emon Khan</div>
     <p class="text-[11px] text-slate-300">যেকোনো হেল্পের জন্য বা নতুন প্রফেশনাল ওয়েবসাইট তৈরি করতে সরাসরি ডেভেলপারের সাথে যোগাযোগ করুন:</p>
     <div class="flex flex-wrap justify-center items-center gap-2.5">
-      <a href="https://www.facebook.com/imana.isalama.347870" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 font-semibold inline-flex items-center gap-1.5 bg-blue-950/60 border border-blue-500/40 px-3.5 py-1.5 rounded-full transition">
+      <a href="https://www.facebook.com/imana.isalama.347870" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 font-semibold inline-flex items-center gap-1.5 bg-blue-950/50 border border-blue-500/30 px-3.5 py-1.5 rounded-full transition">
         <i class="fa-brands fa-facebook"></i>
         <span>Official Facebook</span>
       </a>
-      <a href="https://wa.me/8801728576508?text=হ্যালো%20ইমন%20ভাই,%20আপনার%20ওয়েবসাইট%20থেকে%20যোগাযোগ%20করছি।" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1.5 bg-emerald-950/60 border border-emerald-500/40 px-3.5 py-1.5 rounded-full transition">
+      <a href="https://wa.me/8801728576508?text=হ্যালো%20ইমন%20ভাই,%20আপনার%20ওয়েবসাইট%20থেকে%20যোগাযোগ%20করছি।" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1.5 bg-emerald-950/50 border border-emerald-500/30 px-3.5 py-1.5 rounded-full transition">
         <i class="fa-brands fa-whatsapp"></i>
         <span>WhatsApp চ্যাট</span>
       </a>
-      <a href="tel:+8801728576508" class="text-amber-400 hover:text-amber-300 font-semibold inline-flex items-center gap-1.5 bg-amber-950/60 border border-amber-500/40 px-3.5 py-1.5 rounded-full transition">
+      <a href="tel:+8801728576508" class="text-amber-400 hover:text-amber-300 font-semibold inline-flex items-center gap-1.5 bg-amber-950/50 border border-amber-500/30 px-3.5 py-1.5 rounded-full transition">
         <i class="fa-solid fa-phone"></i>
         <span>ডাইরেক্ট কল</span>
       </a>
@@ -512,10 +538,10 @@
   <!-- ================= ENTERPRISE FLOATING SUPPORT WIDGET (RIGHT CORNER) ================= -->
   <div id="floating-widget" class="fixed bottom-20 right-4 z-50 no-print">
     <!-- Popup Menu Card -->
-    <div id="supportPopup" class="support-popup hidden-popup mb-3 w-72 card-glass rounded-2xl p-4 border border-cyan-500/50 shadow-2xl bg-[#030612]/95">
+    <div id="supportPopup" class="support-popup hidden-popup mb-3 w-72 card-glass rounded-2xl p-4 border border-cyan-500/40 shadow-2xl bg-[#070b17]/95">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3">
         <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-bold text-sm relative shadow-md">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm relative">
             <i class="fa-solid fa-user-tie"></i>
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950 absolute bottom-0 right-0"></span>
           </div>
@@ -529,8 +555,8 @@
         </button>
       </div>
 
-      <p class="text-[11px] text-slate-300 leading-relaxed mb-3 bg-slate-950/90 p-2.5 rounded-xl border border-slate-800">
-        আসসালামু আলাইকুম! যেকোনো হেল্পের জন্য বা নতুন কোনো ওয়েবসাইট/অ্যাপ তৈরি করতে নিচের যেকোনো মাধ্যমে ক্লিক করে সরাসরি যোগাযোগ করুন[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span):
+      <p class="text-[11px] text-slate-300 leading-relaxed mb-3 bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
+        আসসালামু আলাইকুম! যেকোনো হেল্পের জন্য বা নতুন কোনো ওয়েবসাইট/অ্যাপ তৈরি করতে নিচের যেকোনো মাধ্যমে ক্লিক করে সরাসরি যোগাযোগ করুন:
       </p>
 
       <div class="space-y-2 text-xs">
@@ -552,14 +578,14 @@
     </div>
 
     <!-- Floating Trigger Button -->
-    <button onclick="toggleSupportWidget()" class="pulse-fab ml-auto bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400 text-slate-950 font-extrabold px-4.5 py-3 rounded-full shadow-2xl flex items-center gap-2 text-xs border border-white/30">
+    <button onclick="toggleSupportWidget()" class="pulse-fab ml-auto bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-slate-950 font-extrabold px-4 py-3 rounded-full shadow-2xl flex items-center gap-2 text-xs border border-white/20">
       <i class="fa-solid fa-headset text-base"></i>
       <span>হেল্প ও যোগাযোগ</span>
     </button>
   </div>
 
   <!-- BOTTOM NAVIGATION BAR -->
-  <nav class="fixed bottom-0 left-0 right-0 max-w-4xl mx-auto bg-[#02040a]/95 backdrop-blur-xl border-t border-slate-800 flex justify-around items-center z-40 rounded-t-2xl shadow-2xl no-print">
+  <nav class="fixed bottom-0 left-0 right-0 max-w-4xl mx-auto bg-[#070b14]/95 backdrop-blur-xl border-t border-slate-800/90 flex justify-around items-center z-40 rounded-t-2xl shadow-2xl no-print">
     <button onclick="switchTab('tools')" id="nav-tools" class="tab-btn active-nav py-2.5 w-full flex flex-col items-center text-[10px] font-bold text-slate-400">
       <span class="text-base mb-0.5"><i class="fa-solid fa-calculator"></i></span> অফিস টুলস
     </button>
@@ -579,6 +605,7 @@
 
   <!-- SCRIPT ENGINE -->
   <script>
+    // Toggle Floating Support Widget
     function toggleSupportWidget() {
       const popup = document.getElementById('supportPopup');
       if (popup.classList.contains('hidden-popup')) {
@@ -684,17 +711,7 @@
       switchTab('expense');
     }
 
-    /* 3. TAX & VAT CALCULATOR */
-    function calcTaxAmount() {
-      const base = parseFloat(document.getElementById('taxBaseAmount').value) || 0;
-      const perc = parseFloat(document.getElementById('taxPercentage').value) || 0;
-      if(!base) return alert("মূল পরিমাণ লিখুন!");
-      const taxVal = (base * perc) / 100;
-      const totalVal = base + taxVal;
-      document.getElementById('taxResult').innerText = `ট্যাক্স/ভ্যাট: ৳${taxVal.toFixed(2)} | মোট প্রদেয়: ৳${totalVal.toFixed(2)}`;
-    }
-
-    /* 4. PROFIT / LOSS MARGIN */
+    /* 3. PROFIT / LOSS MARGIN */
     function calcProfitMargin() {
       const cp = parseFloat(document.getElementById('costPrice').value) || 0;
       const sp = parseFloat(document.getElementById('sellPrice').value) || 0;
@@ -706,7 +723,7 @@
         : `❌ ক্ষতি: ৳${Math.abs(profit).toFixed(2)} (${margin.toFixed(1)}% লস)`;
     }
 
-    /* 5. DISCOUNT */
+    /* 4. DISCOUNT */
     function calcDiscount() {
       const orig = parseFloat(document.getElementById('origPrice').value) || 0;
       const disc = parseFloat(document.getElementById('discPercent').value) || 0;
@@ -716,7 +733,7 @@
       document.getElementById('discountResult').innerText = `ছাড়: ৳${saved.toFixed(2)} | চূড়ান্ত মূল্য: ৳${finalPrice.toFixed(2)}`;
     }
 
-    /* 6. PERSISTENT WHITEBOARD NOTEPAD */
+    /* 5. PERSISTENT WHITEBOARD NOTEPAD */
     const noteTitle = document.getElementById('noteTitle');
     const noteContent = document.getElementById('noteContent');
     const saveStatus = document.getElementById('saveStatus');
@@ -741,7 +758,7 @@
       }
     }
 
-    /* 7. DYNAMIC TRADING ROADMAP & PER-SECOND PROFIT ENGINE */
+    /* 6. DYNAMIC TRADING ROADMAP & PER-SECOND PROFIT ENGINE */
     let completedDays = JSON.parse(localStorage.getItem('emon_completed_days')) || {};
 
     function renderTradingRoadmap() {
@@ -789,7 +806,7 @@
       renderTradingRoadmap();
     }
 
-    /* 8. EXPENSE & SHOP */
+    /* 7. EXPENSE & SHOP */
     let expenseData = JSON.parse(localStorage.getItem('emon_expenses')) || [];
     function renderExpenses() {
       const list = document.getElementById('expenseList');
@@ -798,7 +815,7 @@
       expenseData.forEach((item, i) => {
         if(item.type === 'income') inc += item.amt; else exp += item.amt;
         const div = document.createElement('div');
-        div.className = "p-3 rounded-xl border flex justify-between items-center text-xs bg-slate-950/90 border-slate-800 hover:border-slate-700 transition";
+        div.className = "p-3 rounded-xl border flex justify-between items-center text-xs bg-slate-950/90 border-slate-800/90 hover:border-slate-700 transition";
         div.innerHTML = `
           <div><span class="font-bold text-white text-sm">${item.title}</span><span class="text-[10px] text-slate-400 block mt-0.5">${item.date}</span></div>
           <div class="flex items-center gap-3">
