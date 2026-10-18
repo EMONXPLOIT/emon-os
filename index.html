@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>EMON SMART MANAGER | Ultimate Enterprise & Calculator Suite</title>
+  <title>EMON SMART MANAGER | Ultimate Enterprise & Financial Suite</title>
 
   <!-- Tailwind CSS, Premium Fonts & Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,9 +12,9 @@
 
   <style>
     :root {
-      --bg-deep: #030612;
-      --card-bg: rgba(13, 20, 38, 0.88);
-      --card-border: rgba(0, 210, 255, 0.25);
+      --bg-deep: #02040a;
+      --card-bg: rgba(9, 15, 30, 0.9);
+      --card-border: rgba(0, 242, 254, 0.25);
     }
 
     * { 
@@ -26,42 +26,42 @@
     body { 
       background-color: var(--bg-deep);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.14) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+        radial-gradient(at 10% 10%, rgba(0, 242, 254, 0.15) 0px, transparent 50%),
+        radial-gradient(at 90% 10%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 90%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
       background-attachment: fixed;
-      color: #f8fafc; 
+      color: #f1f5f9; 
     }
 
-    /* Eye-Catching Glassmorphism & Neon Glow */
+    /* Ultra-Elite Glassmorphism & Neon Glow */
     .card-glass { 
       background: var(--card-bg); 
       border: 1px solid var(--card-border); 
-      backdrop-filter: blur(20px); 
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 12px 35px -10px rgba(0, 210, 255, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      backdrop-filter: blur(24px); 
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .card-glass:hover {
-      border-color: rgba(0, 210, 255, 0.45);
-      box-shadow: 0 15px 40px -10px rgba(0, 210, 255, 0.22), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+      border-color: rgba(0, 242, 254, 0.5);
+      box-shadow: 0 20px 45px -10px rgba(0, 242, 254, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
     }
 
     .input-pro {
-      background: rgba(6, 10, 20, 0.95);
-      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(4, 7, 15, 0.95);
+      border: 1px solid rgba(51, 65, 85, 0.8);
       transition: all 0.2s ease;
     }
     .input-pro:focus {
-      border-color: #00d2ff;
-      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.25);
+      border-color: #00f2fe;
+      box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.25);
       outline: none;
     }
 
     .active-nav { 
-      color: #00d2ff !important; 
-      border-top: 2px solid #00d2ff;
-      background: linear-gradient(to bottom, rgba(0, 210, 255, 0.15), transparent);
+      color: #00f2fe !important; 
+      border-top: 2px solid #00f2fe;
+      background: linear-gradient(to bottom, rgba(0, 242, 254, 0.15), transparent);
     }
 
     .row-completed { 
@@ -71,9 +71,9 @@
 
     /* Floating Support Widget Animations */
     @keyframes pulse-glow {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 16px rgba(0, 210, 255, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 18px rgba(0, 242, 254, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
     }
     .pulse-fab {
       animation: pulse-glow 2s infinite;
@@ -107,22 +107,22 @@
 <body class="min-h-screen pb-28">
 
   <!-- TOP BRANDING HEADER -->
-  <header class="max-w-4xl mx-auto px-4 py-3.5 flex justify-between items-center bg-[#040711]/95 border-b border-cyan-500/30 sticky top-0 z-40 backdrop-blur-xl">
+  <header class="max-w-4xl mx-auto px-4 py-3.5 flex justify-between items-center bg-[#02040a]/95 border-b border-cyan-500/30 sticky top-0 z-40 backdrop-blur-xl">
     <div class="flex items-center gap-2.5">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg shadow-cyan-500/30 font-orbitron">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-400 via-blue-500 to-indigo-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-cyan-500/40 font-orbitron">
         E
       </div>
       <div>
         <h1 class="text-sm sm:text-base font-black tracking-wider text-white font-orbitron">
-          EMON<span class="text-cyan-400"> | </span><span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">SMART MANAGER</span>
+          EMON<span class="text-cyan-400"> | </span><span class="bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400 bg-clip-text text-transparent">SMART MANAGER</span>
         </h1>
-        <p class="text-[11px] text-slate-400 font-medium">Dev & Owner: <span class="text-cyan-300 font-semibold">Emon Khan</span></p>
+        <p class="text-[11px] text-slate-400 font-medium">Enterprise Architect: <span class="text-cyan-300 font-semibold">Emon Khan</span></p>
       </div>
     </div>
     <div class="flex items-center gap-2 no-print">
       <span class="text-[11px] text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1 rounded-full font-bold flex items-center gap-1.5 shadow-inner">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-        <i class="fa-solid fa-file-pdf"></i> All PDF Active
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <i class="fa-solid fa-file-pdf"></i> PDF Active
       </span>
     </div>
   </header>
@@ -131,14 +131,14 @@
 
     <!-- TAB 1: 10-IN-1 SMART OFFICE & UNLIMITED CALC SUITE -->
     <div id="tab-tools" class="space-y-4 print-section">
-      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/50 to-slate-900 border-cyan-500/40 flex justify-between items-center">
+      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-slate-900 to-indigo-950/50 border-cyan-500/40 flex justify-between items-center">
         <div>
           <h2 class="text-sm font-bold text-cyan-300 flex items-center gap-2">
             <i class="fa-solid fa-calculator text-amber-400"></i> শোরুম, অফিস ও কাস্টম দিনভিত্তিক বেতন ক্যালকুলেটর
           </h2>
           <p class="text-[11px] text-slate-400 mt-0.5">মাসিক বেতন থেকে ১০ দিন, ১৪ দিন বা যেকোনো দিনের ওভারটাইমসহ নিখুঁত হিসাব।</p>
         </div>
-        <button onclick="printCurrentTab('tab-tools')" class="no-print bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-md hover:opacity-95 shrink-0">
+        <button onclick="printCurrentTab('tab-tools')" class="no-print bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-extrabold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-md hover:opacity-95 shrink-0">
           <i class="fa-solid fa-file-pdf"></i> রিপোর্ট PDF
         </button>
       </div>
@@ -233,36 +233,39 @@
         </div>
       </div>
 
-      <!-- Profit Margin Calculator -->
-      <div class="card-glass p-4 sm:p-5 rounded-2xl space-y-3">
-        <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
-          <i class="fa-solid fa-chart-pie"></i> ৩. পণ্যের লাভ-ক্ষতি ও প্রফিট মার্জিন
-        </h3>
-        <div class="grid grid-cols-2 gap-3 text-xs">
-          <input type="number" id="costPrice" step="any" placeholder="পাইকারি কেনা দাম (৳)" class="input-pro rounded-xl p-3 text-white font-mono">
-          <input type="number" id="sellPrice" step="any" placeholder="খুচরা বিক্রয় মূল্য (৳)" class="input-pro rounded-xl p-3 text-white font-mono">
+      <!-- NEW ADVANCED FINANCIAL CALCULATORS SUITE (EXTRA FEATURES) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Profit Margin Calculator -->
+        <div class="card-glass p-4 sm:p-5 rounded-2xl space-y-3">
+          <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie"></i> ৩. পণ্যের লাভ-ক্ষতি ও প্রফিট মার্জিন
+          </h3>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <input type="number" id="costPrice" step="any" placeholder="কেনা দাম (৳)" class="input-pro rounded-xl p-2.5 text-white font-mono">
+            <input type="number" id="sellPrice" step="any" placeholder="বিক্রয় মূল্য (৳)" class="input-pro rounded-xl p-2.5 text-white font-mono">
+          </div>
+          <button onclick="calcProfitMargin()" class="w-full bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-500/25">নিট লাভ বের করুন 📈</button>
+          <p id="profitResult" class="text-xs font-mono font-bold text-center text-cyan-300"></p>
         </div>
-        <button onclick="calcProfitMargin()" class="w-full bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-500/25">নিট লাভ বের করুন 📈</button>
-        <p id="profitResult" class="text-xs font-mono font-bold text-center text-cyan-300"></p>
-      </div>
 
-      <!-- Discount Calculator -->
-      <div class="card-glass p-4 sm:p-5 rounded-2xl space-y-3">
-        <h3 class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-2">
-          <i class="fa-solid fa-tags"></i> ৪. শপিং ও ডিসকাউন্ট হিসাব
-        </h3>
-        <div class="grid grid-cols-2 gap-3 text-xs">
-          <input type="number" id="origPrice" step="any" placeholder="মূল দাম (৳)" class="input-pro rounded-xl p-3 text-white font-mono">
-          <input type="number" id="discPercent" step="any" placeholder="ছাড়ের হার (%)" class="input-pro rounded-xl p-3 text-white font-mono">
+        <!-- Discount Calculator -->
+        <div class="card-glass p-4 sm:p-5 rounded-2xl space-y-3">
+          <h3 class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-tags"></i> ৪. শপিং ও ডিসকাউন্ট হিসাব
+          </h3>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <input type="number" id="origPrice" step="any" placeholder="মূল দাম (৳)" class="input-pro rounded-xl p-2.5 text-white font-mono">
+            <input type="number" id="discPercent" step="any" placeholder="ছাড় (%)" class="input-pro rounded-xl p-2.5 text-white font-mono">
+          </div>
+          <button onclick="calcDiscount()" class="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-purple-500/25">ছাড়ের পর মূল্য দেখুন 🏷️</button>
+          <p id="discountResult" class="text-xs font-mono font-bold text-center text-emerald-400"></p>
         </div>
-        <button onclick="calcDiscount()" class="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-extrabold py-2.5 rounded-xl text-xs shadow-lg shadow-purple-500/25">ছাড়ের পর মূল্য দেখুন 🏷️</button>
-        <p id="discountResult" class="text-xs font-mono font-bold text-center text-emerald-400"></p>
       </div>
     </div>
 
     <!-- TAB 2: SMART WHITEBOARD NOTEPAD -->
     <div id="tab-notepad" class="space-y-4 hidden print-section">
-      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-purple-950/50 to-slate-900 border-purple-500/40 flex justify-between items-center">
+      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-purple-950/60 to-slate-900 border-purple-500/40 flex justify-between items-center">
         <div>
           <h2 class="text-sm font-bold text-purple-300 flex items-center gap-2">
             <i class="fa-solid fa-file-pen text-amber-400"></i> সাদা কাগজ ও স্মার্ট নোটবুক
@@ -426,7 +429,7 @@
 
     <!-- TAB 5: DOKAN KHATA -->
     <div id="tab-shop" class="space-y-4 hidden print-section">
-      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/50 to-slate-900 border-cyan-500/40 flex justify-between items-center">
+      <div class="card-glass p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 to-slate-900 border-cyan-500/40 flex justify-between items-center">
         <div>
           <h2 class="text-sm font-bold text-cyan-400">🏪 দোকান ও কাস্টমার বাকির খাতা</h2>
           <p class="text-[11px] text-slate-400 mt-1">কাস্টমার অনুযায়ী বাকি ও জমার লেনদেন।</p>
@@ -496,7 +499,7 @@
   <!-- ================= ENTERPRISE FLOATING SUPPORT WIDGET (RIGHT CORNER) ================= -->
   <div id="floating-widget" class="fixed bottom-20 right-4 z-50 no-print">
     <!-- Popup Menu Card -->
-    <div id="supportPopup" class="support-popup hidden-popup mb-3 w-72 card-glass rounded-2xl p-4 border border-cyan-500/50 shadow-2xl bg-[#050814]/95">
+    <div id="supportPopup" class="support-popup hidden-popup mb-3 w-72 card-glass rounded-2xl p-4 border border-cyan-500/50 shadow-2xl bg-[#030612]/95">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-3">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-bold text-sm relative shadow-md">
@@ -543,7 +546,7 @@
   </div>
 
   <!-- BOTTOM NAVIGATION BAR -->
-  <nav class="fixed bottom-0 left-0 right-0 max-w-4xl mx-auto bg-[#040711]/95 backdrop-blur-xl border-t border-slate-800 flex justify-around items-center z-40 rounded-t-2xl shadow-2xl no-print">
+  <nav class="fixed bottom-0 left-0 right-0 max-w-4xl mx-auto bg-[#02040a]/95 backdrop-blur-xl border-t border-slate-800 flex justify-around items-center z-40 rounded-t-2xl shadow-2xl no-print">
     <button onclick="switchTab('tools')" id="nav-tools" class="tab-btn active-nav py-2.5 w-full flex flex-col items-center text-[10px] font-bold text-slate-400">
       <span class="text-base mb-0.5"><i class="fa-solid fa-calculator"></i></span> অফিস টুলস
     </button>
