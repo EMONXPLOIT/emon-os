@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMON SMART MANAGER PRO</title>
+    <title>EMON SMART MANAGER</title>
     <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,7 +17,6 @@
             --bg-input: #090d18;
             --border-color: #1e293b;
             --primary-cyan: #00d2ff;
-            --primary-blue: #3a7bd5;
             --accent-gold: #f59e0b;
             --accent-green: #10b981;
             --accent-red: #f43f5e;
@@ -46,7 +45,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(6, 9, 19, 0.88);
+            background: rgba(6, 9, 19, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             padding: 12px 16px;
@@ -61,11 +60,11 @@
             letter-spacing: 0.5px;
         }
         .brand-logo .emon { color: var(--primary-cyan); }
-        .brand-logo .pipe { color: #334155; margin: 0 3px; }
+        .brand-logo .pipe { color: #475569; margin: 0 3px; }
         .brand-logo .smart { color: var(--accent-gold); }
 
         .dev-subtitle {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             color: var(--text-dim);
             margin-top: -2px;
         }
@@ -100,56 +99,67 @@
             padding: 14px;
         }
 
-        /* Promotional Banner Hub */
-        .promo-banner {
-            background: linear-gradient(135deg, rgba(0, 210, 255, 0.15), rgba(58, 123, 213, 0.15));
-            border: 1px solid rgba(0, 210, 255, 0.3);
+        /* Developer Contact & Promo Card */
+        .dev-promo-card {
+            background: linear-gradient(145deg, #0f172a, #131c31);
+            border: 1px solid rgba(0, 210, 255, 0.35);
             border-radius: 16px;
-            padding: 14px;
+            padding: 16px;
             margin-bottom: 16px;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.08);
         }
 
-        .promo-top {
+        .dev-promo-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-cyan);
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
+            justify-content: center;
+            gap: 6px;
         }
 
-        .promo-badge {
-            background: var(--accent-gold);
-            color: #000;
-            font-size: 0.68rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 12px;
-            text-transform: uppercase;
+        .dev-promo-text {
+            font-size: 0.84rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin-bottom: 14px;
         }
 
-        .promo-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+        .contact-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .social-btn {
+        .contact-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 700;
             text-decoration: none;
             color: #fff;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .social-btn:active { transform: scale(0.97); }
-        .fb-btn { background: linear-gradient(90deg, #00c6ff, #0072ff); }
-        .yt-btn { background: linear-gradient(90deg, #ff416c, #ff4b2b); }
+        .contact-btn:active {
+            transform: scale(0.98);
+        }
+
+        .fb-contact-btn {
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            box-shadow: 0 4px 14px rgba(0, 114, 255, 0.3);
+        }
+
+        .wa-contact-btn {
+            background: linear-gradient(90deg, #10b981, #059669);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
 
         /* Card Styles */
         .card {
@@ -287,7 +297,7 @@
         }
 
         .tx-list {
-            max-height: 460px;
+            max-height: 480px;
             overflow-y: auto;
             padding-right: 2px;
         }
@@ -301,10 +311,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: 0.2s;
-        }
-        .tx-item:hover {
-            border-color: #334155;
         }
         .tx-title {
             font-size: 0.95rem;
@@ -334,7 +340,6 @@
             color: #475569;
             cursor: pointer;
             font-size: 0.95rem;
-            transition: 0.2s;
         }
         .del-btn:hover { color: var(--accent-red); }
 
@@ -350,14 +355,39 @@
         /* Footer */
         .app-footer {
             text-align: center;
-            padding: 20px 10px 10px;
-            color: var(--text-dim);
-            font-size: 0.8rem;
+            padding: 20px 12px 10px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
         }
         .app-footer .passion {
             color: var(--primary-cyan);
             font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 0.88rem;
+            margin-bottom: 10px;
+        }
+        .footer-btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .footer-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: #111a2e;
+            border: 1px solid #263859;
+            color: #93c5fd;
+        }
+        .footer-copy {
+            font-size: 0.72rem;
+            color: var(--text-dim);
         }
 
         /* Bottom Navigation */
@@ -420,20 +450,22 @@
 
     <div class="container" id="printable-area">
 
-        <!-- Promotional Banner Hub -->
-        <div class="promo-banner">
-            <div class="promo-top">
-                <span style="font-size: 0.85rem; font-weight: 600; color: #e2e8f0;">
-                    <i class="fa-solid fa-bullhorn" style="color: var(--accent-gold);"></i> অফিশিয়াল প্রোমোশন ও আপডেট হাব
-                </span>
-                <span class="promo-badge">PRO v2.5</span>
+        <!-- Developer Direct Contact & Promotion Box -->
+        <div class="dev-promo-card">
+            <div class="dev-promo-title">
+                <i class="fa-solid fa-headset"></i> ডেভেলপার সাপোর্ট ও যোগাযোগ
             </div>
-            <div class="promo-links">
-                <a href="https://facebook.com" target="_blank" class="social-btn fb-btn">
-                    <i class="fa-brands fa-facebook"></i> ফেসবুক প্রোফাইল
+            <p class="dev-promo-text">
+                যেকোনো হেল্পের জন্য অথবা আপনার নিজের জন্য নতুন কোনো ওয়েবসাইট, অ্যাপ বা কাস্টম টুলস তৈরি করতে সরাসরি ডেভেলপারের সাথে যোগাযোগ করুন:
+            </p>
+            <div class="contact-btn-group">
+                <!-- এখানে আপনার ফেসবুক প্রোফাইল লিংক দিন -->
+                <a href="https://facebook.com" target="_blank" class="contact-btn fb-contact-btn">
+                    <i class="fa-brands fa-facebook"></i> ফেসবুক প্রোফাইল দেখুন <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
                 </a>
-                <a href="https://youtube.com" target="_blank" class="social-btn yt-btn">
-                    <i class="fa-brands fa-youtube"></i> EMON 1M চ্যানেল
+                <!-- আপনার হোয়াটসঅ্যাপ নাম্বার যুক্ত করা হয়েছে -->
+                <a href="https://wa.me/8801728576508?text=হ্যালো%20ইমন%20ভাই,%20আপনার%20ওয়েবসাইট%20থেকে%20যোগাযোগ%20করছি।" target="_blank" class="contact-btn wa-contact-btn">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.15rem;"></i> হোয়াটসঅ্যাপ: 01728576508
                 </a>
             </div>
         </div>
@@ -441,7 +473,7 @@
         <!-- ================= TAB 1: OFFICE TOOLS ================= -->
         <section id="tab-office" class="tab-section active">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="margin-bottom: 0;">
                     <div>
                         <div class="card-title" style="color: var(--primary-cyan);">
                             <i class="fa-solid fa-calculator" style="color: var(--accent-gold);"></i>
@@ -451,8 +483,8 @@
                             মাসিক বেতন থেকে ১০ দিন, ১৪ দিন বা যেকোনো দিনের ওভারটাইমসহ নিখুঁত হিসাব।
                         </p>
                     </div>
-                    <button class="pdf-status-btn" onclick="exportFullPDF()" style="padding: 8px 12px;">
-                        <i class="fa-solid fa-download"></i> PDF
+                    <button class="pdf-status-btn" onclick="exportFullPDF()" style="padding: 8px 12px; background: #00d2ff; color: #000; border: none;">
+                        <i class="fa-solid fa-file-pdf"></i> রিপোর্ট PDF
                     </button>
                 </div>
             </div>
@@ -490,7 +522,7 @@
 
                 <!-- 2. Custom Days & Overtime -->
                 <div class="card-title" style="color: var(--accent-gold); margin-bottom: 12px;">
-                    <i class="fa-solid fa-calendar-check"></i> ২. নির্দিষ্ট কাজের দিন ও ওভারটাইম হিসাব
+                    <i class="fa-solid fa-calendar-check"></i> ২. নির্দিষ্ট কাজের দিন ও ওভারটাইম হিসাব (১০ দিন, ১৪ দিন ইত্যাদি)
                 </div>
                 <div class="grid-2">
                     <div class="input-group">
@@ -586,10 +618,10 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="txTitle" class="form-control" placeholder="বিবরণ (যেমন: বাসার খরচ, চা খরচ)">
+                    <input type="text" id="txTitle" class="form-control" placeholder="বিবরণ">
                 </div>
                 <div class="input-group">
-                    <input type="number" id="txAmount" class="form-control" placeholder="পরিমাণ (৳)">
+                    <input type="number" id="txAmount" class="form-control" placeholder="পরিমাণ">
                 </div>
                 <button class="btn-action btn-cyan" onclick="addTransaction()">
                     যুক্ত করুন <i class="fa-solid fa-pen-to-square"></i>
@@ -621,7 +653,7 @@
         <section id="tab-notes" class="tab-section">
             <div class="card">
                 <div class="card-title" style="color: var(--accent-gold); margin-bottom: 12px;">
-                    <i class="fa-solid fa-book"></i> স্মার্ট নোটবুক ও জরুরি ডায়েরি
+                    <i class="fa-solid fa-book"></i> ব্যক্তিগত নোটবুক ও ডায়েরি
                 </div>
                 <div class="input-group">
                     <input type="text" id="noteTitle" class="form-control" placeholder="নোটের শিরোনাম...">
@@ -640,11 +672,11 @@
         <section id="tab-trading" class="tab-section">
             <div class="card">
                 <div class="card-title" style="color: var(--primary-cyan); margin-bottom: 12px;">
-                    <i class="fa-solid fa-chart-candlestick"></i> ট্রেডিং প্রফিট ও রিস্ক ম্যানেজমেন্ট
+                    <i class="fa-solid fa-chart-line"></i> ট্রেডিং প্রফিট ও রিস্ক ক্যালকুলেটর
                 </div>
                 <div class="grid-2">
                     <div class="input-group">
-                        <label class="input-label">মোট ক্যাপিটাল ($ / ৳):</label>
+                        <label class="input-label">মোট ব্যালেন্স ($ / ৳):</label>
                         <input type="number" id="tradeCap" class="form-control" placeholder="100">
                     </div>
                     <div class="input-group">
@@ -653,7 +685,7 @@
                     </div>
                 </div>
                 <button class="btn-action btn-cyan" onclick="calcTradingRisk()">
-                    ট্রেডিং প্ল্যান দেখুন <i class="fa-solid fa-bolt"></i>
+                    হিসাব দেখুন <i class="fa-solid fa-bolt"></i>
                 </button>
                 <div id="tradeResultBox" class="result-box"></div>
             </div>
@@ -663,14 +695,14 @@
         <section id="tab-shop" class="tab-section">
             <div class="card">
                 <div class="card-title" style="color: var(--accent-green); margin-bottom: 12px;">
-                    <i class="fa-solid fa-store"></i> দোকান ও কাস্টমার বাকি খাতা
+                    <i class="fa-solid fa-store"></i> দোকান ও বাকি খাতা
                 </div>
                 <div class="input-group">
-                    <input type="text" id="custName" class="form-control" placeholder="কাস্টমার বা দোকানের নাম">
+                    <input type="text" id="custName" class="form-control" placeholder="নাম বা বিবরণ">
                 </div>
                 <div class="grid-2">
                     <div class="input-group">
-                        <input type="number" id="custDue" class="form-control" placeholder="বাকি/পাওনা টাকা (৳)">
+                        <input type="number" id="custDue" class="form-control" placeholder="টাকার পরিমাণ (৳)">
                     </div>
                     <div class="input-group">
                         <select id="custType" class="form-control">
@@ -689,7 +721,18 @@
         <!-- Footer -->
         <footer class="app-footer">
             <div class="passion">Developed with Passion by Emon Khan</div>
-            <p>© 2026 EMON SMART MANAGER. All Rights Reserved.</p>
+            <p style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 12px;">
+                যেকোনো হেল্প বা নতুন ওয়েবসাইট তৈরি করতে সরাসরি যোগাযোগ করুন:
+            </p>
+            <div class="footer-btns">
+                <a href="https://facebook.com" target="_blank" class="footer-pill">
+                    <i class="fa-brands fa-facebook"></i> Official Facebook Profile
+                </a>
+                <a href="https://wa.me/8801728576508" target="_blank" class="footer-pill" style="color: #6ee7b7; border-color: #059669;">
+                    <i class="fa-brands fa-whatsapp"></i> 01728576508
+                </a>
+            </div>
+            <div class="footer-copy">© 2026 EMON SMART MANAGER. All Rights Reserved.</div>
         </footer>
 
     </div>
@@ -719,7 +762,7 @@
     </nav>
 
     <script>
-        // Pre-loaded authentic data from user's screenshots
+        // Pre-loaded data from user's screenshots
         const defaultTransactions = [
             { id: 1, title: "আমার খরচ", date: "১৮ অক্টো", amount: 20, type: "expense" },
             { id: 2, title: "বাসার খরচ", date: "১৮ অক্টো", amount: 270, type: "expense" },
@@ -751,12 +794,11 @@
             { id: 28, title: "13 দিনের বেতন ও ওভারটাইম", date: "৩ অক্টো", amount: 3295.83, type: "income" }
         ];
 
-        let transactions = JSON.parse(localStorage.getItem('emon_tx_pro')) || defaultTransactions;
+        let transactions = JSON.parse(localStorage.getItem('emon_tx_v3')) || defaultTransactions;
         let currentFilter = 'all';
         let lastCalculatedSalary = 0;
         let lastWorkedDays = 0;
 
-        // Switch Bottom Navigation Tabs
         function switchTab(tabId, btn) {
             document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
@@ -765,7 +807,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 1. Office Tools: Live Rate Calculator
         function calcRates() {
             const salary = parseFloat(document.getElementById('baseSalary').value) || 0;
             const shift = parseFloat(document.getElementById('shiftHours').value) || 8;
@@ -778,7 +819,6 @@
             document.getElementById('rateMin').innerText = '৳' + perMin.toFixed(2);
         }
 
-        // 2. Custom Days Salary Calculator
         function calculateCustomSalary() {
             const salary = parseFloat(document.getElementById('baseSalary').value) || 0;
             const shift = parseFloat(document.getElementById('shiftHours').value) || 8;
@@ -812,7 +852,6 @@
             alert('সফলভাবে খরচ খাতায় যুক্ত হয়েছে!');
         }
 
-        // 3. Profit Margin Calculator
         function calcProfit() {
             const buy = parseFloat(document.getElementById('buyPrice').value) || 0;
             const sell = parseFloat(document.getElementById('sellPrice').value) || 0;
@@ -825,7 +864,6 @@
                 : `<span style="color:var(--accent-red);font-weight:700;">লস/ক্ষতি: ৳${Math.abs(diff).toFixed(2)}</span>`;
         }
 
-        // 4. Discount Calculator
         function calcDiscount() {
             const orig = parseFloat(document.getElementById('origPrice').value) || 0;
             const disc = parseFloat(document.getElementById('discPercent').value) || 0;
@@ -836,7 +874,6 @@
             box.innerHTML = `<span style="color:var(--accent-purple);font-weight:700;">ছাড়ের পর মূল্য: ৳${finalP.toFixed(2)} (সাশ্রয়: ৳${saved.toFixed(2)})</span>`;
         }
 
-        // Wallet Management
         function setFilter(filterType, btn) {
             currentFilter = filterType;
             document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
@@ -874,7 +911,7 @@
         }
 
         function saveAndRender() {
-            localStorage.setItem('emon_tx_pro', JSON.stringify(transactions));
+            localStorage.setItem('emon_tx_v3', JSON.stringify(transactions));
             renderTransactions();
         }
 
@@ -917,7 +954,6 @@
             `).join('');
         }
 
-        // Notebook Logic
         let notes = JSON.parse(localStorage.getItem('emon_notes')) || [];
         function addNote() {
             const title = document.getElementById('noteTitle').value.trim();
@@ -938,7 +974,6 @@
             `).join('');
         }
 
-        // Trading Risk Logic
         function calcTradingRisk() {
             const cap = parseFloat(document.getElementById('tradeCap').value) || 0;
             const risk = parseFloat(document.getElementById('tradeRisk').value) || 2;
@@ -949,7 +984,6 @@
             box.innerHTML = `সর্বোচ্চ স্টপ-লস ঝুঁকি: <b>$${maxLoss.toFixed(2)}</b> | টার্গেট প্রফিট (1:2): <b style="color:var(--accent-green);">$${targetProfit.toFixed(2)}</b>`;
         }
 
-        // Shop Ledger Logic
         let shopDues = JSON.parse(localStorage.getItem('emon_shop')) || [];
         function addShopDue() {
             const name = document.getElementById('custName').value.trim();
@@ -974,7 +1008,6 @@
             `).join('');
         }
 
-        // PDF Export
         function exportFullPDF() {
             const element = document.getElementById('printable-area');
             html2pdf().from(element).set({
@@ -985,7 +1018,6 @@
             }).save();
         }
 
-        // Initialize App
         renderTransactions();
         renderNotes();
         renderShop();
