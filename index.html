@@ -1,144 +1,1052 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>EMON SMART MANAGER | Cloud Portal</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    * { font-family: 'Rajdhani', sans-serif; -webkit-tap-highlight-color: transparent; }
-    .font-orbitron { font-family: 'Orbitron', sans-serif; }
-    body { background-color: #030712; color: #f3f4f6; }
-    .card-glass { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(0, 242, 254, 0.25); backdrop-filter: blur(16px); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMON SMART MANAGER PRO - Emon Khan</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #060913;
+            --bg-card: #101626;
+            --bg-input: #0b0f1c;
+            --border-color: #1e2942;
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --accent-orange: #f59e0b;
+            --accent-green: #10b981;
+            --accent-purple: #a855f7;
+            --accent-red: #ef4444;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            padding-bottom: 85px;
+            overflow-x: hidden;
+        }
+
+        /* Top Promotional Ticker */
+        .promo-ticker {
+            background: linear-gradient(90deg, #1e1b4b, #0f172a, #1e1b4b);
+            border-bottom: 1px solid #312e81;
+            padding: 6px 0;
+            font-size: 13px;
+            color: #38bdf8;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .promo-ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 22s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* Header Section */
+        header {
+            background: rgba(16, 22, 38, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .brand-title .emon { color: var(--primary); }
+        .brand-title .smart { color: var(--accent-orange); }
+        .dev-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .dev-subtitle b { color: var(--primary); }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .badge-btn {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+        .badge-btn:hover {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        /* Container & Promotional Hub */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 12px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.25);
+            color: #fff;
+        }
+        .promo-banner-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .promo-banner-text p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .promo-social-btns {
+            display: flex;
+            gap: 8px;
+        }
+        .promo-social-btns a {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 16px;
+            backdrop-filter: blur(5px);
+            transition: 0.2s;
+        }
+        .promo-social-btns a:hover {
+            background: #fff;
+            color: #3a7bd5;
+            transform: scale(1.1);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Inputs & Buttons */
+        label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            margin-top: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.15);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .stat-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px 6px;
+            text-align: center;
+        }
+        .stat-box small {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .stat-box strong {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+            color: #000;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-orange { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .btn-green { background: linear-gradient(90deg, #10b981, #34d399); }
+        .btn-purple { background: linear-gradient(90deg, #a855f7, #c084fc); color: #fff; }
+        .btn-blue { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: #fff; }
+
+        /* Result Display Box */
+        .result-box {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px dashed var(--accent-green);
+            display: none;
+        }
+        .result-box.active { display: block; }
+        .result-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .mini-btn {
+            flex: 1;
+            padding: 7px;
+            font-size: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        /* Transaction List (খরচ খাতা) */
+        .tx-list {
+            margin-top: 12px;
+            max-height: 420px;
+            overflow-y: auto;
+        }
+        .tx-item {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tx-info h5 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .tx-info span {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .tx-amount {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .tx-plus { color: var(--accent-green); }
+        .tx-minus { color: var(--accent-red); }
+        .del-btn {
+            color: var(--text-muted);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 14px;
+        }
+        .del-btn:hover { color: var(--accent-red); }
+
+        /* Tab Views */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer Promotion */
+        footer {
+            text-align: center;
+            padding: 24px 16px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+        .footer-title {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .social-links-grid {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .social-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 13px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .social-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 15, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 1000;
+        }
+        .nav-item {
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 11px;
+            cursor: pointer;
+            flex: 1;
+            padding: 4px 0;
+            transition: 0.2s;
+            position: relative;
+        }
+        .nav-item i {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .nav-item.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* Print Media style for Branded PDF */
+        @media print {
+            .bottom-nav, .promo-ticker, .btn, .del-btn { display: none !important; }
+            body { background: #fff; color: #000; padding: 0; }
+            .card { border: 1px solid #ccc; background: #fff; color: #000; box-shadow: none; }
+        }
+    </style>
 </head>
-<body class="min-h-screen pb-24">
+<body>
 
-  <!-- লকিং ও লগইন স্ক্রিন -->
-  <div id="authGate" class="fixed inset-0 bg-[#030712] z-[100] flex items-center justify-center p-4">
-    <div class="card-glass p-6 rounded-3xl w-full max-w-sm border-cyan-500/40 shadow-2xl space-y-5 text-center">
-      <div>
-        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 text-3xl shadow-lg shadow-cyan-500/30 mb-3">
-          <i class="fa-solid fa-shield-halved"></i>
-        </div>
-        <h1 class="text-xl font-black tracking-wider text-cyan-400 font-orbitron">EMON<span class="text-amber-400">|MANAGER</span></h1>
-        <p class="text-xs text-gray-400 mt-1">আপনার হিসাব সুরক্ষিত রাখতে জিমেইল দিয়ে প্রবেশ করুন</p>
-      </div>
-
-      <div class="grid grid-cols-2 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-bold">
-        <button id="tabLoginBtn" onclick="toggleAuthMode('login')" class="py-2 rounded-lg bg-cyan-500 text-slate-950 transition">লগইন</button>
-        <button id="tabSignupBtn" onclick="toggleAuthMode('signup')" class="py-2 rounded-lg text-gray-400 transition">সাইন-আপ</button>
-      </div>
-
-      <p id="authError" class="text-xs text-rose-400 font-bold hidden bg-rose-950/50 border border-rose-500/30 p-2 rounded-lg"></p>
-
-      <div class="space-y-3 text-left text-xs">
-        <div id="nameFieldWrap" class="hidden">
-          <label class="text-gray-400 block mb-1 font-bold">আপনার নাম:</label>
-          <input type="text" id="authName" placeholder="Emon Khan" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-400">
-        </div>
-        <div>
-          <label class="text-gray-400 block mb-1 font-bold">জিমেইল:</label>
-          <input type="email" id="authEmail" placeholder="example@gmail.com" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-400">
-        </div>
-        <div>
-          <label class="text-gray-400 block mb-1 font-bold">পাসওয়ার্ড:</label>
-          <input type="password" id="authPass" placeholder="••••••••" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-400">
-        </div>
-      </div>
-
-      <button onclick="submitAuth()" id="authSubmitBtn" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black py-3 rounded-xl text-sm shadow-lg shadow-cyan-500/20">
-        অ্যাপে প্রবেশ করুন <i class="fa-solid fa-arrow-right ml-1"></i>
-      </button>
+    <!-- Promotional Marquee Ticker -->
+    <div class="promo-ticker">
+        <span>🚀 স্বাগতম <b>EMON SMART MANAGER PRO</b>-তে! ডেভেলপার ও ওনার: <b>Emon Khan</b> | যেকোনো কাস্টম ওয়েব অ্যাপ, পাইথন অটোমেশন স্ক্রিপ্ট ও ডিজিটাল কন্টেন্টের জন্য ফলো করুন আমাদের অফিসিয়াল পেজ! ⚡</span>
     </div>
-  </div>
 
-  <!-- মূল অ্যাপ কন্টেইনার -->
-  <div id="mainAppContainer" class="hidden">
-    <header class="max-w-4xl mx-auto p-3.5 flex justify-between items-center bg-[#090d16]/95 border-b border-cyan-500/20 sticky top-0 z-50">
-      <div>
-        <h1 class="text-sm sm:text-base font-black tracking-wider text-cyan-400 font-orbitron">EMON<span class="text-amber-400">|SMART MANAGER</span></h1>
-        <p class="text-[10px] text-gray-400 font-semibold">স্ট্যাটাস: <span id="syncIndicator" class="text-emerald-400 font-bold">● ডেটাবেস সেভড</span></p>
-      </div>
-      <div class="flex items-center gap-2">
-        <div class="text-right">
-          <p id="loggedUserName" class="text-xs font-bold text-cyan-300"></p>
-          <p id="loggedUserEmail" class="text-[10px] text-gray-400"></p>
+    <!-- Top Header -->
+    <header>
+        <div>
+            <div class="brand-title"><span class="emon">EMON</span><span class="smart">|SMART MANAGER</span></div>
+            <div class="dev-subtitle">Dev & Owner: <b>Emon Khan</b> <i class="fa-solid fa-circle-check" style="color:#00d2ff;"></i></div>
         </div>
-        <button onclick="logoutUser()" class="bg-rose-500/20 border border-rose-500/40 text-rose-400 px-2.5 py-1.5 rounded-xl text-xs font-bold" title="লগআউট">
-          <i class="fa-solid fa-power-off"></i>
-        </button>
-      </div>
+        <div class="header-actions">
+            <button class="badge-btn" onclick="window.print()">
+                <i class="fa-solid fa-file-pdf"></i> All PDF Active
+            </button>
+        </div>
     </header>
 
-    <main class="max-w-4xl mx-auto p-3 space-y-4">
-      <div class="card-glass p-4 rounded-2xl text-center">
-        <h2 class="text-base font-bold text-cyan-300">স্বাগতম! আপনার ক্লাউড ড্যাশবোর্ড সফলভাবে সক্রিয় হয়েছে।</h2>
-        <p class="text-xs text-gray-400 mt-1">এখন থেকে আপনার সব হিসাব এই অ্যাকাউন্টে সুরক্ষিত থাকবে।</p>
-      </div>
-    </main>
-  </div>
+    <div class="container">
+        <!-- High-Visibility Promotional Banner -->
+        <div class="promo-banner">
+            <div class="promo-banner-text">
+                <h4><i class="fa-solid fa-crown"></i> Emon Khan Official Hub</h4>
+                <p>নতুন আপডেট ও প্রিমিয়াম টুলস পেতে যুক্ত থাকুন</p>
+            </div>
+            <div class="promo-social-btns">
+                <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://github.com/EMONXPLOIT" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" onclick="shareApp()" title="Share App"><i class="fa-solid fa-share-nodes"></i></a>
+            </div>
+        </div>
 
-  <script>
-    let authMode = 'login';
-    window.onload = async function() {
-      const res = await fetch('/api/session');
-      const result = await res.json();
-      if(result.logged_in) { unlockApp(result.name, result.email, result.data); }
-    };
+        <!-- ==================== TAB 1: অফিস টুলস (OFFICE TOOLS) ==================== -->
+        <div id="tab-office" class="tab-content active">
+            
+            <!-- Salary Calculator Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--primary);">
+                        <i class="fa-solid fa-calculator"></i> ১. মাসিক মূল বেতন ও শিফট রেট
+                    </div>
+                    <button class="badge-btn" onclick="window.print()"><i class="fa-solid fa-download"></i> রিপোর্ট PDF</button>
+                </div>
 
-    function toggleAuthMode(mode) {
-      authMode = mode;
-      document.getElementById('authError').classList.add('hidden');
-      if(mode === 'signup') {
-        document.getElementById('nameFieldWrap').classList.remove('hidden');
-        document.getElementById('tabSignupBtn').className = "py-2 rounded-lg bg-cyan-500 text-slate-950 transition";
-        document.getElementById('tabLoginBtn').className = "py-2 rounded-lg text-gray-400 transition";
-        document.getElementById('authSubmitBtn').innerHTML = 'সাইন-আপ ও প্রবেশ করুন <i class="fa-solid fa-user-plus ml-1"></i>';
-      } else {
-        document.getElementById('nameFieldWrap').classList.add('hidden');
-        document.getElementById('tabLoginBtn').className = "py-2 rounded-lg bg-cyan-500 text-slate-950 transition";
-        document.getElementById('tabSignupBtn').className = "py-2 rounded-lg text-gray-400 transition";
-        document.getElementById('authSubmitBtn').innerHTML = 'অ্যাপে প্রবেশ করুন <i class="fa-solid fa-arrow-right ml-1"></i>';
-      }
-    }
+                <label>মাসিক মূল বেতন (৳ - আনলিমিটেড):</label>
+                <input type="number" id="baseSalary" placeholder="যেমন: 15000 বা 7000" oninput="calcShiftRates()">
 
-    async function submitAuth() {
-      const name = document.getElementById('authName').value;
-      const email = document.getElementById('authEmail').value;
-      const password = document.getElementById('authPass').value;
-      const errBox = document.getElementById('authError');
+                <label>প্রতিদিনের শিফট ডিউটি (ঘণ্টা):</label>
+                <input type="number" id="shiftHours" value="8" oninput="calcShiftRates()">
 
-      const res = await fetch('/api/auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: authMode, name, email, password })
-      });
-      const result = await res.json();
+                <div class="grid-3">
+                    <div class="stat-box">
+                        <small>১ দিনের বেতন রেট</small>
+                        <strong id="rateDay" style="color: var(--accent-green);">৳0.00</strong>
+                    </div>
+                    <div class="stat-box">
+                        <small>১ ঘণ্টার রেট</small>
+                        <strong id="rateHour" style="color: var(--primary);">৳0.00</strong>
+                    </div>
+                    <div class="stat-box">
+                        <small>১ মিনিটের রেট</small>
+                        <strong id="rateMin" style="color: var(--accent-purple);">৳0.00</strong>
+                    </div>
+                </div>
 
-      if(result.status === 'success') {
-        unlockApp(result.name, result.email, result.data);
-      } else {
-        errBox.innerText = result.msg;
-        errBox.classList.remove('hidden');
-      }
-    }
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 16px 0;">
 
-    function unlockApp(name, email, cloudData) {
-      document.getElementById('authGate').classList.add('hidden');
-      document.getElementById('mainAppContainer').classList.remove('hidden');
-      document.getElementById('loggedUserName').innerText = name;
-      document.getElementById('loggedUserEmail').innerText = email;
-    }
+                <div class="card-title" style="color: var(--accent-orange); margin-bottom: 10px;">
+                    <i class="fa-solid fa-calendar-check"></i> ২. নির্দিষ্ট কাজের দিন ও ওভারটাইম হিসাব
+                </div>
 
-    async function logoutUser() {
-      if(confirm("লগআউট করতে চান?")) {
-        await fetch('/api/logout', { method: 'POST' });
-        location.reload();
-      }
-    }
-  </script>
+                <div class="grid-2">
+                    <div>
+                        <label>মোট কয়দিন কাজ করেছে?</label>
+                        <input type="number" id="workDays" placeholder="যেমন: 10 বা 15">
+                    </div>
+                    <div>
+                        <label>মোট ওভারটাইম (ঘণ্টা):</label>
+                        <input type="number" id="otHours" value="0">
+                    </div>
+                </div>
+
+                <label>অগ্রিম নিয়েছে / কর্তন (৳):</label>
+                <input type="number" id="advanceDeduct" value="0">
+
+                <button class="btn btn-orange" onclick="calculateTotalSalary()">
+                    নির্দিষ্ট দিনের মোট টাকা বের করুন <i class="fa-solid fa-bolt"></i>
+                </button>
+
+                <div id="salaryResultBox" class="result-box">
+                    <div id="salaryResultText" style="font-size: 14px; line-height: 1.6;"></div>
+                    <div class="result-actions">
+                        <button class="mini-btn" onclick="addSalaryToExpense()"><i class="fa-solid fa-wallet"></i> খরচ খাতায় যুক্ত করুন</button>
+                        <button class="mini-btn" onclick="shareText('salaryResultText')"><i class="fa-brands fa-whatsapp"></i> শেয়ার হিসাব</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profit Margin Card -->
+            <div class="card">
+                <div class="card-title" style="color: var(--accent-green); margin-bottom: 10px;">
+                    <i class="fa-solid fa-chart-pie"></i> ৩. পণ্যের লাভ-ক্ষতি ও প্রফিট মার্জিন
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <label>পাইকারি কেনা দাম (৳)</label>
+                        <input type="number" id="buyPrice" placeholder="কেনা দাম">
+                    </div>
+                    <div>
+                        <label>খুচরা বিক্রয় মূল্য (৳)</label>
+                        <input type="number" id="sellPrice" placeholder="বিক্রয় দাম">
+                    </div>
+                </div>
+                <button class="btn btn-green" onclick="calcProfit()">
+                    নিট লাভ বের করুন <i class="fa-solid fa-chart-line"></i>
+                </button>
+                <div id="profitResultBox" class="result-box"></div>
+            </div>
+
+            <!-- Shopping Discount Card -->
+            <div class="card">
+                <div class="card-title" style="color: var(--accent-purple); margin-bottom: 10px;">
+                    <i class="fa-solid fa-tags"></i> ৪. শপিং ও ডিসকাউন্ট হিসাব
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <label>মূল দাম (৳)</label>
+                        <input type="number" id="origPrice" placeholder="মূল দাম">
+                    </div>
+                    <div>
+                        <label>ছাড়ের হার (%)</label>
+                        <input type="number" id="discPercent" placeholder="ছাড় (%)">
+                    </div>
+                </div>
+                <button class="btn btn-purple" onclick="calcDiscount()">
+                    ছাড়ের পর মূল্য দেখুন <i class="fa-solid fa-tag"></i>
+                </button>
+                <div id="discResultBox" class="result-box"></div>
+            </div>
+
+        </div>
+
+        <!-- ==================== TAB 2: খরচ খাতা (EXPENSE TRACKER) ==================== -->
+        <div id="tab-expense" class="tab-content">
+            <div class="grid-3" style="margin-bottom: 14px; margin-top: 0;">
+                <div class="stat-box">
+                    <small>পকেটে এলো (+)</small>
+                    <strong id="totalIn" style="color: var(--accent-green);">৳0.00</strong>
+                </div>
+                <div class="stat-box">
+                    <small>মোট খরচ (-)</small>
+                    <strong id="totalOut" style="color: var(--accent-red);">৳0.00</strong>
+                </div>
+                <div class="stat-box">
+                    <small>অবশিষ্ট ব্যালেন্স</small>
+                    <strong id="netBalance" style="color: var(--primary);">৳0.00</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <select id="txType">
+                    <option value="expense">টাকা খরচ (-)</option>
+                    <option value="income">পকেটে এলো (+)</option>
+                </select>
+                <input type="text" id="txDesc" placeholder="বিবরণ (যেমন: সকালের নাস্তা, বাসার খরচ)" style="margin-top: 10px;">
+                <input type="number" id="txAmount" placeholder="পরিমাণ (৳)" style="margin-top: 10px;">
+                
+                <button class="btn btn-blue" onclick="addTransaction()">
+                    যুক্ত করুন <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title"><i class="fa-solid fa-list-check"></i> লেনদেনের ইতিহাস</div>
+                    <button class="mini-btn" style="max-width: 120px;" onclick="shareExpenseSummary()">
+                        <i class="fa-solid fa-share"></i> রিপোর্ট শেয়ার
+                    </button>
+                </div>
+                <input type="text" id="searchTx" placeholder="🔍 খরচের নাম লিখে খুঁজুন..." oninput="renderTransactions()" style="margin-bottom: 10px; padding: 9px 12px; font-size: 13px;">
+                
+                <div id="txListContainer" class="tx-list"></div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 3: নোটবুক (NOTEBOOK) ==================== -->
+        <div id="tab-notebook" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="color: var(--accent-orange); margin-bottom: 10px;">
+                    <i class="fa-solid fa-book-open"></i> স্মার্ট নোটবুক ও আইডিয়া প্যাড
+                </div>
+                <input type="text" id="noteTitle" placeholder="নোটের শিরোনাম...">
+                <textarea id="noteBody" rows="4" placeholder="আপনার প্রয়োজনীয় হিসাব, স্ক্রিপ্ট বা নোট লিখুন..." style="margin-top: 10px;"></textarea>
+                <button class="btn btn-orange" onclick="saveNote()">নোট সেভ করুন <i class="fa-solid fa-floppy-disk"></i></button>
+            </div>
+            <div id="notesContainer"></div>
+        </div>
+
+        <!-- ==================== TAB 4: ট্রেডিং (TRADING CALCULATOR) ==================== -->
+        <div id="tab-trading" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="color: var(--primary); margin-bottom: 10px;">
+                    <i class="fa-solid fa-chart-candlestick"></i> ট্রেডিং প্রফিট ও রিস্ক ম্যানেজমেন্ট
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <label>টোটাল ক্যাপিটাল ($ / ৳)</label>
+                        <input type="number" id="tradeCap" placeholder="যেমন: 100">
+                    </div>
+                    <div>
+                        <label>রিস্ক প্রতি ট্রেড (%)</label>
+                        <input type="number" id="tradeRisk" value="2">
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <label>এন্ট্রি প্রাইস</label>
+                        <input type="number" id="entryPrice" placeholder="যেমন: 50">
+                    </div>
+                    <div>
+                        <label>টার্গেট / এক্সিট প্রাইস</label>
+                        <input type="number" id="exitPrice" placeholder="যেমন: 58">
+                    </div>
+                </div>
+                <button class="btn btn-green" onclick="calcTrading()">ট্রেডিং রেজাল্ট দেখুন <i class="fa-solid fa-arrow-trend-up"></i></button>
+                <div id="tradeResultBox" class="result-box"></div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 5: দোকান খাতা (SHOP LEDGER) ==================== -->
+        <div id="tab-shop" class="tab-content">
+            <div class="card">
+                <div class="card-title" style="color: var(--accent-purple); margin-bottom: 10px;">
+                    <i class="fa-solid fa-store"></i> কাস্টমার বাকি ও পাওনা খাতা
+                </div>
+                <input type="text" id="custName" placeholder="কাস্টমার বা ব্যক্তির নাম">
+                <div class="grid-2" style="margin-top: 10px;">
+                    <select id="duesType">
+                        <option value="pabo">আমি পাবো (বাকি দেওয়া)</option>
+                        <option value="debo">সে পাবে (কর্জ নেওয়া)</option>
+                    </select>
+                    <input type="number" id="duesAmount" placeholder="টাকার পরিমাণ (৳)">
+                </div>
+                <button class="btn btn-purple" onclick="addShopDues()">খাতায় যুক্ত করুন <i class="fa-solid fa-user-plus"></i></button>
+            </div>
+            <div class="card">
+                <div class="card-title" style="margin-bottom: 10px;"><i class="fa-solid fa-users"></i> বাকি ও কর্জ তালিকা</div>
+                <div id="shopDuesList" class="tx-list"></div>
+            </div>
+        </div>
+
+        <!-- Promotional Footer -->
+        <footer>
+            <div class="footer-title">Developed with Passion by Emon Khan</div>
+            <div class="social-links-grid">
+                <a href="https://facebook.com" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-facebook" style="color:#1877F2;"></i> Official Facebook
+                </a>
+                <a href="https://youtube.com" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-youtube" style="color:#FF0000;"></i> EMON 1M YouTube
+                </a>
+                <a href="https://github.com/EMONXPLOIT" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-github"></i> EMONXPLOIT
+                </a>
+            </div>
+            <p style="font-size: 11px; color: var(--text-muted);">© 2026 EMON SMART MANAGER PRO. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Bottom App Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('office', this)">
+            <i class="fa-solid fa-calculator"></i> অফিস টুলস
+        </div>
+        <div class="nav-item" onclick="switchTab('notebook', this)">
+            <i class="fa-solid fa-book"></i> নোটবুক
+        </div>
+        <div class="nav-item" onclick="switchTab('trading', this)">
+            <i class="fa-solid fa-chart-line"></i> ট্রেডিং
+        </div>
+        <div class="nav-item" onclick="switchTab('expense', this)">
+            <i class="fa-solid fa-wallet"></i> খরচ খাতা
+        </div>
+        <div class="nav-item" onclick="switchTab('shop', this)">
+            <i class="fa-solid fa-shop"></i> দোকান খাতা
+        </div>
+    </nav>
+
+    <script>
+        // Format Number cleanly to 2 decimal places if needed
+        function fmt(num) {
+            return Number(num).toFixed(2);
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabName, el) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            el.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 1. Shift & Salary Calculator
+        let lastCalculatedNetSalary = 0;
+        let lastWorkedDays = 0;
+
+        function calcShiftRates() {
+            const salary = parseFloat(document.getElementById('baseSalary').value) || 0;
+            const shift = parseFloat(document.getElementById('shiftHours').value) || 8;
+            
+            const perDay = salary / 30;
+            const perHour = shift > 0 ? perDay / shift : 0;
+            const perMin = perHour / 60;
+
+            document.getElementById('rateDay').innerText = '৳' + fmt(perDay);
+            document.getElementById('rateHour').innerText = '৳' + fmt(perHour);
+            document.getElementById('rateMin').innerText = '৳' + fmt(perMin);
+        }
+
+        function calculateTotalSalary() {
+            const salary = parseFloat(document.getElementById('baseSalary').value) || 0;
+            const shift = parseFloat(document.getElementById('shiftHours').value) || 8;
+            const days = parseFloat(document.getElementById('workDays').value) || 0;
+            const ot = parseFloat(document.getElementById('otHours').value) || 0;
+            const adv = parseFloat(document.getElementById('advanceDeduct').value) || 0;
+
+            const perDay = salary / 30;
+            const perHour = shift > 0 ? perDay / shift : 0;
+
+            const daysPay = days * perDay;
+            const otPay = ot * perHour;
+            const netPay = (daysPay + otPay) - adv;
+
+            lastCalculatedNetSalary = netPay;
+            lastWorkedDays = days;
+
+            const box = document.getElementById('salaryResultBox');
+            const text = document.getElementById('salaryResultText');
+            box.classList.add('active');
+            text.innerHTML = `
+                <b>📊 বেতন রিপোর্ট (Emon Smart Manager):</b><br>
+                • ${days} দিনের মূল বেতন: <b>৳${fmt(daysPay)}</b><br>
+                • ${ot} ঘণ্টা ওভারটাইম: <b>৳${fmt(otPay)}</b><br>
+                • অগ্রিম কর্তন: <b>-৳${fmt(adv)}</b><br>
+                <hr style="border:0;border-top:1px dashed #334155;margin:6px 0;">
+                ✅ <b>সর্বমোট প্রাপ্য টাকা: <span style="color:#10b981;font-size:17px;">৳${fmt(netPay)}</span></b>
+            `;
+        }
+
+        function addSalaryToExpense() {
+            if (lastCalculatedNetSalary <= 0) return alert('আগে বেতন হিসাব করুন!');
+            const txList = JSON.parse(localStorage.getItem('emon_tx_v2') || '[]');
+            const today = new Date().toLocaleDateString('bn-BD', { day: 'numeric', month: 'short' });
+            txList.unshift({
+                id: Date.now(),
+                type: 'income',
+                desc: `${lastWorkedDays} দিনের বেতন ও ওভারটাইম`,
+                amount: parseFloat(fmt(lastCalculatedNetSalary)),
+                date: today
+            });
+            localStorage.setItem('emon_tx_v2', JSON.stringify(txList));
+            renderTransactions();
+            alert('খরচ খাতায় (পকেটে এলো) সফলভাবে যুক্ত হয়েছে!');
+        }
+
+        // 2. Profit Calculator
+        function calcProfit() {
+            const buy = parseFloat(document.getElementById('buyPrice').value) || 0;
+            const sell = parseFloat(document.getElementById('sellPrice').value) || 0;
+            const diff = sell - buy;
+            const margin = buy > 0 ? (diff / buy) * 100 : 0;
+            
+            const box = document.getElementById('profitResultBox');
+            box.classList.add('active');
+            if (diff >= 0) {
+                box.innerHTML = `✅ নিট লাভ: <b style="color:#10b981;">৳${fmt(diff)}</b> (প্রফিট মার্জিন: <b>${fmt(margin)}%</b>)`;
+            } else {
+                box.innerHTML = `⚠️ লস হয়েছে: <b style="color:#ef4444;">৳${fmt(Math.abs(diff))}</b> (${fmt(margin)}%)`;
+            }
+        }
+
+        // 3. Discount Calculator
+        function calcDiscount() {
+            const orig = parseFloat(document.getElementById('origPrice').value) || 0;
+            const disc = parseFloat(document.getElementById('discPercent').value) || 0;
+            const saved = (orig * disc) / 100;
+            const finalP = orig - saved;
+
+            const box = document.getElementById('discResultBox');
+            box.classList.add('active');
+            box.innerHTML = `🏷️ ছাড়ের পর মূল্য: <b style="color:#a855f7;font-size:16px;">৳${fmt(finalP)}</b> (আপনার সাশ্রয়: <b>৳${fmt(saved)}</b>)`;
+        }
+
+        // 4. Expense Tracker (খরচ খাতা) - Default preloaded with sample data from screenshots
+        const defaultTx = [
+            { id: 1, type: 'expense', desc: 'আমার খরচ', amount: 20, date: '১৮ অক্টো' },
+            { id: 2, type: 'expense', desc: 'বাসার খরচ', amount: 270, date: '১৮ অক্টো' },
+            { id: 3, type: 'expense', desc: 'বাড়ি', amount: 1000, date: '১৮ অক্টো' },
+            { id: 4, type: 'income', desc: '11 দিনের বেতন ও ওভারটাইম', amount: 2741.67, date: '১৮ অক্টো' },
+            { id: 5, type: 'expense', desc: 'মা নিচে', amount: 120, date: '১৭ অক্টো' },
+            { id: 6, type: 'expense', desc: 'বাড়ির খরচ পাট কাঠি', amount: 200, date: '১৭ অক্টো' }
+        ];
+
+        if (!localStorage.getItem('emon_tx_v2')) {
+            localStorage.setItem('emon_tx_v2', JSON.stringify(defaultTx));
+        }
+
+        function addTransaction() {
+            const type = document.getElementById('txType').value;
+            const desc = document.getElementById('txDesc').value.trim();
+            const amount = parseFloat(document.getElementById('txAmount').value);
+
+            if (!desc || isNaN(amount) || amount <= 0) {
+                return alert('অনুগ্রহ করে সঠিক বিবরণ এবং টাকার পরিমাণ লিখুন!');
+            }
+
+            const txList = JSON.parse(localStorage.getItem('emon_tx_v2') || '[]');
+            const today = new Date().toLocaleDateString('bn-BD', { day: 'numeric', month: 'short' });
+
+            txList.unshift({
+                id: Date.now(),
+                type,
+                desc,
+                amount: parseFloat(fmt(amount)),
+                date: today
+            });
+
+            localStorage.setItem('emon_tx_v2', JSON.stringify(txList));
+            document.getElementById('txDesc').value = '';
+            document.getElementById('txAmount').value = '';
+            renderTransactions();
+        }
+
+        function deleteTx(id) {
+            let txList = JSON.parse(localStorage.getItem('emon_tx_v2') || '[]');
+            txList = txList.filter(item => item.id !== id);
+            localStorage.setItem('emon_tx_v2', JSON.stringify(txList));
+            renderTransactions();
+        }
+
+        function renderTransactions() {
+            const txList = JSON.parse(localStorage.getItem('emon_tx_v2') || '[]');
+            const search = (document.getElementById('searchTx')?.value || '').toLowerCase();
+            const container = document.getElementById('txListContainer');
+            
+            let totalIn = 0;
+            let totalOut = 0;
+            container.innerHTML = '';
+
+            txList.forEach(item => {
+                if (item.type === 'income') totalIn += item.amount;
+                else totalOut += item.amount;
+
+                if (item.desc.toLowerCase().includes(search)) {
+                    const sign = item.type === 'income' ? '+' : '-';
+                    const cls = item.type === 'income' ? 'tx-plus' : 'tx-minus';
+                    container.innerHTML += `
+                        <div class="tx-item">
+                            <div class="tx-info">
+                                <h5>${item.desc}</h5>
+                                <span>${item.date}</span>
+                            </div>
+                            <div class="tx-amount ${cls}">
+                                ${sign}৳${fmt(item.amount)}
+                                <button class="del-btn" onclick="deleteTx(${item.id})"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('totalIn').innerText = '৳' + fmt(totalIn);
+            document.getElementById('totalOut').innerText = '৳' + fmt(totalOut);
+            document.getElementById('netBalance').innerText = '৳' + fmt(totalIn - totalOut);
+        }
+
+        // 5. Notebook Logic
+        function saveNote() {
+            const title = document.getElementById('noteTitle').value.trim();
+            const body = document.getElementById('noteBody').value.trim();
+            if (!title && !body) return alert('নোট লিখুন!');
+            const notes = JSON.parse(localStorage.getItem('emon_notes') || '[]');
+            notes.unshift({ id: Date.now(), title: title || 'শিরোনামহীন নোট', body, date: new Date().toLocaleDateString('bn-BD') });
+            localStorage.setItem('emon_notes', JSON.stringify(notes));
+            document.getElementById('noteTitle').value = '';
+            document.getElementById('noteBody').value = '';
+            renderNotes();
+        }
+
+        function deleteNote(id) {
+            let notes = JSON.parse(localStorage.getItem('emon_notes') || '[]');
+            notes = notes.filter(n => n.id !== id);
+            localStorage.setItem('emon_notes', JSON.stringify(notes));
+            renderNotes();
+        }
+
+        function renderNotes() {
+            const notes = JSON.parse(localStorage.getItem('emon_notes') || '[]');
+            const holder = document.getElementById('notesContainer');
+            holder.innerHTML = notes.map(n => `
+                <div class="card">
+                    <div class="card-header">
+                        <strong>${n.title}</strong>
+                        <button class="del-btn" onclick="deleteNote(${n.id})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <p style="font-size:14px;color:var(--text-muted);white-space:pre-wrap;">${n.body}</p>
+                </div>
+            `).join('');
+        }
+
+        // 6. Trading Calculator
+        function calcTrading() {
+            const cap = parseFloat(document.getElementById('tradeCap').value) || 0;
+            const risk = parseFloat(document.getElementById('tradeRisk').value) || 0;
+            const entry = parseFloat(document.getElementById('entryPrice').value) || 0;
+            const exit = parseFloat(document.getElementById('exitPrice').value) || 0;
+
+            const maxRiskAmt = (cap * risk) / 100;
+            const profitPct = entry > 0 ? ((exit - entry) / entry) * 100 : 0;
+            const estProfit = (cap * profitPct) / 100;
+
+            const box = document.getElementById('tradeResultBox');
+            box.classList.add('active');
+            box.innerHTML = `
+                📈 <b>ট্রেডিং অ্যানালাইসিস:</b><br>
+                • রিস্ক লিমিট (${risk}%): <b>${fmt(maxRiskAmt)}</b><br>
+                • সম্ভাব্য প্রফিট/লস: <b style="color:${estProfit >= 0 ? '#10b981' : '#ef4444'}">${fmt(estProfit)} (${fmt(profitPct)}%)</b>
+            `;
+        }
+
+        // 7. Shop Ledger (দোকান খাতা)
+        function addShopDues() {
+            const name = document.getElementById('custName').value.trim();
+            const type = document.getElementById('duesType').value;
+            const amount = parseFloat(document.getElementById('duesAmount').value);
+            if (!name || isNaN(amount)) return alert('নাম এবং টাকার পরিমাণ দিন!');
+            const list = JSON.parse(localStorage.getItem('emon_shop') || '[]');
+            list.unshift({ id: Date.now(), name, type, amount });
+            localStorage.setItem('emon_shop', JSON.stringify(list));
+            document.getElementById('custName').value = '';
+            document.getElementById('duesAmount').value = '';
+            renderShop();
+        }
+
+        function deleteShop(id) {
+            let list = JSON.parse(localStorage.getItem('emon_shop') || '[]');
+            list = list.filter(i => i.id !== id);
+            localStorage.setItem('emon_shop', JSON.stringify(list));
+            renderShop();
+        }
+
+        function renderShop() {
+            const list = JSON.parse(localStorage.getItem('emon_shop') || '[]');
+            const holder = document.getElementById('shopDuesList');
+            holder.innerHTML = list.map(i => `
+                <div class="tx-item">
+                    <div class="tx-info">
+                        <h5>${i.name}</h5>
+                        <span>${i.type === 'pabo' ? 'আমি পাবো (বাকি)' : 'সে পাবে (কর্জ)'}</span>
+                    </div>
+                    <div class="tx-amount ${i.type === 'pabo' ? 'tx-plus' : 'tx-minus'}">
+                        ৳${fmt(i.amount)}
+                        <button class="del-btn" onclick="deleteShop(${i.id})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Promotional Share Functions
+        function shareText(elementId) {
+            const rawText = document.getElementById(elementId).innerText;
+            const brandedText = `${rawText}\n\n⚡ হিসাব করা হয়েছে: EMON SMART MANAGER PRO দিয়ে।\n👨‍💻 Dev & Owner: Emon Khan\n🌐 ভিজিট করুন: ${window.location.href}`;
+            if (navigator.share) {
+                navigator.share({ title: 'EMON SMART MANAGER Report', text: brandedText });
+            } else {
+                navigator.clipboard.writeText(brandedText);
+                alert('প্রমোশনাল লিংকসহ হিসাব কপি হয়েছে! এখন যেকোনো জায়গায় পেস্ট করুন।');
+            }
+        }
+
+        function shareExpenseSummary() {
+            const totalIn = document.getElementById('totalIn').innerText;
+            const totalOut = document.getElementById('totalOut').innerText;
+            const net = document.getElementById('netBalance').innerText;
+            const msg = `📊 আমার মাসিক হিসাব রিপোর্ট:\n• মোট জমা: ${totalIn}\n• মোট খরচ: ${totalOut}\n• অবশিষ্ট ব্যালেন্স: ${net}\n\n🚀 Powered by: EMON SMART MANAGER (Dev: Emon Khan)`;
+            if (navigator.share) {
+                navigator.share({ title: 'খরচ খাতা রিপোর্ট', text: msg });
+            } else {
+                navigator.clipboard.writeText(msg);
+                alert('রিপোর্ট কপি হয়েছে!');
+            }
+        }
+
+        function shareApp() {
+            const msg = `🔥 প্রতিদিনের বেতন, ওভারটাইম, ব্যবসার লাভ-ক্ষতি ও খরচের নিখুঁত হিসাব রাখতে ব্যবহার করুন EMON SMART MANAGER PRO!\n👨‍💻 Developer: Emon Khan\n🔗 Link: ${window.location.href}`;
+            if (navigator.share) {
+                navigator.share({ title: 'EMON SMART MANAGER PRO', text: msg, url: window.location.href });
+            } else {
+                navigator.clipboard.writeText(msg);
+                alert('অ্যাপের প্রমোশনাল লিংক কপি হয়েছে!');
+            }
+        }
+
+        // Initial Load
+        window.onload = () => {
+            renderTransactions();
+            renderNotes();
+            renderShop();
+        };
+    </script>
 </body>
 </html>
